@@ -11,7 +11,7 @@ const API_KEYS: string[] = process.env.GEMINI_API_KEYS
   : [];
 
 const GEMINI_URL =
-  "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
+  "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent";
 
 function isRetryableStatus(status: number): boolean {
   return status === 429 || status === 500 || status === 503;
@@ -35,12 +35,11 @@ async function callGemini(prompt: string, systemInstruction: string): Promise<st
           generationConfig: {
             responseMimeType: "application/json",
             temperature: 0.3,
-            // gemini-2.5-flash mặc định "suy nghĩ" trước khi trả lời và thought token
-            // ĂN VÀO maxOutputTokens → với budget nhỏ, JSON bị cắt giữa dòng và parse lỗi.
-            // Tra cứu dinh dưỡng không cần suy luận nhiều bước nên tắt hẳn thinking:
-            // nhanh hơn, rẻ hơn và luôn đủ chỗ cho 6 kết quả.
-            thinkingConfig: { thinkingBudget: 0 },
-            maxOutputTokens: 2048,
+            // Thought token ĂN VÀO maxOutputTokens → budget nhỏ làm JSON bị cắt giữa
+            // dòng và parse lỗi. Dòng Gemini 3 không cho tắt hẳn thinking (thinkingBudget
+            // bị API từ chối 400), chỉ hạ được xuống "LOW" — nên phải chừa dư token.
+            thinkingConfig: { thinkingLevel: "LOW" },
+            maxOutputTokens: 4096,
           },
         }),
       });

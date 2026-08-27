@@ -11,7 +11,7 @@ const API_KEYS: string[] = process.env.GEMINI_API_KEYS
   : [];
 
 const GEMINI_URL =
-  "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent";
+  "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent";
 
 // ─── Utilities ────────────────────────────────────────────────────────────────
 
@@ -590,7 +590,11 @@ async function callGemini(prompt: string, systemInstruction: string): Promise<st
           generationConfig: {
             responseMimeType: "application/json",
             temperature: 0.8,
-            maxOutputTokens: 512,
+            // Gemini 3 luôn "suy nghĩ" trước khi trả lời và thought token ĂN VÀO
+            // maxOutputTokens; thinkingBudget: 0 bị API từ chối (400), thấp nhất là "LOW".
+            // Vì vậy budget phải rộng hơn nhiều so với kích thước JSON tên món thực tế.
+            thinkingConfig: { thinkingLevel: "LOW" },
+            maxOutputTokens: 4096,
           },
         }),
       });
