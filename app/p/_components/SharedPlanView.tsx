@@ -5,7 +5,7 @@ import type { SharePlan, SlimMeal } from "@/lib/share";
 import { getCookingTip } from "@/lib/cooking-tips";
 
 const GOAL_LABEL: Record<string, string> = {
-  lose: "Giảm cân", gain: "Tăng cân", maintain: "Duy trì",
+  lose: "Giảm cân", maintain: "Duy trì",
 };
 
 function sumMeals(meals: SlimMeal[]) {
@@ -43,7 +43,7 @@ export default function SharedPlanView({ plan }: { plan: SharePlan }) {
           <div className="flex flex-wrap gap-x-6 gap-y-3 mb-4">
             {[
               { label: "Mục tiêu", value: GOAL_LABEL[client.weightGoal] ?? client.weightGoal },
-              { label: "Thông số", value: `${client.gender === "male" ? "Nam" : "Nữ"} · ${client.age}t · ${client.height}cm · ${client.weight}kg` },
+              { label: "Thông số", value: `Nữ · ${client.age}t · ${client.height}cm · ${client.weight}kg` },
               { label: "Ngày tạo", value: client.date },
             ].map((it) => (
               <div key={it.label}>

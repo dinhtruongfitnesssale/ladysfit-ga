@@ -23,7 +23,6 @@ export interface SharePlan {
   v: 1;
   client: {
     name: string;
-    gender: "male" | "female";
     age: number;
     height: number;
     weight: number;

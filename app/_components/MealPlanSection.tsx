@@ -220,7 +220,7 @@ function PdfTemplate({
   date: string;
 }) {
   const GOAL_LABEL: Record<string, string> = {
-    lose: "Giảm cân", gain: "Tăng cân", maintain: "Duy trì",
+    lose: "Giảm cân", maintain: "Duy trì",
   };
 
   const th: React.CSSProperties = {
@@ -266,7 +266,7 @@ function PdfTemplate({
           { label: "Mục tiêu", value: GOAL_LABEL[result.weightGoal] ?? result.weightGoal },
           {
             label: "Thông số",
-            value: `${result.gender === "male" ? "Nam" : "Nữ"} · ${result.age}t · ${result.height}cm · ${result.weight}kg`,
+            value: `Nữ · ${result.age}t · ${result.height}cm · ${result.weight}kg`,
           },
           { label: "Số ngày thực đơn", value: `${days.length} ngày` },
         ].map((item) => (
@@ -939,7 +939,7 @@ export default function MealPlanSection({
     return {
       v: 1,
       client: {
-        name: result.name, gender: result.gender, age: result.age,
+        name: result.name, age: result.age,
         height: result.height, weight: result.weight, weightGoal: result.weightGoal,
         der: result.der, protein: result.protein, fat: result.fat, carbs: result.carbs,
         date: today,
