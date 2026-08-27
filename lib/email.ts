@@ -14,10 +14,10 @@ import nodemailer from "nodemailer";
 /** App / brand name used in subject lines and email chrome. */
 const BRAND = "Diet Plan";
 
-// Brand palette (paper / ink / amber) — mirrors the app UI.
-const PAPER = "#F6F2EA";
+// Brand palette (nền hồng / ink / coral) — mirrors the app UI.
+const PAPER = "#FDE2DC";
 const INK = "#14110E";
-const AMBER = "#B5651E";
+const BRAND_INK = "#B02F30"; // coral đậm — dùng cho chữ nhấn, đọc rõ trên nền sáng
 
 /**
  * Loose email-format check — enough to skip obvious placeholders so we don't
@@ -93,26 +93,26 @@ export function buildWelcomeEmail(opts: {
   const subject = `Tài khoản ${BRAND} của bạn đã sẵn sàng`;
 
   const html = `
-  <div style="margin:0;padding:24px;background:${PAPER};font-family:'Segoe UI',Helvetica,Arial,sans-serif;color:${INK};">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;margin:0 auto;background:#ffffff;border-radius:14px;overflow:hidden;border:1px solid #e6ddcb;">
+  <div style="margin:0;padding:24px;background:${PAPER};font-family:'Nunito','Segoe UI',Helvetica,Arial,sans-serif;color:${INK};">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;margin:0 auto;background:#ffffff;border-radius:14px;overflow:hidden;border:1px solid #f6c5ba;">
       <tr>
         <td style="padding:28px 32px 8px;">
-          <p style="margin:0;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:${AMBER};font-weight:700;">${BRAND}</p>
+          <p style="margin:0;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:${BRAND_INK};font-weight:700;">${BRAND}</p>
           <h1 style="margin:12px 0 0;font-size:22px;line-height:1.3;color:${INK};">Chào ${escapeHtml(name)}, tài khoản của bạn đã được tạo 🎉</h1>
         </td>
       </tr>
       <tr>
-        <td style="padding:12px 32px 0;font-size:15px;line-height:1.65;color:#3a3630;">
+        <td style="padding:12px 32px 0;font-size:15px;line-height:1.65;color:#4a3331;">
           <p style="margin:0 0 16px;">Một tài khoản <strong>${escapeHtml(roleLabel)}</strong> trên hệ thống <strong>${BRAND}</strong> vừa được tạo cho bạn. Đăng nhập bằng thông tin bên dưới để bắt đầu sử dụng máy tính dinh dưỡng.</p>
-          ${opts.isTrial ? `<p style="margin:0 0 16px;padding:12px 14px;background:#fdf6ec;border:1px solid #f0e0c4;border-radius:10px;font-size:14px;">⏳ Phiên trải nghiệm kéo dài <strong>5 tiếng</strong>, chỉ bắt đầu tính <strong>từ lúc bạn đăng nhập lần đầu</strong> — nên bạn có thể yên tâm đăng nhập khi đã sẵn sàng.</p>` : ""}
+          ${opts.isTrial ? `<p style="margin:0 0 16px;padding:12px 14px;background:#fff3f0;border:1px solid #fad2c9;border-radius:10px;font-size:14px;">⏳ Phiên trải nghiệm kéo dài <strong>5 tiếng</strong>, chỉ bắt đầu tính <strong>từ lúc bạn đăng nhập lần đầu</strong> — nên bạn có thể yên tâm đăng nhập khi đã sẵn sàng.</p>` : ""}
         </td>
       </tr>
       <tr>
         <td style="padding:0 32px;">
-          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${PAPER};border:1px solid #e6ddcb;border-radius:10px;">
-            <tr><td style="padding:14px 18px;font-size:14px;color:#3a3630;">
-              <p style="margin:0 0 6px;"><span style="color:#8a8175;">Email đăng nhập:</span> <strong>${escapeHtml(opts.email)}</strong></p>
-              <p style="margin:0;"><span style="color:#8a8175;">Mật khẩu:</span> <strong style="font-family:'Courier New',monospace;">${escapeHtml(opts.password)}</strong></p>
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${PAPER};border:1px solid #f6c5ba;border-radius:10px;">
+            <tr><td style="padding:14px 18px;font-size:14px;color:#4a3331;">
+              <p style="margin:0 0 6px;"><span style="color:#9c7c77;">Email đăng nhập:</span> <strong>${escapeHtml(opts.email)}</strong></p>
+              <p style="margin:0;"><span style="color:#9c7c77;">Mật khẩu:</span> <strong style="font-family:'Courier New',monospace;">${escapeHtml(opts.password)}</strong></p>
             </td></tr>
           </table>
         </td>
@@ -123,14 +123,14 @@ export function buildWelcomeEmail(opts: {
         </td>
       </tr>
       <tr>
-        <td style="padding:14px 32px 0;font-size:13px;line-height:1.6;color:#8a8175;">
-          <p style="margin:0 0 6px;">Hoặc mở liên kết: <a href="${opts.loginUrl}" style="color:${AMBER};word-break:break-all;">${opts.loginUrl}</a></p>
+        <td style="padding:14px 32px 0;font-size:13px;line-height:1.6;color:#9c7c77;">
+          <p style="margin:0 0 6px;">Hoặc mở liên kết: <a href="${opts.loginUrl}" style="color:${BRAND_INK};word-break:break-all;">${opts.loginUrl}</a></p>
           <p style="margin:10px 0 0;">Vì lý do bảo mật, hãy <strong>đổi mật khẩu</strong> sau lần đăng nhập đầu tiên.</p>
         </td>
       </tr>
       <tr>
-        <td style="padding:24px 32px 28px;border-top:1px solid #efe8da;">
-          <p style="margin:18px 0 0;font-size:12px;color:#a89f90;">Bạn nhận được email này vì có người đã tạo tài khoản cho bạn tại ${BRAND}. Nếu bạn không mong đợi email này, có thể bỏ qua nó.</p>
+        <td style="padding:24px 32px 28px;border-top:1px solid #f8d0c7;">
+          <p style="margin:18px 0 0;font-size:12px;color:#c0a09b;">Bạn nhận được email này vì có người đã tạo tài khoản cho bạn tại ${BRAND}. Nếu bạn không mong đợi email này, có thể bỏ qua nó.</p>
         </td>
       </tr>
     </table>
@@ -152,16 +152,16 @@ export function buildPasswordResetEmail(opts: {
   const subject = `Đặt lại mật khẩu ${BRAND}`;
 
   const html = `
-  <div style="margin:0;padding:24px;background:${PAPER};font-family:'Segoe UI',Helvetica,Arial,sans-serif;color:${INK};">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;margin:0 auto;background:#ffffff;border-radius:14px;overflow:hidden;border:1px solid #e6ddcb;">
+  <div style="margin:0;padding:24px;background:${PAPER};font-family:'Nunito','Segoe UI',Helvetica,Arial,sans-serif;color:${INK};">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;margin:0 auto;background:#ffffff;border-radius:14px;overflow:hidden;border:1px solid #f6c5ba;">
       <tr>
         <td style="padding:28px 32px 8px;">
-          <p style="margin:0;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:${AMBER};font-weight:700;">${BRAND}</p>
+          <p style="margin:0;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:${BRAND_INK};font-weight:700;">${BRAND}</p>
           <h1 style="margin:12px 0 0;font-size:22px;line-height:1.3;color:${INK};">Đặt lại mật khẩu 🔒</h1>
         </td>
       </tr>
       <tr>
-        <td style="padding:12px 32px 0;font-size:15px;line-height:1.65;color:#3a3630;">
+        <td style="padding:12px 32px 0;font-size:15px;line-height:1.65;color:#4a3331;">
           <p style="margin:0 0 16px;">Chào ${escapeHtml(name)}, chúng tôi nhận được yêu cầu đặt lại mật khẩu cho tài khoản của bạn. Bấm nút bên dưới để chọn mật khẩu mới.</p>
         </td>
       </tr>
@@ -171,14 +171,14 @@ export function buildPasswordResetEmail(opts: {
         </td>
       </tr>
       <tr>
-        <td style="padding:14px 32px 0;font-size:13px;line-height:1.6;color:#8a8175;">
-          <p style="margin:0 0 6px;">Hoặc mở liên kết: <a href="${opts.resetUrl}" style="color:${AMBER};word-break:break-all;">${opts.resetUrl}</a></p>
+        <td style="padding:14px 32px 0;font-size:13px;line-height:1.6;color:#9c7c77;">
+          <p style="margin:0 0 6px;">Hoặc mở liên kết: <a href="${opts.resetUrl}" style="color:${BRAND_INK};word-break:break-all;">${opts.resetUrl}</a></p>
           <p style="margin:10px 0 0;">Liên kết này sẽ <strong>hết hạn sau 1 giờ</strong>. Nếu bạn không yêu cầu đặt lại mật khẩu, hãy bỏ qua email này — mật khẩu của bạn vẫn giữ nguyên.</p>
         </td>
       </tr>
       <tr>
-        <td style="padding:24px 32px 28px;border-top:1px solid #efe8da;">
-          <p style="margin:18px 0 0;font-size:12px;color:#a89f90;">Email tự động từ hệ thống ${BRAND}. Vì lý do bảo mật, đừng chuyển tiếp email này cho người khác.</p>
+        <td style="padding:24px 32px 28px;border-top:1px solid #f8d0c7;">
+          <p style="margin:18px 0 0;font-size:12px;color:#c0a09b;">Email tự động từ hệ thống ${BRAND}. Vì lý do bảo mật, đừng chuyển tiếp email này cho người khác.</p>
         </td>
       </tr>
     </table>

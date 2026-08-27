@@ -150,7 +150,7 @@ function TrackingBar({
     <div>
       <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px" }}>
         <span style={{ fontSize: "0.75rem", fontWeight: 600, color: "rgba(20,17,14,0.5)" }}>{label}</span>
-        <span style={{ fontSize: "0.75rem", color: over ? "#B5651E" : "rgba(20,17,14,0.38)" }}>
+        <span style={{ fontSize: "0.75rem", color: over ? "#B02F30" : "rgba(20,17,14,0.38)" }}>
           {over ? `+${Math.round(current - target)} vượt` : `còn ${Math.round(target - current)}`}
         </span>
       </div>
@@ -160,7 +160,7 @@ function TrackingBar({
             height: "100%",
             borderRadius: "99px",
             width: `${pct}%`,
-            background: over ? "#B5651E" : color,
+            background: over ? "#F15B5C" : color,
             transition: "width 0.35s ease",
           }}
         />
@@ -177,9 +177,9 @@ function AiMealCard({ meal }: { meal: AiMeal }) {
     <div className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(20,17,14,0.1)" }}>
       <div
         className="px-4 py-2 flex items-center justify-between"
-        style={{ background: "rgba(181,101,30,0.05)" }}
+        style={{ background: "rgba(241,91,92,0.05)" }}
       >
-        <span style={{ fontSize: "0.875rem", fontWeight: 700, color: "#B5651E" }}>{meal.mealName}</span>
+        <span style={{ fontSize: "0.875rem", fontWeight: 700, color: "#B02F30" }}>{meal.mealName}</span>
         <span style={{ fontSize: "0.875rem", fontWeight: 700, color: "#14110E" }}>
           {meal.calories} kcal
         </span>
@@ -201,7 +201,7 @@ function AiMealCard({ meal }: { meal: AiMeal }) {
         >
           <span style={{ fontSize: "0.8rem", lineHeight: 1.5 }} aria-hidden="true">👨‍🍳</span>
           <p style={{ fontSize: "0.75rem", color: "rgba(20,17,14,0.55)", lineHeight: 1.5 }}>
-            <span style={{ fontWeight: 700, color: "#B5651E" }}>Gợi ý chế biến: </span>
+            <span style={{ fontWeight: 700, color: "#B02F30" }}>Gợi ý chế biến: </span>
             {cookingTip}
           </p>
         </div>
@@ -230,8 +230,8 @@ function PdfTemplate({
     textTransform: "uppercase",
     letterSpacing: "0.06em",
     background: "#14110E",
-    color: "#F6F2EA",
-    fontFamily: "Montserrat, sans-serif",
+    color: "#FDE2DC",
+    fontFamily: "Nunito, sans-serif",
     textAlign: "left",
   };
   const thDark: React.CSSProperties = { ...th, background: "#14110E" };
@@ -240,17 +240,17 @@ function PdfTemplate({
     fontSize: "12px",
     borderBottom: "1px solid rgba(20,17,14,0.07)",
     color: "#14110E",
-    fontFamily: "Montserrat, sans-serif",
+    fontFamily: "Nunito, sans-serif",
   };
   const tdRight: React.CSSProperties = { ...td, textAlign: "right" };
   const tdCenter: React.CSSProperties = { ...td, textAlign: "center" };
   const tdBold: React.CSSProperties = { ...td, fontWeight: 700 };
 
   return (
-    <div style={{ background: "#F6F2EA", fontFamily: "Montserrat, sans-serif", color: "#14110E" }}>
+    <div style={{ background: "#FDE2DC", fontFamily: "Nunito, sans-serif", color: "#14110E" }}>
       {/* ── Header ── */}
       <div style={{ background: "#14110E", padding: "28px 40px 24px" }}>
-        <div style={{ fontSize: "30px", fontWeight: 900, color: "#F6F2EA", letterSpacing: "-0.03em", lineHeight: 1 }}>
+        <div style={{ fontSize: "30px", fontWeight: 900, color: "#FDE2DC", letterSpacing: "-0.03em", lineHeight: 1 }}>
           DIET PLAN
         </div>
         <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.65)", marginTop: "6px", letterSpacing: "0.04em" }}>
@@ -301,7 +301,7 @@ function PdfTemplate({
               { label: "Fat", value: `${result.fat}g` },
               { label: "Carbs", value: `${result.carbs}g` },
             ].map((row, i) => (
-              <tr key={i} style={{ background: i % 2 === 0 ? "#F6F2EA" : "rgba(20,17,14,0.018)" }}>
+              <tr key={i} style={{ background: i % 2 === 0 ? "#FDE2DC" : "rgba(20,17,14,0.018)" }}>
                 <td style={td}>{row.label}</td>
                 <td style={{ ...tdRight, fontWeight: 600 }}>{row.value}</td>
               </tr>
@@ -337,7 +337,7 @@ function PdfTemplate({
               <span style={{
                 display: "inline-block",
                 background: "#14110E",
-                color: "#F6F2EA",
+                color: "#FDE2DC",
                 fontSize: "14px",
                 fontWeight: 800,
                 letterSpacing: "0.02em",
@@ -370,8 +370,8 @@ function PdfTemplate({
                     {aiMeals.map((meal, i) => {
                       const tip = getCookingTip(meal.name);
                       return (
-                        <tr key={i} style={{ background: i % 2 === 0 ? "#F6F2EA" : "rgba(20,17,14,0.018)" }}>
-                          <td style={{ ...tdBold, color: "#B5651E", whiteSpace: "nowrap" }}>{meal.mealName}</td>
+                        <tr key={i} style={{ background: i % 2 === 0 ? "#FDE2DC" : "rgba(20,17,14,0.018)" }}>
+                          <td style={{ ...tdBold, color: "#B02F30", whiteSpace: "nowrap" }}>{meal.mealName}</td>
                           <td style={td}>
                             {meal.name}
                             {tip && (
@@ -388,12 +388,12 @@ function PdfTemplate({
                       );
                     })}
                     {aiGrand && (
-                      <tr style={{ background: "rgba(181,101,30,0.05)" }}>
-                        <td style={{ ...tdBold, color: "#B5651E" }} colSpan={2}>Tổng cả ngày</td>
-                        <td style={{ ...tdCenter, fontWeight: 700, color: "#B5651E" }}>{Math.round(aiGrand.cal)}</td>
-                        <td style={{ ...tdCenter, fontWeight: 700, color: "#B5651E" }}>{Math.round(aiGrand.p)}</td>
-                        <td style={{ ...tdCenter, fontWeight: 700, color: "#B5651E" }}>{Math.round(aiGrand.f)}</td>
-                        <td style={{ ...tdCenter, fontWeight: 700, color: "#B5651E" }}>{Math.round(aiGrand.c)}</td>
+                      <tr style={{ background: "rgba(241,91,92,0.05)" }}>
+                        <td style={{ ...tdBold, color: "#B02F30" }} colSpan={2}>Tổng cả ngày</td>
+                        <td style={{ ...tdCenter, fontWeight: 700, color: "#B02F30" }}>{Math.round(aiGrand.cal)}</td>
+                        <td style={{ ...tdCenter, fontWeight: 700, color: "#B02F30" }}>{Math.round(aiGrand.p)}</td>
+                        <td style={{ ...tdCenter, fontWeight: 700, color: "#B02F30" }}>{Math.round(aiGrand.f)}</td>
+                        <td style={{ ...tdCenter, fontWeight: 700, color: "#B02F30" }}>{Math.round(aiGrand.c)}</td>
                       </tr>
                     )}
                   </tbody>
@@ -421,7 +421,7 @@ function PdfTemplate({
                   </thead>
                   <tbody>
                     {manualFoods.map((food, i) => (
-                      <tr key={food.id} style={{ background: i % 2 === 0 ? "#F6F2EA" : "rgba(20,17,14,0.018)" }}>
+                      <tr key={food.id} style={{ background: i % 2 === 0 ? "#FDE2DC" : "rgba(20,17,14,0.018)" }}>
                         <td style={td}>{food.name}</td>
                         <td style={{ ...tdCenter, fontWeight: 600 }}>{Math.round(food.calories)}</td>
                         <td style={tdCenter}>{Math.round(food.protein)}</td>
@@ -429,12 +429,12 @@ function PdfTemplate({
                         <td style={tdCenter}>{Math.round(food.carbs)}</td>
                       </tr>
                     ))}
-                    <tr style={{ background: "rgba(181,101,30,0.04)" }}>
-                      <td style={{ ...tdBold, color: "#B5651E" }}>Tổng ngày</td>
-                      <td style={{ ...tdCenter, fontWeight: 700, color: "#B5651E" }}>{Math.round(manualTotal.cal)}</td>
-                      <td style={{ ...tdCenter, fontWeight: 700, color: "#B5651E" }}>{Math.round(manualTotal.p)}</td>
-                      <td style={{ ...tdCenter, fontWeight: 700, color: "#B5651E" }}>{Math.round(manualTotal.f)}</td>
-                      <td style={{ ...tdCenter, fontWeight: 700, color: "#B5651E" }}>{Math.round(manualTotal.c)}</td>
+                    <tr style={{ background: "rgba(241,91,92,0.04)" }}>
+                      <td style={{ ...tdBold, color: "#B02F30" }}>Tổng ngày</td>
+                      <td style={{ ...tdCenter, fontWeight: 700, color: "#B02F30" }}>{Math.round(manualTotal.cal)}</td>
+                      <td style={{ ...tdCenter, fontWeight: 700, color: "#B02F30" }}>{Math.round(manualTotal.p)}</td>
+                      <td style={{ ...tdCenter, fontWeight: 700, color: "#B02F30" }}>{Math.round(manualTotal.f)}</td>
+                      <td style={{ ...tdCenter, fontWeight: 700, color: "#B02F30" }}>{Math.round(manualTotal.c)}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -456,7 +456,7 @@ function PdfTemplate({
         <span style={{ fontSize: "10px", color: "rgba(20,17,14,0.3)", fontStyle: "italic" }}>
           Được tạo bởi Diet Plan · Máy Tính Dinh Dưỡng Chuyên Sâu
         </span>
-        <span style={{ fontSize: "12px", fontWeight: 900, color: "#B5651E", letterSpacing: "-0.01em" }}>
+        <span style={{ fontSize: "12px", fontWeight: 900, color: "#B02F30", letterSpacing: "-0.01em" }}>
           DIET PLAN
         </span>
       </div>
@@ -514,7 +514,7 @@ function IngredientSearchRow({
           {results.length > 0 && (
             <div
               className="absolute z-50 left-0 right-0 top-full mt-1 rounded-xl overflow-hidden shadow-xl"
-              style={{ background: "#F6F2EA", border: "1px solid rgba(20,17,14,0.12)" }}
+              style={{ background: "#FDE2DC", border: "1px solid rgba(20,17,14,0.12)" }}
             >
               {results.map(food => (
                 <button
@@ -523,7 +523,7 @@ function IngredientSearchRow({
                   onMouseDown={() => onSelect(food)}
                   className="w-full text-left px-3 py-2.5 transition-colors"
                   style={{ borderBottom: "1px solid rgba(20,17,14,0.05)" }}
-                  onMouseEnter={e => (e.currentTarget.style.background = "rgba(181,101,30,0.04)")}
+                  onMouseEnter={e => (e.currentTarget.style.background = "rgba(241,91,92,0.04)")}
                   onMouseLeave={e => (e.currentTarget.style.background = "")}
                 >
                   <span className="text-sm font-semibold" style={{ color: "#14110E" }}>
@@ -573,7 +573,7 @@ function IngredientSearchRow({
             type="button"
             onClick={onRemove}
             className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-lg"
-            style={{ background: "rgba(181,101,30,0.08)", color: "#B5651E" }}
+            style={{ background: "rgba(241,91,92,0.08)", color: "#B02F30" }}
             aria-label="Xoá nguyên liệu"
           >
             ×
@@ -585,7 +585,7 @@ function IngredientSearchRow({
         <div className="flex gap-3 pl-1 flex-wrap">
           {(
             [
-              { label: "Calo", value: `${macros.calories} kcal`, color: "#B5651E" },
+              { label: "Calo", value: `${macros.calories} kcal`, color: "#B02F30" },
               { label: "P", value: `${macros.protein}g`, color: "#3A5567" },
               { label: "F", value: `${macros.fat}g`, color: "#A33A2A" },
               { label: "C", value: `${macros.carbs}g`, color: "#5C6E48" },
@@ -620,7 +620,7 @@ function Spinner({ light = false }: { light?: boolean }) {
       />
       <path
         d="M12 2a10 10 0 0 1 10 10"
-        stroke={light ? "#F6F2EA" : "#14110E"}
+        stroke={light ? "#FFFFFF" : "#14110E"}
         strokeWidth="3"
         strokeLinecap="round"
       />
@@ -882,7 +882,7 @@ export default function MealPlanSection({
         scale: 2,
         useCORS: true,
         allowTaint: true,
-        backgroundColor: "#F6F2EA",
+        backgroundColor: "#FDE2DC",
         logging: false,
         scrollX: 0,
         scrollY: 0,
@@ -1000,7 +1000,7 @@ export default function MealPlanSection({
         width: 512,
         margin: 2,
         errorCorrectionLevel: "M",
-        color: { dark: "#14110E", light: "#F6F2EA" },
+        color: { dark: "#14110E", light: "#FDE2DC" },
       });
       setQrDataUrl(dataUrl);
     } catch {
@@ -1021,7 +1021,7 @@ export default function MealPlanSection({
           <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(20,17,14,0.35)" }}>
             Thực đơn theo ngày
           </p>
-          <span className="text-xs font-semibold" style={{ color: "#B5651E" }}>
+          <span className="text-xs font-semibold" style={{ color: "#B02F30" }}>
             Đang soạn: {DAY_LABELS[activeDay]}
           </span>
         </div>
@@ -1036,16 +1036,16 @@ export default function MealPlanSection({
                 onClick={() => switchDay(i)}
                 className="relative py-2.5 rounded-xl text-sm font-bold transition-all active:scale-[0.97]"
                 style={{
-                  border: active ? "1px solid #B5651E" : "1px solid rgba(20,17,14,0.15)",
-                  background: active ? "#B5651E" : "#F6F2EA",
-                  color: active ? "#F6F2EA" : "#14110E",
+                  border: active ? "1px solid #F15B5C" : "1px solid rgba(20,17,14,0.15)",
+                  background: active ? "#F15B5C" : "#FDE2DC",
+                  color: active ? "#FFFFFF" : "#14110E",
                 }}
               >
                 {label}
                 {filled && (
                   <span
                     className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full"
-                    style={{ background: active ? "#F6F2EA" : "#B5651E" }}
+                    style={{ background: active ? "#FDE2DC" : "#F15B5C" }}
                     aria-label="đã có thực đơn"
                   />
                 )}
@@ -1073,8 +1073,8 @@ export default function MealPlanSection({
               onClick={() => setActiveTab(tab)}
               className="flex-1 py-3.5 text-sm font-semibold transition-all"
               style={{
-                borderBottom: activeTab === tab ? "2px solid #B5651E" : "2px solid transparent",
-                color: activeTab === tab ? "#B5651E" : "rgba(20,17,14,0.45)",
+                borderBottom: activeTab === tab ? "2px solid #F15B5C" : "2px solid transparent",
+                color: activeTab === tab ? "#B02F30" : "rgba(20,17,14,0.45)",
                 background: "transparent",
               }}
             >
@@ -1098,9 +1098,9 @@ export default function MealPlanSection({
                       onClick={() => setMealCount(n)}
                       className="py-2.5 rounded-xl text-sm font-bold transition-all"
                       style={{
-                        border: mealCount === n ? "1px solid #B5651E" : "1px solid rgba(20,17,14,0.15)",
-                        background: mealCount === n ? "#B5651E" : "#F6F2EA",
-                        color: mealCount === n ? "#F6F2EA" : "#14110E",
+                        border: mealCount === n ? "1px solid #F15B5C" : "1px solid rgba(20,17,14,0.15)",
+                        background: mealCount === n ? "#F15B5C" : "#FDE2DC",
+                        color: mealCount === n ? "#FFFFFF" : "#14110E",
                       }}
                     >
                       {n} bữa
@@ -1120,7 +1120,7 @@ export default function MealPlanSection({
                     className="w-full py-3.5 rounded-xl font-bold text-base flex items-center justify-center gap-2 transition-all active:scale-[0.98]"
                     style={{
                       background: blocked ? "rgba(20,17,14,0.55)" : "#14110E",
-                      color: "#F6F2EA",
+                      color: "#FDE2DC",
                       cursor: blocked ? "not-allowed" : "pointer",
                       pointerEvents: blocked ? "none" : "auto",
                     }}
@@ -1140,7 +1140,7 @@ export default function MealPlanSection({
               {aiError && (
                 <div
                   className="rounded-xl px-4 py-3 text-sm flex items-start gap-2"
-                  style={{ background: "rgba(181,101,30,0.06)", border: "1px solid rgba(181,101,30,0.2)", color: "#B5651E" }}
+                  style={{ background: "rgba(241,91,92,0.06)", border: "1px solid rgba(241,91,92,0.2)", color: "#B02F30" }}
                 >
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="mt-0.5 flex-shrink-0">
                     <circle cx="12" cy="12" r="10" />
@@ -1180,7 +1180,7 @@ export default function MealPlanSection({
                         </p>
                         <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
                           {[
-                            { label: "Calo", value: gt.cal, unit: "kcal", color: "#B5651E" },
+                            { label: "Calo", value: gt.cal, unit: "kcal", color: "#B02F30" },
                             { label: "Protein", value: Math.round(gt.p), unit: "g", color: "#3A5567" },
                             { label: "Fat", value: Math.round(gt.f), unit: "g", color: "#A33A2A" },
                             { label: "Carbs", value: Math.round(gt.c), unit: "g", color: "#5C6E48" },
@@ -1188,7 +1188,7 @@ export default function MealPlanSection({
                             <div
                               key={item.label}
                               className="text-center rounded-lg py-2.5 px-1"
-                              style={{ background: "#F6F2EA", border: "1px solid rgba(20,17,14,0.07)" }}
+                              style={{ background: "#FDE2DC", border: "1px solid rgba(20,17,14,0.07)" }}
                             >
                               <p className="text-xs" style={{ color: "rgba(20,17,14,0.4)" }}>{item.label}</p>
                               <p className="text-lg md:text-xl font-bold mt-0.5" style={{ color: item.color }}>
@@ -1221,7 +1221,7 @@ export default function MealPlanSection({
                   label={`Calo · ${totals.calories} / ${liveDer} kcal`}
                   current={totals.calories}
                   target={liveDer}
-                  color="#B5651E"
+                  color="#F15B5C"
                 />
                 <TrackingBar
                   label={`Protein · ${Math.round(totals.protein)} / ${liveProtein}g`}
@@ -1248,7 +1248,7 @@ export default function MealPlanSection({
                 {editingMealId !== null && (
                   <div
                     className="px-3 py-2 rounded-lg text-xs font-bold"
-                    style={{ background: "rgba(181,101,30,0.06)", color: "#B5651E", border: "1px solid rgba(181,101,30,0.18)" }}
+                    style={{ background: "rgba(241,91,92,0.06)", color: "#B02F30", border: "1px solid rgba(241,91,92,0.18)" }}
                   >
                     ✏️ Đang chỉnh sửa — {manualFoods.find(f => f.id === editingMealId)?.name.split(':')[0] ?? 'Bữa ăn'}
                   </div>
@@ -1298,7 +1298,7 @@ export default function MealPlanSection({
                     type="button"
                     onClick={() => setRows(prev => [...prev, newRow()])}
                     className="text-sm font-semibold"
-                    style={{ color: "#B5651E" }}
+                    style={{ color: "#B02F30" }}
                   >
                     + Thêm nguyên liệu ({rows.length}/5)
                   </button>
@@ -1335,7 +1335,7 @@ export default function MealPlanSection({
                       </p>
                       <div className="flex gap-4 flex-wrap">
                         {[
-                          { label: "Calo", value: `${Math.round(total.calories)} kcal`, color: "#B5651E" },
+                          { label: "Calo", value: `${Math.round(total.calories)} kcal`, color: "#B02F30" },
                           { label: "Protein", value: `${Math.round(total.protein)}g`, color: "#3A5567" },
                           { label: "Fat", value: `${Math.round(total.fat)}g`, color: "#A33A2A" },
                           { label: "Carbs", value: `${Math.round(total.carbs)}g`, color: "#5C6E48" },
@@ -1358,7 +1358,7 @@ export default function MealPlanSection({
                     className="flex-1 py-3 rounded-xl text-sm font-bold transition-all active:scale-[0.98]"
                     style={{
                       background: rows.some(r => r.food !== null) ? "#14110E" : "rgba(20,17,14,0.3)",
-                      color: "#F6F2EA",
+                      color: "#FDE2DC",
                       cursor: rows.some(r => r.food !== null) ? "pointer" : "not-allowed",
                     }}
                   >
@@ -1390,8 +1390,8 @@ export default function MealPlanSection({
                         key={food.id}
                         className="flex items-center gap-2 rounded-xl px-4 py-3"
                         style={{
-                          background: isEditing ? "rgba(181,101,30,0.04)" : "rgba(20,17,14,0.025)",
-                          border: isEditing ? "1px solid rgba(181,101,30,0.25)" : "1px solid rgba(20,17,14,0.07)",
+                          background: isEditing ? "rgba(241,91,92,0.04)" : "rgba(20,17,14,0.025)",
+                          border: isEditing ? "1px solid rgba(241,91,92,0.25)" : "1px solid rgba(20,17,14,0.07)",
                           opacity: isEditing ? 0.75 : 1,
                         }}
                       >
@@ -1403,7 +1403,7 @@ export default function MealPlanSection({
                             {isEditing && (
                               <span
                                 className="text-xs font-bold px-1.5 py-0.5 rounded flex-shrink-0"
-                                style={{ background: "rgba(181,101,30,0.1)", color: "#B5651E" }}
+                                style={{ background: "rgba(241,91,92,0.1)", color: "#B02F30" }}
                               >
                                 đang sửa
                               </span>
@@ -1439,7 +1439,7 @@ export default function MealPlanSection({
                             setManualFoods((prev) => prev.filter((f) => f.id !== food.id));
                           }}
                           className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-base font-bold transition-all"
-                          style={{ background: "rgba(181,101,30,0.08)", color: "#B5651E" }}
+                          style={{ background: "rgba(241,91,92,0.08)", color: "#B02F30" }}
                           aria-label="Xoá bữa"
                         >
                           ×
@@ -1479,9 +1479,9 @@ export default function MealPlanSection({
                   }
                   className="py-2 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1"
                   style={{
-                    border: checked ? "1px solid #B5651E" : "1px solid rgba(20,17,14,0.15)",
-                    background: checked ? "rgba(181,101,30,0.08)" : "#F6F2EA",
-                    color: !filled ? "rgba(20,17,14,0.25)" : checked ? "#B5651E" : "rgba(20,17,14,0.55)",
+                    border: checked ? "1px solid #F15B5C" : "1px solid rgba(20,17,14,0.15)",
+                    background: checked ? "rgba(241,91,92,0.08)" : "#FDE2DC",
+                    color: !filled ? "rgba(20,17,14,0.25)" : checked ? "#B02F30" : "rgba(20,17,14,0.55)",
                     cursor: filled ? "pointer" : "not-allowed",
                   }}
                 >
@@ -1499,7 +1499,7 @@ export default function MealPlanSection({
               className="flex-1 py-3.5 rounded-2xl font-bold text-base flex items-center justify-center gap-2.5 transition-all active:scale-[0.98]"
               style={{
                 background: pdfLoading || includedDays.length === 0 ? "rgba(20,17,14,0.4)" : "#14110E",
-                color: "#F6F2EA",
+                color: "#FDE2DC",
                 cursor: pdfLoading || includedDays.length === 0 ? "not-allowed" : "pointer",
               }}
             >
@@ -1523,8 +1523,8 @@ export default function MealPlanSection({
               disabled={includedDays.length === 0 || shareLoading}
               className="flex-1 py-3.5 rounded-2xl font-bold text-base flex items-center justify-center gap-2.5 transition-all active:scale-[0.98]"
               style={{
-                background: includedDays.length === 0 || shareLoading ? "rgba(181,101,30,0.4)" : "#B5651E",
-                color: "#F6F2EA",
+                background: includedDays.length === 0 || shareLoading ? "rgba(241,91,92,0.4)" : "#F15B5C",
+                color: "#FFFFFF",
                 cursor: includedDays.length === 0 || shareLoading ? "not-allowed" : "pointer",
               }}
             >
@@ -1545,7 +1545,7 @@ export default function MealPlanSection({
           {shareError && (
             <div
               className="rounded-xl px-4 py-3 text-sm flex items-start gap-2"
-              style={{ background: "rgba(181,101,30,0.06)", border: "1px solid rgba(181,101,30,0.2)", color: "#B5651E" }}
+              style={{ background: "rgba(241,91,92,0.06)", border: "1px solid rgba(241,91,92,0.2)", color: "#B02F30" }}
             >
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="mt-0.5 flex-shrink-0">
                 <circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" />
@@ -1565,7 +1565,7 @@ export default function MealPlanSection({
         >
           <div
             className="w-full max-w-md rounded-2xl p-6 shadow-2xl"
-            style={{ background: "#F6F2EA", border: "1px solid rgba(20,17,14,0.08)" }}
+            style={{ background: "#FDE2DC", border: "1px solid rgba(20,17,14,0.08)" }}
           >
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-base font-bold" style={{ color: "#14110E" }}>
@@ -1607,7 +1607,7 @@ export default function MealPlanSection({
                   }
                 }}
                 className="flex-1 py-2.5 rounded-xl text-sm font-bold transition-all active:scale-[0.98]"
-                style={{ background: shareCopied ? "#14110E" : "#B5651E", color: "#F6F2EA" }}
+                style={{ background: shareCopied ? "#14110E" : "#F15B5C", color: "#FFFFFF" }}
               >
                 {shareCopied ? "✓ Đã sao chép" : "Sao chép link"}
               </button>
@@ -1655,13 +1655,13 @@ export default function MealPlanSection({
                   width={200}
                   height={200}
                   className="rounded-xl"
-                  style={{ border: "1px solid rgba(20,17,14,0.1)", background: "#F6F2EA" }}
+                  style={{ border: "1px solid rgba(20,17,14,0.1)", background: "#FDE2DC" }}
                 />
                 <a
                   href={qrDataUrl}
                   download={`thuc-don-qr-${shareLink.split("/p/")[1] ?? "khach"}.png`}
                   className="w-full mt-3 py-2.5 rounded-xl text-sm font-bold text-center transition-all active:scale-[0.98]"
-                  style={{ background: "#B5651E", color: "#F6F2EA" }}
+                  style={{ background: "#F15B5C", color: "#FFFFFF" }}
                 >
                   Tải ảnh mã QR
                 </a>
@@ -1679,8 +1679,8 @@ export default function MealPlanSection({
           top: 0,
           left: "-9999px",
           width: "794px",
-          background: "#F6F2EA",
-          fontFamily: "Montserrat, sans-serif",
+          background: "#FDE2DC",
+          fontFamily: "Nunito, sans-serif",
           zIndex: -1,
         }}
       >

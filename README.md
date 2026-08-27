@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Diet Plan
 
-## Getting Started
+App Next.js (App Router) tính toán dinh dưỡng và lên thực đơn cho khách hàng.
 
-First, run the development server:
+> **Repo này không chứa bất kỳ khoá/thông tin đăng nhập thật nào.** Mọi giá trị
+> nhạy cảm đều nằm trong `.env.local` (đã bị `.gitignore` bỏ qua). Xem
+> `.env.example` để biết cần điền những gì.
+
+## Chạy lần đầu
 
 ```bash
+# 1. Cài dependencies
+npm install
+
+# 2. Tạo file env riêng của bạn rồi thay hết các [PLACEHOLDER]
+cp .env.example .env.local
+
+# 3. Đẩy schema lên database
+npx prisma db push
+
+# 4. Tạo tài khoản admin đầu tiên (đọc SEED_ADMIN_* từ .env.local)
+npm run seed
+
+# 5. Nạp thư viện món ăn dựng sẵn (tuỳ chọn)
+npx tsx prisma/seed-foods.ts
+
+# 6. Chạy dev server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Mở http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Biến môi trường
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Biến | Bắt buộc | Dùng để làm gì |
+| --- | --- | --- |
+| `DATABASE_URL` | ✅ | Postgres connection string qua pooler — cho query lúc chạy |
+| `DIRECT_URL` | ✅ | Postgres direct connection — bắt buộc cho `prisma db push` |
+| `JWT_SECRET` | ✅ | Ký cookie phiên đăng nhập + token reset mật khẩu |
+| `GEMINI_API_KEYS` | ✅ | Danh sách key Gemini phân cách bằng dấu phẩy (app tự xoay vòng) |
+| `GMAIL_USER` | — | Tài khoản Gmail gửi mail chào mừng / quên mật khẩu |
+| `GMAIL_APP_PASSWORD` | — | App Password 16 ký tự của Gmail (không phải mật khẩu thường) |
+| `EMAIL_FROM` | — | Tên hiển thị người gửi |
+| `SEED_ADMIN_NAME` / `SEED_ADMIN_EMAIL` / `SEED_ADMIN_PASSWORD` | — | Chỉ dùng cho `npm run seed` |
 
-## Learn More
+Bỏ trống `GMAIL_USER` / `GMAIL_APP_PASSWORD` → app vẫn chạy bình thường, chỉ là
+không gửi email (no-op).
 
-To learn more about Next.js, take a look at the following resources:
+Tạo nhanh một `JWT_SECRET`:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+node -e "console.log(require('crypto').randomBytes(48).toString('base64url'))"
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Bảng màu & font
 
-## Deploy on Vercel
+- Nền: `#FDE2DC` — sắc độ phụ `#FFF3F0` (nổi), `#FBD5CC` (chìm), `#F6C5BA` (viền)
+- Thương hiệu (nút, viền, icon, mảng đặc): `#F15B5C` — hover `#D94447`
+- Chữ nhấn màu thương hiệu: `#B02F30` (coral đậm — coral nhạt trên nền hồng chỉ đạt 2.7:1, không đủ đọc)
+- Chữ trên nền coral: `#FFFFFF`
+- Chữ: `#14110E`
+- Ngữ nghĩa: `#5C6E48` (thành công), `#3A5567` (thông tin), `#A33A2A` (lỗi)
+- Font: **Nunito** (nạp qua `next/font/google` trong `app/layout.tsx`)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Các biến này khai báo ở `app/globals.css` — đổi một chỗ là đổi cả app.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Scripts
+
+| Lệnh | Việc |
+| --- | --- |
+| `npm run dev` | Dev server |
+| `npm run build` | `prisma generate` + build production |
+| `npm start` | Chạy bản build |
+| `npm run lint` | ESLint |
+| `npm run seed` | Tạo tài khoản admin đầu tiên |

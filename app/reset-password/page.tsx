@@ -9,7 +9,7 @@ export default function ResetPasswordPage() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen flex items-center justify-center" style={{ background: "#F6F2EA" }} />
+        <div className="min-h-screen flex items-center justify-center" style={{ background: "#FDE2DC" }} />
       }
     >
       <ResetPasswordForm />

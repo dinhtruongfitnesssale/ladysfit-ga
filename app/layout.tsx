@@ -1,27 +1,13 @@
 import type { Metadata } from "next";
-import { Be_Vietnam_Pro, Source_Serif_4, JetBrains_Mono } from "next/font/google";
+import { Nunito } from "next/font/google";
 import "./globals.css";
 
-// Be Vietnam Pro — sans thiết kế riêng cho tiếng Việt, dùng cho UI + body
-const beVietnamPro = Be_Vietnam_Pro({
-  variable: "--font-be-vietnam",
-  subsets: ["latin", "vietnamese"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
-
-// Source Serif 4 — serif editorial cho headline, title, pull quote (có italic)
-const sourceSerif = Source_Serif_4({
-  variable: "--font-source-serif",
+// Nunito — font chữ duy nhất của app: bo tròn, thân thiện, có subset tiếng Việt.
+// Là variable font nên không cần khai báo `weight`, dùng được cả 400 → 800.
+const nunito = Nunito({
+  variable: "--font-nunito",
   subsets: ["latin", "vietnamese"],
   style: ["normal", "italic"],
-  display: "swap",
-});
-
-// JetBrains Mono — mono cho số liệu (kcal, kg, %), code, metadata
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
-  subsets: ["latin", "vietnamese"],
   display: "swap",
 });
 
@@ -38,7 +24,7 @@ export default function RootLayout({
   return (
     <html
       lang="vi"
-      className={`${beVietnamPro.variable} ${sourceSerif.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${nunito.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         {children}

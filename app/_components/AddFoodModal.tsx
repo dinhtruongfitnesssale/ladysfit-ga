@@ -188,7 +188,7 @@ export default function AddFoodModal({
     >
       <div
         className="w-full max-w-lg rounded-2xl my-8 shadow-2xl"
-        style={{ background: "#F6F2EA", border: "1px solid rgba(20,17,14,0.12)" }}
+        style={{ background: "#FDE2DC", border: "1px solid rgba(20,17,14,0.12)" }}
         onMouseDown={(e) => e.stopPropagation()}
       >
         {/* Header */}
@@ -234,7 +234,7 @@ export default function AddFoodModal({
                 className="flex-shrink-0 px-4 rounded-xl font-semibold text-sm"
                 style={{
                   background: lookupLoading || !query.trim() ? "rgba(20,17,14,0.12)" : "#14110E",
-                  color: "#F6F2EA",
+                  color: "#FDE2DC",
                   cursor: lookupLoading || !query.trim() ? "not-allowed" : "pointer",
                 }}
               >
@@ -257,13 +257,13 @@ export default function AddFoodModal({
                     onClick={() => pickResult(r)}
                     className="w-full text-left px-3 py-2.5 rounded-xl transition-colors"
                     style={{
-                      background: form.name === r.name && prefilled ? "rgba(181,101,30,0.08)" : "#fff",
+                      background: form.name === r.name && prefilled ? "rgba(241,91,92,0.08)" : "#fff",
                       border: "1px solid rgba(20,17,14,0.1)",
                     }}
                   >
                     <div className="flex items-center justify-between gap-2">
                       <span style={{ fontSize: "0.875rem", fontWeight: 700, color: "#14110E" }}>{r.name}</span>
-                      <span style={{ fontSize: "0.72rem", fontWeight: 700, color: "#B5651E" }}>{Math.round(r.calories)} kcal</span>
+                      <span style={{ fontSize: "0.72rem", fontWeight: 700, color: "#B02F30" }}>{Math.round(r.calories)} kcal</span>
                     </div>
                     <div style={{ fontSize: "0.72rem", color: "rgba(20,17,14,0.5)", marginTop: 2 }}>
                       P:{r.protein}g · F:{r.fat}g · C:{r.carbs}g
@@ -423,7 +423,7 @@ export default function AddFoodModal({
             disabled={!canSave || saving}
             className="flex-1 py-2.5 rounded-xl font-semibold text-sm"
             style={{
-              background: !canSave || saving ? "rgba(20,17,14,0.12)" : "#B5651E",
+              background: !canSave || saving ? "rgba(20,17,14,0.12)" : "#F15B5C",
               color: "#fff",
               cursor: !canSave || saving ? "not-allowed" : "pointer",
             }}

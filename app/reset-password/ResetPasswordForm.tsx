@@ -7,7 +7,7 @@ function Shell({ children }: { children: React.ReactNode }) {
   return (
     <div
       className="min-h-screen flex items-center justify-center px-4 py-12"
-      style={{ background: "#F6F2EA" }}
+      style={{ background: "#FDE2DC" }}
     >
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
@@ -15,7 +15,7 @@ function Shell({ children }: { children: React.ReactNode }) {
             className="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-4"
             style={{ background: "#14110E" }}
           >
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F6F2EA" strokeWidth="2">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FDE2DC" strokeWidth="2">
               <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
               <path d="M7 11V7a5 5 0 0 1 10 0v4" />
             </svg>
@@ -29,7 +29,7 @@ function Shell({ children }: { children: React.ReactNode }) {
         </div>
         <div
           className="rounded-2xl p-6 shadow-sm"
-          style={{ border: "1px solid rgba(20,17,14,0.1)", background: "#F6F2EA" }}
+          style={{ border: "1px solid rgba(20,17,14,0.1)", background: "#FDE2DC" }}
         >
           {children}
         </div>
@@ -62,7 +62,7 @@ export default function ResetPasswordForm() {
           >
             Liên kết không hợp lệ hoặc đã hết hạn. Vui lòng yêu cầu đặt lại mật khẩu một lần nữa.
           </div>
-          <a href="/forgot-password" className="block text-center text-sm font-semibold" style={{ color: "#B5651E" }}>
+          <a href="/forgot-password" className="block text-center text-sm font-semibold" style={{ color: "#B02F30" }}>
             Yêu cầu liên kết mới
           </a>
         </div>
@@ -116,7 +116,7 @@ export default function ResetPasswordForm() {
           <a href="/login" className="block">
             <button
               className="w-full py-3 rounded-xl font-bold text-base tracking-wide transition-all active:scale-[0.98]"
-              style={{ background: "#14110E", color: "#F6F2EA" }}
+              style={{ background: "#14110E", color: "#FDE2DC" }}
             >
               Đến trang đăng nhập
             </button>
@@ -184,7 +184,7 @@ export default function ResetPasswordForm() {
         {error && (
           <div
             className="rounded-xl px-4 py-3 text-sm font-medium flex items-start gap-2"
-            style={{ background: "rgba(181,101,30,0.05)", border: "1px solid rgba(181,101,30,0.2)", color: "#B5651E" }}
+            style={{ background: "rgba(241,91,92,0.05)", border: "1px solid rgba(241,91,92,0.2)", color: "#B02F30" }}
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0 mt-0.5">
               <circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" />
@@ -199,7 +199,7 @@ export default function ResetPasswordForm() {
           className="w-full py-3 rounded-xl font-bold text-base tracking-wide transition-all active:scale-[0.98] mt-2"
           style={{
             background: loading || !pw || !pw2 ? "rgba(20,17,14,0.55)" : "#14110E",
-            color: "#F6F2EA",
+            color: "#FDE2DC",
             cursor: loading ? "not-allowed" : "pointer",
             touchAction: "manipulation",
           }}

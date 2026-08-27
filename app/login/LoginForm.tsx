@@ -95,7 +95,7 @@ export default function LoginForm({ kicked, expired = false }: { kicked: boolean
   return (
     <div
       className="min-h-screen flex items-center justify-center px-4 py-12"
-      style={{ background: "#F6F2EA" }}
+      style={{ background: "#FDE2DC" }}
     >
       <div className="w-full max-w-sm">
 
@@ -108,10 +108,10 @@ export default function LoginForm({ kicked, expired = false }: { kicked: boolean
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
               <path
                 d="M12 2C9 2 6 4.5 6 8c0 2.5 1.5 4.5 3 5.5V20a1 1 0 0 0 2 0v-1h2v1a1 1 0 0 0 2 0v-6.5c1.5-1 3-3 3-5.5 0-3.5-3-6-6-6z"
-                fill="#F6F2EA"
+                fill="#FDE2DC"
                 opacity="0.9"
               />
-              <path d="M10 13.5v3M14 13.5v3" stroke="#F6F2EA" strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
+              <path d="M10 13.5v3M14 13.5v3" stroke="#FDE2DC" strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
             </svg>
           </div>
           <h1 className="text-2xl font-bold tracking-tight" style={{ color: "#14110E" }}>
@@ -125,7 +125,7 @@ export default function LoginForm({ kicked, expired = false }: { kicked: boolean
         {/* Form Card */}
         <div
           className="rounded-2xl p-6 shadow-sm"
-          style={{ border: "1px solid rgba(20,17,14,0.1)", background: "#F6F2EA" }}
+          style={{ border: "1px solid rgba(20,17,14,0.1)", background: "#FDE2DC" }}
         >
           <form onSubmit={handleSubmit} className="space-y-4" noValidate>
 
@@ -146,7 +146,7 @@ export default function LoginForm({ kicked, expired = false }: { kicked: boolean
                   setEmail(e.target.value);
                   if (error && !kicked) setError("");
                 }}
-                placeholder="admin@dietplan.com"
+                placeholder="email@example.com"
                 required
                 className={`dp-input ${error ? "dp-input-error" : ""}`}
               />
@@ -198,7 +198,7 @@ export default function LoginForm({ kicked, expired = false }: { kicked: boolean
                 <a
                   href="/forgot-password"
                   className="text-xs font-medium"
-                  style={{ color: "#B5651E" }}
+                  style={{ color: "#B02F30" }}
                 >
                   Quên mật khẩu?
                 </a>
@@ -230,9 +230,9 @@ export default function LoginForm({ kicked, expired = false }: { kicked: boolean
               <div
                 className="rounded-xl px-4 py-3 text-sm font-medium flex items-start gap-2"
                 style={{
-                  background: kicked || expired ? "rgba(181,101,30,0.08)" : "rgba(181,101,30,0.05)",
-                  border: `1px solid rgba(181,101,30,${kicked || expired ? "0.35" : "0.2"})`,
-                  color: "#B5651E",
+                  background: kicked || expired ? "rgba(241,91,92,0.08)" : "rgba(241,91,92,0.05)",
+                  border: `1px solid rgba(241,91,92,${kicked || expired ? "0.35" : "0.2"})`,
+                  color: "#B02F30",
                 }}
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0 mt-0.5">
@@ -251,7 +251,7 @@ export default function LoginForm({ kicked, expired = false }: { kicked: boolean
               className="w-full py-3 rounded-xl font-bold text-base tracking-wide transition-all active:scale-[0.98] mt-2"
               style={{
                 background: loading ? "rgba(20,17,14,0.55)" : "#14110E",
-                color: "#F6F2EA",
+                color: "#FDE2DC",
                 cursor: loading ? "not-allowed" : "pointer",
                 // Eliminates WebKit's 300ms tap-delay on iOS Safari so the
                 // button responds instantly on first touch without double-tap.

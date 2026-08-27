@@ -47,3 +47,6 @@ next-env.d.ts
 
 # script artifacts (large extraction files, not needed for app)
 scripts/docx-extract/
+
+# nhưng vẫn giữ file mẫu (không chứa giá trị thật)
+!.env.example

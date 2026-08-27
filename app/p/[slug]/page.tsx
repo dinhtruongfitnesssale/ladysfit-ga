@@ -36,9 +36,9 @@ export default async function SharedPlanPage({
         <div className="text-center max-w-sm">
           <div
             className="mx-auto mb-4 w-14 h-14 rounded-full flex items-center justify-center"
-            style={{ background: "rgba(181,101,30,0.08)" }}
+            style={{ background: "rgba(241,91,92,0.08)" }}
           >
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#B5651E" strokeWidth="2">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F15B5C" strokeWidth="2">
               <circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" />
             </svg>
           </div>

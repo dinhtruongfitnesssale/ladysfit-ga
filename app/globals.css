@@ -1,16 +1,22 @@
 @import "tailwindcss";
 
 :root {
-  /* Paper + ink — 90% của mọi thiết kế. Không bao giờ #fff / #000 */
-  --background: #f6f2ea; /* paper — nền ấm của mâm cơm Việt */
+  /* Nền + chữ — 90% của mọi thiết kế. Không bao giờ #fff / #000 */
+  --background: #fde2dc; /* nền hồng phấn — màu nền chủ đạo của app */
   --foreground: #14110e; /* ink — đen ấm cho mọi chữ chính + đường kẻ */
 
-  /* 5% amber — eyebrow, link, italic highlight, dấu nháy «», dấu check */
-  --amber: #b5651e;
-  --amber-hover: #9a5419;
+  /* Màu thương hiệu — nút, viền, icon, mảng đặc, nền nhấn */
+  --brand: #f15b5c;
+  --brand-hover: #d94447;
+  --brand-ink: #b02f30; /* coral đậm — dùng cho CHỮ nhấn trên nền sáng (đủ tương phản) */
 
-  /* 5% còn lại — chỉ khi có vai trò rõ ràng */
-  --herb: #5c6e48;  /* success / đạt / tươi — rau thơm Việt */
+  /* Sắc độ phụ của nền hồng — thẻ, viền, vùng nhấn nhẹ */
+  --surface: #fff3f0; /* sáng hơn nền — thẻ nổi, ô nhập */
+  --surface-sunken: #fbd5cc; /* tối hơn nền — vùng chìm, header bảng */
+  --line: #f6c5ba; /* viền mềm trên nền hồng */
+
+  /* Còn lại — chỉ khi có vai trò rõ ràng */
+  --herb: #5c6e48;  /* success / đạt / tươi */
   --slate: #3a5567; /* note coach / thông tin trung tính */
   --clay: #a33a2a;  /* danger — chỉ khi thật sự sai */
 }
@@ -21,31 +27,37 @@
 
   --color-paper: var(--background);
   --color-ink: var(--foreground);
-  --color-amber: var(--amber);
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-ink: var(--brand-ink);
+  --color-surface: var(--surface);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-line: var(--line);
   --color-herb: var(--herb);
   --color-slate: var(--slate);
   --color-clay: var(--clay);
 
-  /* primary = ink (fill); amber chỉ dùng cho accent */
+  /* primary = ink (fill); brand dùng cho accent */
   --color-primary: var(--foreground);
   --color-dark: var(--foreground);
 
-  --font-sans: var(--font-be-vietnam);
-  --font-serif: var(--font-source-serif);
-  --font-mono: var(--font-jetbrains-mono);
+  /* Nunito cho toàn bộ app — sans, headline và cả slot serif */
+  --font-sans: var(--font-nunito);
+  --font-serif: var(--font-nunito);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-be-vietnam), system-ui, sans-serif;
+  font-family: var(--font-nunito), system-ui, sans-serif;
 }
 
 @layer components {
   .dp-label {
     display: block;
     font-size: 0.8125rem;
-    font-weight: 500;
+    font-weight: 600;
     color: #14110e;
     margin-bottom: 0.375rem;
   }
@@ -55,7 +67,7 @@ body {
     padding: 0.625rem 0.875rem;
     border-radius: 0.75rem;
     border: 1px solid rgba(20, 17, 14, 0.15);
-    background: #f6f2ea;
+    background: #fff3f0;
     color: #14110e;
     font-size: 0.875rem;
     font-family: inherit;
@@ -66,8 +78,8 @@ body {
   }
 
   .dp-input:focus {
-    border-color: #b5651e;
-    box-shadow: 0 0 0 3px rgba(181, 101, 30, 0.12);
+    border-color: #f15b5c;
+    box-shadow: 0 0 0 3px rgba(241, 91, 92, 0.18);
   }
 
   .dp-input-error {

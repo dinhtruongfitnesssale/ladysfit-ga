@@ -25,11 +25,11 @@ export default function SharedPlanView({ plan }: { plan: SharePlan }) {
       {/* ── Header ── */}
       <div style={{ background: "#14110E", padding: "26px 20px 22px" }}>
         <div className="max-w-2xl mx-auto">
-          <div style={{ fontSize: "26px", fontWeight: 900, color: "#F6F2EA", letterSpacing: "-0.03em", lineHeight: 1 }}>
+          <div style={{ fontSize: "26px", fontWeight: 900, color: "#FDE2DC", letterSpacing: "-0.03em", lineHeight: 1 }}>
             DIET PLAN
           </div>
           <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.7)", marginTop: "5px" }}>
-            Thực đơn dành cho <span style={{ fontWeight: 700, color: "#F6F2EA" }}>{client.name}</span>
+            Thực đơn dành cho <span style={{ fontWeight: 700, color: "#FDE2DC" }}>{client.name}</span>
           </div>
         </div>
       </div>
@@ -56,7 +56,7 @@ export default function SharedPlanView({ plan }: { plan: SharePlan }) {
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
             {[
-              { label: "Calo", value: `${client.der.toLocaleString("vi-VN")}`, unit: "kcal", color: "#B5651E" },
+              { label: "Calo", value: `${client.der.toLocaleString("vi-VN")}`, unit: "kcal", color: "#B02F30" },
               { label: "Protein", value: `${client.protein}`, unit: "g", color: "#3A5567" },
               { label: "Fat", value: `${client.fat}`, unit: "g", color: "#A33A2A" },
               { label: "Carbs", value: `${client.carbs}`, unit: "g", color: "#5C6E48" },
@@ -87,9 +87,9 @@ export default function SharedPlanView({ plan }: { plan: SharePlan }) {
                   onClick={() => setActiveDay(i)}
                   className="py-2.5 rounded-xl text-sm font-bold transition-all active:scale-[0.97]"
                   style={{
-                    border: active ? "1px solid #B5651E" : "1px solid rgba(20,17,14,0.15)",
-                    background: active ? "#B5651E" : "#F6F2EA",
-                    color: active ? "#F6F2EA" : "#14110E",
+                    border: active ? "1px solid #F15B5C" : "1px solid rgba(20,17,14,0.15)",
+                    background: active ? "#F15B5C" : "#FDE2DC",
+                    color: active ? "#FFFFFF" : "#14110E",
                   }}
                 >
                   {d.label}
@@ -104,7 +104,7 @@ export default function SharedPlanView({ plan }: { plan: SharePlan }) {
           <div className="flex items-center gap-2">
             <span
               style={{
-                display: "inline-block", background: "#14110E", color: "#F6F2EA",
+                display: "inline-block", background: "#14110E", color: "#FDE2DC",
                 fontSize: "14px", fontWeight: 800, padding: "5px 14px", borderRadius: "999px",
               }}
             >
@@ -123,8 +123,8 @@ export default function SharedPlanView({ plan }: { plan: SharePlan }) {
             const tip = getCookingTip(meal.name);
             return (
               <div key={`ai-${i}`} className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(20,17,14,0.1)" }}>
-                <div className="px-4 py-2 flex items-center justify-between" style={{ background: "rgba(181,101,30,0.05)" }}>
-                  <span style={{ fontSize: "0.875rem", fontWeight: 700, color: "#B5651E" }}>{meal.mealName ?? `Bữa ${i + 1}`}</span>
+                <div className="px-4 py-2 flex items-center justify-between" style={{ background: "rgba(241,91,92,0.05)" }}>
+                  <span style={{ fontSize: "0.875rem", fontWeight: 700, color: "#B02F30" }}>{meal.mealName ?? `Bữa ${i + 1}`}</span>
                   <span style={{ fontSize: "0.875rem", fontWeight: 700, color: "#14110E" }}>{meal.calories} kcal</span>
                 </div>
                 <div className="px-4 py-3 flex items-start justify-between gap-3">
@@ -137,7 +137,7 @@ export default function SharedPlanView({ plan }: { plan: SharePlan }) {
                   <div className="px-4 py-2.5 flex items-start gap-2" style={{ borderTop: "1px dashed rgba(20,17,14,0.12)", background: "rgba(20,17,14,0.015)" }}>
                     <span style={{ fontSize: "0.8rem", lineHeight: 1.5 }} aria-hidden="true">👨‍🍳</span>
                     <p style={{ fontSize: "0.75rem", color: "rgba(20,17,14,0.55)", lineHeight: 1.5 }}>
-                      <span style={{ fontWeight: 700, color: "#B5651E" }}>Gợi ý chế biến: </span>{tip}
+                      <span style={{ fontWeight: 700, color: "#B02F30" }}>Gợi ý chế biến: </span>{tip}
                     </p>
                   </div>
                 )}
@@ -150,7 +150,7 @@ export default function SharedPlanView({ plan }: { plan: SharePlan }) {
             <div key={`m-${i}`} className="rounded-xl px-4 py-3" style={{ border: "1px solid rgba(20,17,14,0.1)" }}>
               <div className="flex items-start justify-between gap-3">
                 <p style={{ fontSize: "0.875rem", fontWeight: 600, color: "#14110E", lineHeight: 1.5, flex: 1 }}>{food.name}</p>
-                <span style={{ fontSize: "0.875rem", fontWeight: 700, color: "#B5651E" }}>{food.calories} kcal</span>
+                <span style={{ fontSize: "0.875rem", fontWeight: 700, color: "#B02F30" }}>{food.calories} kcal</span>
               </div>
               <p className="mt-1 text-xs" style={{ color: "rgba(20,17,14,0.45)" }}>
                 P:{Math.round(food.protein)}g · F:{Math.round(food.fat)}g · C:{Math.round(food.carbs)}g
@@ -168,12 +168,12 @@ export default function SharedPlanView({ plan }: { plan: SharePlan }) {
                 </p>
                 <div className="grid grid-cols-4 gap-2">
                   {[
-                    { label: "Calo", value: Math.round(t.cal), color: "#B5651E" },
+                    { label: "Calo", value: Math.round(t.cal), color: "#B02F30" },
                     { label: "Protein", value: Math.round(t.p), color: "#3A5567" },
                     { label: "Fat", value: Math.round(t.f), color: "#A33A2A" },
                     { label: "Carbs", value: Math.round(t.c), color: "#5C6E48" },
                   ].map((it) => (
-                    <div key={it.label} className="text-center rounded-lg py-2" style={{ background: "#F6F2EA", border: "1px solid rgba(20,17,14,0.07)" }}>
+                    <div key={it.label} className="text-center rounded-lg py-2" style={{ background: "#FDE2DC", border: "1px solid rgba(20,17,14,0.07)" }}>
                       <p className="text-xs" style={{ color: "rgba(20,17,14,0.4)" }}>{it.label}</p>
                       <p className="text-base font-bold mt-0.5" style={{ color: it.color }}>{it.value}</p>
                     </div>

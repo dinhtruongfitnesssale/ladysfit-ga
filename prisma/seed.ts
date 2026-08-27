@@ -39,15 +39,29 @@ const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
-  const email = "admin@dietplan.com";
+  // Tài khoản admin đầu tiên lấy từ env — không hard-code thông tin đăng nhập
+  // trong repo. Khai báo SEED_ADMIN_EMAIL / SEED_ADMIN_PASSWORD trong .env.local
+  // (xem .env.example) rồi chạy `npm run seed`.
+  const email = process.env.SEED_ADMIN_EMAIL?.trim();
+  const rawPassword = process.env.SEED_ADMIN_PASSWORD?.trim();
+  const name = process.env.SEED_ADMIN_NAME?.trim() || "Admin";
+
+  if (!email || !rawPassword) {
+    console.error(
+      "SEED ERROR: thiếu SEED_ADMIN_EMAIL hoặc SEED_ADMIN_PASSWORD.\n" +
+        "→ Copy .env.example thành .env.local và điền 2 biến này trước khi seed."
+    );
+    process.exit(1);
+  }
+
   const existing = await prisma.user.findUnique({ where: { email } });
   if (existing) {
     console.log(`✓ Admin already exists: ${email}`);
     return;
   }
-  const password = await bcrypt.hash("MatKhauAdmin123", 12);
+  const password = await bcrypt.hash(rawPassword, 12);
   const admin = await prisma.user.create({
-    data: { name: "Admin Tổng", email, password, role: "ADMIN" },
+    data: { name, email, password, role: "ADMIN" },
   });
   console.log(`✓ Admin created: ${admin.name} <${admin.email}>`);
 }

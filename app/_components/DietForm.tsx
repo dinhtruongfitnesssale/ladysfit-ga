@@ -530,7 +530,7 @@ export default function DietForm({
         >
           <div
             className="w-full max-w-sm rounded-2xl p-6 shadow-2xl"
-            style={{ background: "#F6F2EA", border: "1px solid rgba(20,17,14,0.08)" }}
+            style={{ background: "#FDE2DC", border: "1px solid rgba(20,17,14,0.08)" }}
           >
             <div className="flex items-center justify-between mb-5">
               <h3 className="text-base font-bold" style={{ color: "#14110E" }}>Đổi mật khẩu</h3>
@@ -584,7 +584,7 @@ export default function DietForm({
               {cpError && (
                 <div
                   className="rounded-xl px-4 py-3 text-sm font-medium flex items-center gap-2"
-                  style={{ background: "rgba(181,101,30,0.05)", border: "1px solid rgba(181,101,30,0.2)", color: "#B5651E" }}
+                  style={{ background: "rgba(241,91,92,0.05)", border: "1px solid rgba(241,91,92,0.2)", color: "#B02F30" }}
                 >
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0">
                     <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
@@ -595,9 +595,9 @@ export default function DietForm({
 
               <div
                 className="rounded-xl px-4 py-2.5 text-xs flex items-start gap-2"
-                style={{ background: "rgba(181,101,30,0.04)", border: "1px solid rgba(181,101,30,0.12)", color: "rgba(20,17,14,0.55)" }}
+                style={{ background: "rgba(241,91,92,0.04)", border: "1px solid rgba(241,91,92,0.12)", color: "rgba(20,17,14,0.55)" }}
               >
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#B5651E" strokeWidth="2" className="shrink-0 mt-0.5">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F15B5C" strokeWidth="2" className="shrink-0 mt-0.5">
                   <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
                 </svg>
                 Sau khi đổi mật khẩu, bạn sẽ được đăng xuất và cần đăng nhập lại.
@@ -618,7 +618,7 @@ export default function DietForm({
                   className="flex-1 py-2.5 rounded-xl text-sm font-bold transition-all active:scale-[0.98]"
                   style={{
                     background: cpSaving ? "rgba(20,17,14,0.55)" : "#14110E",
-                    color: "#F6F2EA",
+                    color: "#FDE2DC",
                     cursor: cpSaving ? "not-allowed" : "pointer",
                   }}
                 >
@@ -645,13 +645,13 @@ export default function DietForm({
       >
         <div
           className="w-full max-w-sm rounded-2xl p-7 text-center shadow-2xl"
-          style={{ background: "#F6F2EA", border: "1px solid rgba(20,17,14,0.08)" }}
+          style={{ background: "#FDE2DC", border: "1px solid rgba(20,17,14,0.08)" }}
         >
           <div
             className="mx-auto mb-4 w-14 h-14 rounded-full flex items-center justify-center"
-            style={{ background: "rgba(181,101,30,0.08)" }}
+            style={{ background: "rgba(241,91,92,0.08)" }}
           >
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#B5651E" strokeWidth="2">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F15B5C" strokeWidth="2">
               <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
             </svg>
           </div>
@@ -665,7 +665,7 @@ export default function DietForm({
           <a
             href="/login?expired=1"
             className="inline-flex items-center justify-center w-full mt-5 py-2.5 rounded-xl text-sm font-bold transition-all active:scale-[0.98]"
-            style={{ background: "#14110E", color: "#F6F2EA" }}
+            style={{ background: "#14110E", color: "#FDE2DC" }}
           >
             Về trang đăng nhập
           </a>
@@ -684,7 +684,7 @@ export default function DietForm({
           <div>
             <h1 className="text-2xl md:text-3xl font-bold tracking-tight leading-tight" style={{ color: "#14110E" }}>
               Diet Plan{" "}
-              <span style={{ color: "#B5651E" }}>của {userName}</span>
+              <span style={{ color: "#B02F30" }}>của {userName}</span>
             </h1>
             <p className="mt-1 text-sm" style={{ color: "rgba(20,17,14,0.5)" }}>
               Máy tính dinh dưỡng chuyên sâu
@@ -694,9 +694,9 @@ export default function DietForm({
               <div
                 className="mt-3 inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold tabular-nums"
                 style={{
-                  background: "rgba(181,101,30,0.06)",
-                  border: "1px solid rgba(181,101,30,0.2)",
-                  color: "#B5651E",
+                  background: "rgba(241,91,92,0.06)",
+                  border: "1px solid rgba(241,91,92,0.2)",
+                  color: "#B02F30",
                 }}
               >
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -735,14 +735,14 @@ export default function DietForm({
               disabled={loggingOut}
               className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg transition-colors"
               style={{
-                background: "rgba(181,101,30,0.06)",
-                color: "#B5651E",
-                border: "1px solid rgba(181,101,30,0.2)",
+                background: "rgba(241,91,92,0.06)",
+                color: "#B02F30",
+                border: "1px solid rgba(241,91,92,0.2)",
                 cursor: loggingOut ? "not-allowed" : "pointer",
                 opacity: loggingOut ? 0.6 : 1,
               }}
-              onMouseEnter={(e) => { if (!loggingOut) e.currentTarget.style.background = "rgba(181,101,30,0.12)"; }}
-              onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(181,101,30,0.06)"; }}
+              onMouseEnter={(e) => { if (!loggingOut) e.currentTarget.style.background = "rgba(241,91,92,0.12)"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(241,91,92,0.06)"; }}
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
@@ -887,9 +887,9 @@ export default function DietForm({
                         onClick={() => setGoal(g)}
                         className="py-2.5 rounded-xl text-sm font-semibold transition-all"
                         style={{
-                          border: active ? "1px solid #B5651E" : "1px solid rgba(20,17,14,0.15)",
-                          background: active ? "#B5651E" : "#F6F2EA",
-                          color: active ? "#F6F2EA" : "#14110E",
+                          border: active ? "1px solid #F15B5C" : "1px solid rgba(20,17,14,0.15)",
+                          background: active ? "#F15B5C" : "#FDE2DC",
+                          color: active ? "#FFFFFF" : "#14110E",
                         }}
                       >
                         {GOAL_LABEL[g]}
@@ -915,9 +915,9 @@ export default function DietForm({
                             onClick={() => setForm((prev) => ({ ...prev, lossSpeed: speed }))}
                             className="py-2.5 rounded-xl text-sm font-semibold transition-all flex flex-col items-center leading-tight"
                             style={{
-                              border: active ? "1px solid #B5651E" : "1px solid rgba(20,17,14,0.15)",
-                              background: active ? "rgba(181,101,30,0.08)" : "#F6F2EA",
-                              color: active ? "#B5651E" : "rgba(20,17,14,0.65)",
+                              border: active ? "1px solid #F15B5C" : "1px solid rgba(20,17,14,0.15)",
+                              background: active ? "rgba(241,91,92,0.08)" : "#FDE2DC",
+                              color: active ? "#B02F30" : "rgba(20,17,14,0.65)",
                             }}
                           >
                             {LOSS_SPEED[speed].label}
@@ -944,9 +944,9 @@ export default function DietForm({
                             onClick={() => setGoalMode(mode)}
                             className="py-2.5 rounded-xl text-sm font-semibold transition-all"
                             style={{
-                              border: active ? "1px solid #B5651E" : "1px solid rgba(20,17,14,0.15)",
-                              background: active ? "rgba(181,101,30,0.08)" : "#F6F2EA",
-                              color: active ? "#B5651E" : "rgba(20,17,14,0.65)",
+                              border: active ? "1px solid #F15B5C" : "1px solid rgba(20,17,14,0.15)",
+                              background: active ? "rgba(241,91,92,0.08)" : "#FDE2DC",
+                              color: active ? "#B02F30" : "rgba(20,17,14,0.65)",
                             }}
                           >
                             {label}
@@ -1005,9 +1005,9 @@ export default function DietForm({
                             onClick={() => setGoalMode(mode)}
                             className="py-2.5 rounded-xl text-sm font-semibold transition-all"
                             style={{
-                              border: active ? "1px solid #B5651E" : "1px solid rgba(20,17,14,0.15)",
-                              background: active ? "rgba(181,101,30,0.08)" : "#F6F2EA",
-                              color: active ? "#B5651E" : "rgba(20,17,14,0.65)",
+                              border: active ? "1px solid #F15B5C" : "1px solid rgba(20,17,14,0.15)",
+                              background: active ? "rgba(241,91,92,0.08)" : "#FDE2DC",
+                              color: active ? "#B02F30" : "rgba(20,17,14,0.65)",
                             }}
                           >
                             {label}
@@ -1055,7 +1055,7 @@ export default function DietForm({
             type="button"
             onClick={handleCalculate}
             className="w-full py-3.5 rounded-xl font-bold text-base tracking-wide transition-all active:scale-[0.98]"
-            style={{ background: "#14110E", color: "#F6F2EA" }}
+            style={{ background: "#14110E", color: "#FDE2DC" }}
             onMouseEnter={(e) => (e.currentTarget.style.background = "#0B0908")}
             onMouseLeave={(e) => (e.currentTarget.style.background = "#14110E")}
           >
@@ -1081,7 +1081,7 @@ export default function DietForm({
               </div>
               <span
                 className="text-xs font-semibold px-3 py-1 rounded-full"
-                style={{ background: "rgba(181,101,30,0.08)", color: "#B5651E" }}
+                style={{ background: "rgba(241,91,92,0.08)", color: "#B02F30" }}
               >
                 {GOAL_LABEL[result.weightGoal]}
               </span>
@@ -1126,7 +1126,7 @@ export default function DietForm({
                   </span>
                   <span
                     className="relative inline-flex items-center w-9 h-5 rounded-full transition-colors duration-200"
-                    style={{ background: autoBalance ? "#B5651E" : "rgba(20,17,14,0.2)" }}
+                    style={{ background: autoBalance ? "#F15B5C" : "rgba(20,17,14,0.2)" }}
                   >
                     <span
                       className="absolute w-4 h-4 bg-white rounded-full shadow transition-all duration-200"
@@ -1140,7 +1140,7 @@ export default function DietForm({
               {macroAlert && (
                 <div
                   className="mb-2 rounded-xl px-3 py-2 text-xs font-medium flex items-start gap-2"
-                  style={{ background: "rgba(181,101,30,0.06)", border: "1px solid rgba(181,101,30,0.2)", color: "#B5651E" }}
+                  style={{ background: "rgba(241,91,92,0.06)", border: "1px solid rgba(241,91,92,0.2)", color: "#B02F30" }}
                 >
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0 mt-0.5">
                     <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
@@ -1178,25 +1178,25 @@ export default function DietForm({
             {liveRoadmap ? (
               <div
                 className="rounded-xl p-4 shadow-sm"
-                style={{ background: "#F6F2EA", border: "1px solid rgba(20,17,14,0.1)" }}
+                style={{ background: "#FDE2DC", border: "1px solid rgba(20,17,14,0.1)" }}
               >
                 <p
                   className="text-xs font-bold uppercase tracking-widest mb-2"
-                  style={{ color: "#B5651E" }}
+                  style={{ color: "#B02F30" }}
                 >
                   Lộ trình giảm cân
                 </p>
                 <p className="text-sm leading-relaxed" style={{ color: "rgba(20,17,14,0.7)" }}>
                   Dự kiến cần khoảng{" "}
-                  <span className="font-bold" style={{ color: "#B5651E" }}>
+                  <span className="font-bold" style={{ color: "#B02F30" }}>
                     {liveRoadmap.daysToGoal} ngày
                   </span>{" "}
                   (tương ứng khoảng{" "}
-                  <span className="font-bold" style={{ color: "#B5651E" }}>
+                  <span className="font-bold" style={{ color: "#B02F30" }}>
                     {liveRoadmap.weeksToGoal} tuần
                   </span>{" "}
                   hoặc{" "}
-                  <span className="font-bold" style={{ color: "#B5651E" }}>
+                  <span className="font-bold" style={{ color: "#B02F30" }}>
                     {liveRoadmap.monthsToGoal} tháng
                   </span>
                   ) để giảm cân đạt mục tiêu với tốc độ {LOSS_SPEED[form.lossSpeed].percent}/tuần.
@@ -1205,25 +1205,25 @@ export default function DietForm({
             ) : liveGainRoadmap ? (
               <div
                 className="rounded-xl p-4 shadow-sm"
-                style={{ background: "#F6F2EA", border: "1px solid rgba(20,17,14,0.1)" }}
+                style={{ background: "#FDE2DC", border: "1px solid rgba(20,17,14,0.1)" }}
               >
                 <p
                   className="text-xs font-bold uppercase tracking-widest mb-2"
-                  style={{ color: "#B5651E" }}
+                  style={{ color: "#B02F30" }}
                 >
                   Lộ trình tăng cân
                 </p>
                 <p className="text-sm leading-relaxed" style={{ color: "rgba(20,17,14,0.7)" }}>
                   Dự kiến cần khoảng{" "}
-                  <span className="font-bold" style={{ color: "#B5651E" }}>
+                  <span className="font-bold" style={{ color: "#B02F30" }}>
                     {liveGainRoadmap.daysToGoal} ngày
                   </span>{" "}
                   (tương ứng khoảng{" "}
-                  <span className="font-bold" style={{ color: "#B5651E" }}>
+                  <span className="font-bold" style={{ color: "#B02F30" }}>
                     {liveGainRoadmap.weeksToGoal} tuần
                   </span>{" "}
                   hoặc{" "}
-                  <span className="font-bold" style={{ color: "#B5651E" }}>
+                  <span className="font-bold" style={{ color: "#B02F30" }}>
                     {liveGainRoadmap.monthsToGoal} tháng
                   </span>
                   ) để tăng cân đạt mục tiêu với tốc độ an toàn 0.5%/tuần.
@@ -1233,14 +1233,14 @@ export default function DietForm({
               <div
                 className="rounded-xl px-4 py-3 text-sm"
                 style={{
-                  background: "rgba(181,101,30,0.04)",
-                  border: "1px solid rgba(181,101,30,0.15)",
+                  background: "rgba(241,91,92,0.04)",
+                  border: "1px solid rgba(241,91,92,0.15)",
                   color: "#14110E",
                 }}
               >
-                <span className="font-semibold" style={{ color: "#B5651E" }}>Dự kiến:</span>{" "}
+                <span className="font-semibold" style={{ color: "#B02F30" }}>Dự kiến:</span>{" "}
                 Với mức thâm hụt này, khách có thể giảm khoảng{" "}
-                <span className="font-bold" style={{ color: "#B5651E" }}>
+                <span className="font-bold" style={{ color: "#B02F30" }}>
                   {result.weeklyLoss.toFixed(2)} kg
                 </span>{" "}
                 trong 1 tuần.
@@ -1249,14 +1249,14 @@ export default function DietForm({
               <div
                 className="rounded-xl px-4 py-3 text-sm"
                 style={{
-                  background: "rgba(181,101,30,0.04)",
-                  border: "1px solid rgba(181,101,30,0.15)",
+                  background: "rgba(241,91,92,0.04)",
+                  border: "1px solid rgba(241,91,92,0.15)",
                   color: "#14110E",
                 }}
               >
-                <span className="font-semibold" style={{ color: "#B5651E" }}>Dự kiến:</span>{" "}
+                <span className="font-semibold" style={{ color: "#B02F30" }}>Dự kiến:</span>{" "}
                 Với mức thặng dư này, khách có thể tăng khoảng{" "}
-                <span className="font-bold" style={{ color: "#B5651E" }}>
+                <span className="font-bold" style={{ color: "#B02F30" }}>
                   {result.weeklyGain.toFixed(2)} kg
                 </span>{" "}
                 trong 1 tuần.
@@ -1299,7 +1299,7 @@ function StatBox({ label, value, sub, highlight = false }: {
 }) {
   return (
     <div className="rounded-xl p-4"
-      style={{ background: highlight ? "#B5651E" : "rgba(20,17,14,0.04)", color: highlight ? "#F6F2EA" : "#14110E" }}>
+      style={{ background: highlight ? "#F15B5C" : "rgba(20,17,14,0.04)", color: highlight ? "#FFFFFF" : "#14110E" }}>
       <p className="text-xs font-semibold uppercase tracking-wider"
         style={{ color: highlight ? "rgba(255,255,255,0.65)" : "rgba(20,17,14,0.45)" }}>
         {label}
