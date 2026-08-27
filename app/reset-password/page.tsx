@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import ResetPasswordForm from "./ResetPasswordForm";
 
 export const metadata = {
-  title: "Đặt lại mật khẩu · Diet Plan",
+  title: "Đặt lại mật khẩu · Ladysfit Plan",
 };
 
 export default function ResetPasswordPage() {

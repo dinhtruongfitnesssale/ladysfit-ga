@@ -44,17 +44,17 @@ export default function ForgotPasswordForm() {
         <div className="text-center mb-8">
           <div
             className="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-4"
-            style={{ background: "#14110E" }}
+            style={{ background: "#F15B5C" }}
           >
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FDE2DC" strokeWidth="2">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2">
               <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
               <path d="M7 11V7a5 5 0 0 1 10 0v4" />
             </svg>
           </div>
-          <h1 className="text-2xl font-bold tracking-tight" style={{ color: "#14110E" }}>
+          <h1 className="text-2xl font-bold tracking-tight" style={{ color: "#000000" }}>
             Quên mật khẩu
           </h1>
-          <p className="text-sm mt-1" style={{ color: "rgba(20,17,14,0.45)" }}>
+          <p className="text-sm mt-1" style={{ color: "rgba(0,0,0,0.45)" }}>
             Nhập email đăng nhập, chúng tôi sẽ gửi liên kết đặt lại mật khẩu
           </p>
         </div>
@@ -62,16 +62,16 @@ export default function ForgotPasswordForm() {
         {/* Card */}
         <div
           className="rounded-2xl p-6 shadow-sm"
-          style={{ border: "1px solid rgba(20,17,14,0.1)", background: "#FDE2DC" }}
+          style={{ border: "1px solid rgba(0,0,0,0.1)", background: "#FFFFFF" }}
         >
           {sent ? (
             <div className="space-y-5">
               <div
                 className="rounded-xl px-4 py-3 text-sm font-medium"
                 style={{
-                  background: "rgba(92,110,72,0.08)",
-                  border: "1px solid rgba(92,110,72,0.3)",
-                  color: "#5C6E48",
+                  background: "rgba(0,0,0,0.08)",
+                  border: "1px solid rgba(0,0,0,0.3)",
+                  color: "#000000",
                 }}
               >
                 Đã gửi liên kết đặt lại mật khẩu tới <strong>{email}</strong>. Vui lòng kiểm tra hộp thư
@@ -98,7 +98,7 @@ export default function ForgotPasswordForm() {
                   spellCheck={false}
                   value={email}
                   onChange={(e) => { setEmail(e.target.value); if (error) setError(""); }}
-                  placeholder="user@dietplan.com"
+                  placeholder="user@ladysfit.com"
                   required
                   className={`dp-input ${error ? "dp-input-error" : ""}`}
                 />
@@ -125,8 +125,8 @@ export default function ForgotPasswordForm() {
                 disabled={loading}
                 className="w-full py-3 rounded-xl font-bold text-base tracking-wide transition-all active:scale-[0.98] mt-2"
                 style={{
-                  background: loading ? "rgba(20,17,14,0.55)" : "#14110E",
-                  color: "#FDE2DC",
+                  background: loading ? "rgba(241,91,92,0.45)" : "#F15B5C",
+                  color: "#FFFFFF",
                   cursor: loading ? "not-allowed" : "pointer",
                   touchAction: "manipulation",
                 }}
@@ -144,7 +144,7 @@ export default function ForgotPasswordForm() {
               <a
                 href="/login"
                 className="block text-center text-sm font-medium pt-1"
-                style={{ color: "rgba(20,17,14,0.5)" }}
+                style={{ color: "rgba(0,0,0,0.5)" }}
               >
                 ← Quay lại đăng nhập
               </a>
@@ -152,8 +152,8 @@ export default function ForgotPasswordForm() {
           )}
         </div>
 
-        <p className="text-center text-xs mt-5" style={{ color: "rgba(20,17,14,0.3)" }}>
-          Diet Plan © {new Date().getFullYear()} · Phần mềm quản lý dinh dưỡng
+        <p className="text-center text-xs mt-5" style={{ color: "rgba(0,0,0,0.3)" }}>
+          Ladysfit Plan © {new Date().getFullYear()} · Phần mềm quản lý dinh dưỡng
         </p>
       </div>
     </div>

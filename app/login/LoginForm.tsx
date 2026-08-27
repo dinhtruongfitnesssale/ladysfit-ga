@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useRef, FormEvent } from "react";
 
 interface LoginResponse {
@@ -101,23 +102,18 @@ export default function LoginForm({ kicked, expired = false }: { kicked: boolean
 
         {/* Logo + Title */}
         <div className="text-center mb-8">
-          <div
-            className="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-4"
-            style={{ background: "#14110E" }}
-          >
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M12 2C9 2 6 4.5 6 8c0 2.5 1.5 4.5 3 5.5V20a1 1 0 0 0 2 0v-1h2v1a1 1 0 0 0 2 0v-6.5c1.5-1 3-3 3-5.5 0-3.5-3-6-6-6z"
-                fill="#FDE2DC"
-                opacity="0.9"
-              />
-              <path d="M10 13.5v3M14 13.5v3" stroke="#FDE2DC" strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
-            </svg>
-          </div>
-          <h1 className="text-2xl font-bold tracking-tight" style={{ color: "#14110E" }}>
-            Diet Plan
+          <Image
+            src="/logo.png"
+            alt="Ladysfit"
+            width={150}
+            height={150}
+            priority
+            className="mx-auto mb-4 h-20 w-20 object-contain"
+          />
+          <h1 className="text-2xl font-bold tracking-tight" style={{ color: "#000000" }}>
+            Ladysfit Plan
           </h1>
-          <p className="text-sm mt-1" style={{ color: "rgba(20,17,14,0.45)" }}>
+          <p className="text-sm mt-1" style={{ color: "rgba(0,0,0,0.45)" }}>
             Đăng nhập để sử dụng máy tính dinh dưỡng
           </p>
         </div>
@@ -125,7 +121,7 @@ export default function LoginForm({ kicked, expired = false }: { kicked: boolean
         {/* Form Card */}
         <div
           className="rounded-2xl p-6 shadow-sm"
-          style={{ border: "1px solid rgba(20,17,14,0.1)", background: "#FDE2DC" }}
+          style={{ border: "1px solid rgba(0,0,0,0.1)", background: "#FFFFFF" }}
         >
           <form onSubmit={handleSubmit} className="space-y-4" noValidate>
 
@@ -176,7 +172,7 @@ export default function LoginForm({ kicked, expired = false }: { kicked: boolean
                   type="button"
                   onClick={() => setShowPassword((v) => !v)}
                   className="absolute right-3 top-1/2 -translate-y-1/2"
-                  style={{ color: "rgba(20,17,14,0.35)" }}
+                  style={{ color: "rgba(0,0,0,0.35)" }}
                   tabIndex={-1}
                   aria-label={showPassword ? "Ẩn mật khẩu" : "Hiện mật khẩu"}
                 >
@@ -210,15 +206,15 @@ export default function LoginForm({ kicked, expired = false }: { kicked: boolean
               <div
                 className="rounded-xl px-4 py-3 text-sm font-medium text-center"
                 style={{
-                  background: "rgba(92,110,72,0.08)",
-                  border: "1px solid rgba(92,110,72,0.3)",
-                  color: "#5C6E48",
+                  background: "rgba(0,0,0,0.08)",
+                  border: "1px solid rgba(0,0,0,0.3)",
+                  color: "#000000",
                 }}
               >
                 Đăng nhập thành công!{" "}
                 <a
                   href={successDest}
-                  style={{ color: "#5C6E48", fontWeight: 700, textDecoration: "underline" }}
+                  style={{ color: "#000000", fontWeight: 700, textDecoration: "underline" }}
                 >
                   Nhấn đây để vào trang →
                 </a>
@@ -250,8 +246,8 @@ export default function LoginForm({ kicked, expired = false }: { kicked: boolean
               disabled={loading}
               className="w-full py-3 rounded-xl font-bold text-base tracking-wide transition-all active:scale-[0.98] mt-2"
               style={{
-                background: loading ? "rgba(20,17,14,0.55)" : "#14110E",
-                color: "#FDE2DC",
+                background: loading ? "rgba(241,91,92,0.55)" : "#F15B5C",
+                color: "#FFFFFF",
                 cursor: loading ? "not-allowed" : "pointer",
                 // Eliminates WebKit's 300ms tap-delay on iOS Safari so the
                 // button responds instantly on first touch without double-tap.
@@ -278,8 +274,8 @@ export default function LoginForm({ kicked, expired = false }: { kicked: boolean
         </div>
 
         {/* Footer hint */}
-        <p className="text-center text-xs mt-5" style={{ color: "rgba(20,17,14,0.3)" }}>
-          Diet Plan © {new Date().getFullYear()} · Phần mềm quản lý dinh dưỡng
+        <p className="text-center text-xs mt-5" style={{ color: "rgba(0,0,0,0.3)" }}>
+          Ladysfit Plan © {new Date().getFullYear()} · Phần mềm quản lý dinh dưỡng
         </p>
 
       </div>

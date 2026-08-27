@@ -183,22 +183,22 @@ export default function AddFoodModal({
   return (
     <div
       className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto p-4"
-      style={{ background: "rgba(20,17,14,0.45)" }}
+      style={{ background: "rgba(0,0,0,0.45)" }}
       onMouseDown={onClose}
     >
       <div
         className="w-full max-w-lg rounded-2xl my-8 shadow-2xl"
-        style={{ background: "#FDE2DC", border: "1px solid rgba(20,17,14,0.12)" }}
+        style={{ background: "#FFFFFF", border: "1px solid rgba(0,0,0,0.12)" }}
         onMouseDown={(e) => e.stopPropagation()}
       >
         {/* Header */}
         <div
           className="flex items-center justify-between px-5 py-4"
-          style={{ borderBottom: "1px solid rgba(20,17,14,0.08)" }}
+          style={{ borderBottom: "1px solid rgba(0,0,0,0.08)" }}
         >
           <div>
-            <h3 style={{ fontSize: "1.05rem", fontWeight: 800, color: "#14110E" }}>Thư viện món ăn</h3>
-            <p style={{ fontSize: "0.75rem", color: "rgba(20,17,14,0.45)", marginTop: 2 }}>
+            <h3 style={{ fontSize: "1.05rem", fontWeight: 800, color: "#000000" }}>Thư viện món ăn</h3>
+            <p style={{ fontSize: "0.75rem", color: "rgba(0,0,0,0.45)", marginTop: 2 }}>
               Món thêm ở đây dùng chung cho cả app, chỉ số tính trên 100g
             </p>
           </div>
@@ -206,7 +206,7 @@ export default function AddFoodModal({
             type="button"
             onClick={onClose}
             className="w-8 h-8 rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0"
-            style={{ background: "rgba(20,17,14,0.06)", color: "#14110E" }}
+            style={{ background: "rgba(0,0,0,0.06)", color: "#000000" }}
             aria-label="Đóng"
           >
             ×
@@ -233,8 +233,8 @@ export default function AddFoodModal({
                 disabled={lookupLoading || !query.trim()}
                 className="flex-shrink-0 px-4 rounded-xl font-semibold text-sm"
                 style={{
-                  background: lookupLoading || !query.trim() ? "rgba(20,17,14,0.12)" : "#14110E",
-                  color: "#FDE2DC",
+                  background: lookupLoading || !query.trim() ? "rgba(241,91,92,0.45)" : "#F15B5C",
+                  color: "#FFFFFF",
                   cursor: lookupLoading || !query.trim() ? "not-allowed" : "pointer",
                 }}
               >
@@ -242,12 +242,12 @@ export default function AddFoodModal({
               </button>
             </div>
             {lookupError && (
-              <p style={{ fontSize: "0.78rem", color: "#A33A2A", marginTop: 8 }}>{lookupError}</p>
+              <p style={{ fontSize: "0.78rem", color: "#B02F30", marginTop: 8 }}>{lookupError}</p>
             )}
 
             {results && results.length > 0 && (
               <div className="mt-3 space-y-2">
-                <p style={{ fontSize: "0.72rem", color: "rgba(20,17,14,0.45)" }}>
+                <p style={{ fontSize: "0.72rem", color: "rgba(0,0,0,0.45)" }}>
                   Chọn kết quả để điền vào form bên dưới, chỉnh lại nếu cần rồi Lưu:
                 </p>
                 {results.map((r, i) => (
@@ -258,14 +258,14 @@ export default function AddFoodModal({
                     className="w-full text-left px-3 py-2.5 rounded-xl transition-colors"
                     style={{
                       background: form.name === r.name && prefilled ? "rgba(241,91,92,0.08)" : "#fff",
-                      border: "1px solid rgba(20,17,14,0.1)",
+                      border: "1px solid rgba(0,0,0,0.1)",
                     }}
                   >
                     <div className="flex items-center justify-between gap-2">
-                      <span style={{ fontSize: "0.875rem", fontWeight: 700, color: "#14110E" }}>{r.name}</span>
+                      <span style={{ fontSize: "0.875rem", fontWeight: 700, color: "#000000" }}>{r.name}</span>
                       <span style={{ fontSize: "0.72rem", fontWeight: 700, color: "#B02F30" }}>{Math.round(r.calories)} kcal</span>
                     </div>
-                    <div style={{ fontSize: "0.72rem", color: "rgba(20,17,14,0.5)", marginTop: 2 }}>
+                    <div style={{ fontSize: "0.72rem", color: "rgba(0,0,0,0.5)", marginTop: 2 }}>
                       P:{r.protein}g · F:{r.fat}g · C:{r.carbs}g
                       {r.fiber ? ` · Xơ:${r.fiber}g` : ""} · {FOOD_TAG_LABELS[(r.tag as FoodTag)] ?? r.tag}
                       {r.gramsPerUnit ? ` · 1 ${r.unit ?? "đv"}≈${r.gramsPerUnit}g` : ""}
@@ -276,7 +276,7 @@ export default function AddFoodModal({
             )}
           </div>
 
-          <div style={{ height: 1, background: "rgba(20,17,14,0.08)" }} />
+          <div style={{ height: 1, background: "rgba(0,0,0,0.08)" }} />
 
           {/* ── Form nhập / chỉnh tay ── */}
           <div className="space-y-3">
@@ -311,7 +311,7 @@ export default function AddFoodModal({
             </div>
 
             <details style={{ fontSize: "0.8rem" }}>
-              <summary style={{ cursor: "pointer", color: "rgba(20,17,14,0.5)", fontWeight: 600 }}>
+              <summary style={{ cursor: "pointer", color: "rgba(0,0,0,0.5)", fontWeight: 600 }}>
                 Đếm theo đơn vị (trứng, chuối...) — tuỳ chọn
               </summary>
               <div className="grid grid-cols-2 gap-3 mt-2">
@@ -325,12 +325,12 @@ export default function AddFoodModal({
           </div>
 
           {saveError && (
-            <p style={{ fontSize: "0.82rem", color: "#A33A2A", fontWeight: 600 }}>{saveError}</p>
+            <p style={{ fontSize: "0.82rem", color: "#B02F30", fontWeight: 600 }}>{saveError}</p>
           )}
           {savedMsg && (
             <p
               className="px-3 py-2 rounded-xl"
-              style={{ fontSize: "0.82rem", color: "#5C6E48", fontWeight: 600, background: "rgba(92,110,72,0.08)" }}
+              style={{ fontSize: "0.82rem", color: "#000000", fontWeight: 600, background: "rgba(0,0,0,0.08)" }}
             >
               ✓ {savedMsg} — có thể thêm món tiếp hoặc đóng lại.
             </p>
@@ -339,26 +339,26 @@ export default function AddFoodModal({
           {/* ── Món đã tự thêm: xem lại / xoá ── */}
           {customFoods.length > 0 && (
             <>
-              <div style={{ height: 1, background: "rgba(20,17,14,0.08)" }} />
+              <div style={{ height: 1, background: "rgba(0,0,0,0.08)" }} />
               <details style={{ fontSize: "0.8rem" }}>
-                <summary style={{ cursor: "pointer", color: "rgba(20,17,14,0.5)", fontWeight: 600 }}>
+                <summary style={{ cursor: "pointer", color: "rgba(0,0,0,0.5)", fontWeight: 600 }}>
                   📚 Món đã thêm vào thư viện ({customFoods.length})
                 </summary>
                 {deleteError && (
-                  <p style={{ fontSize: "0.78rem", color: "#A33A2A", marginTop: 8, fontWeight: 600 }}>{deleteError}</p>
+                  <p style={{ fontSize: "0.78rem", color: "#B02F30", marginTop: 8, fontWeight: 600 }}>{deleteError}</p>
                 )}
                 <div className="mt-2 space-y-1.5" style={{ maxHeight: 220, overflowY: "auto" }}>
                   {customFoods.map((f) => (
                     <div
                       key={f.id}
                       className="flex items-center gap-2 px-3 py-2 rounded-xl"
-                      style={{ background: "#fff", border: "1px solid rgba(20,17,14,0.1)" }}
+                      style={{ background: "#fff", border: "1px solid rgba(0,0,0,0.1)" }}
                     >
                       <div className="flex-1 min-w-0">
-                        <div style={{ fontSize: "0.82rem", fontWeight: 700, color: "#14110E" }} className="truncate">
+                        <div style={{ fontSize: "0.82rem", fontWeight: 700, color: "#000000" }} className="truncate">
                           {f.name}
                         </div>
-                        <div style={{ fontSize: "0.7rem", color: "rgba(20,17,14,0.5)" }} className="truncate">
+                        <div style={{ fontSize: "0.7rem", color: "rgba(0,0,0,0.5)" }} className="truncate">
                           {Math.round(f.calories)} kcal · P:{f.protein}g F:{f.fat}g C:{f.carbs}g ·{" "}
                           {FOOD_TAG_LABELS[f.tag] ?? f.tag}
                         </div>
@@ -372,7 +372,7 @@ export default function AddFoodModal({
                             className="px-2.5 py-1 rounded-lg font-bold"
                             style={{
                               fontSize: "0.72rem",
-                              background: "#A33A2A",
+                              background: "#B02F30",
                               color: "#fff",
                               cursor: deletingId === f.id ? "not-allowed" : "pointer",
                             }}
@@ -383,7 +383,7 @@ export default function AddFoodModal({
                             type="button"
                             onClick={() => setConfirmDeleteId(null)}
                             className="px-2.5 py-1 rounded-lg font-semibold"
-                            style={{ fontSize: "0.72rem", background: "rgba(20,17,14,0.06)", color: "#14110E" }}
+                            style={{ fontSize: "0.72rem", background: "rgba(0,0,0,0.06)", color: "#000000" }}
                           >
                             Huỷ
                           </button>
@@ -393,7 +393,7 @@ export default function AddFoodModal({
                           type="button"
                           onClick={() => { setConfirmDeleteId(f.id); setDeleteError(null); }}
                           className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center font-bold"
-                          style={{ background: "rgba(163,58,42,0.08)", color: "#A33A2A" }}
+                          style={{ background: "rgba(176,47,48,0.08)", color: "#B02F30" }}
                           aria-label={`Xoá ${f.name}`}
                         >
                           ×
@@ -408,12 +408,12 @@ export default function AddFoodModal({
         </div>
 
         {/* Footer */}
-        <div className="flex gap-2 px-5 py-4" style={{ borderTop: "1px solid rgba(20,17,14,0.08)" }}>
+        <div className="flex gap-2 px-5 py-4" style={{ borderTop: "1px solid rgba(0,0,0,0.08)" }}>
           <button
             type="button"
             onClick={onClose}
             className="flex-1 py-2.5 rounded-xl font-semibold text-sm"
-            style={{ background: "rgba(20,17,14,0.06)", color: "#14110E" }}
+            style={{ background: "rgba(0,0,0,0.06)", color: "#000000" }}
           >
             Đóng
           </button>
@@ -423,7 +423,7 @@ export default function AddFoodModal({
             disabled={!canSave || saving}
             className="flex-1 py-2.5 rounded-xl font-semibold text-sm"
             style={{
-              background: !canSave || saving ? "rgba(20,17,14,0.12)" : "#F15B5C",
+              background: !canSave || saving ? "rgba(0,0,0,0.12)" : "#F15B5C",
               color: "#fff",
               cursor: !canSave || saving ? "not-allowed" : "pointer",
             }}
@@ -439,7 +439,7 @@ export default function AddFoodModal({
 const labelStyle: React.CSSProperties = {
   fontSize: "0.72rem",
   fontWeight: 600,
-  color: "rgba(20,17,14,0.5)",
+  color: "rgba(0,0,0,0.5)",
 };
 
 function NumField({ label, value, onChange }: { label: string; value: string; onChange: (v: string) => void }) {

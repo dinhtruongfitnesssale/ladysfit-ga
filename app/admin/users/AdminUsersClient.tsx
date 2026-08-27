@@ -25,14 +25,14 @@ function roleLabel(role: string): string {
 
 function roleBadgeStyle(role: string): React.CSSProperties {
   if (role === "ADMIN") return { background: "rgba(241,91,92,0.08)", color: "#B02F30" };
-  if (role === "TRIAL") return { background: "rgba(163,58,42,0.1)", color: "#A33A2A" };
-  return { background: "rgba(20,17,14,0.06)", color: "rgba(20,17,14,0.55)" };
+  if (role === "TRIAL") return { background: "rgba(176,47,48,0.1)", color: "#B02F30" };
+  return { background: "rgba(0,0,0,0.06)", color: "rgba(0,0,0,0.55)" };
 }
 
 type TrialTone = "pending" | "running" | "expired";
 
 const TRIAL_TONE_COLOR: Record<TrialTone, string> = {
-  pending: "rgba(20,17,14,0.45)",
+  pending: "rgba(0,0,0,0.45)",
   running: "rgba(176,47,48,0.9)",
   expired: "#B02F30",
 };
@@ -66,7 +66,7 @@ function ErrorBox({ msg }: { msg: string }) {
 function SuccessBox({ msg }: { msg: string }) {
   return (
     <div className="rounded-xl px-4 py-3 text-sm font-medium flex items-center gap-2"
-      style={{ background: "rgba(92,110,72,0.06)", border: "1px solid rgba(92,110,72,0.25)", color: "#5C6E48" }}>
+      style={{ background: "rgba(0,0,0,0.06)", border: "1px solid rgba(0,0,0,0.25)", color: "#000000" }}>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0">
         <polyline points="20 6 9 17 4 12"/>
       </svg>
@@ -91,19 +91,19 @@ function CreatedPasswordBox({ password }: { password: string }) {
 
   return (
     <div className="rounded-xl px-4 py-3 flex items-center gap-3 flex-wrap"
-      style={{ background: "rgba(20,17,14,0.03)", border: "1px solid rgba(20,17,14,0.12)" }}>
-      <span className="text-xs font-semibold" style={{ color: "rgba(20,17,14,0.55)" }}>
+      style={{ background: "rgba(0,0,0,0.03)", border: "1px solid rgba(0,0,0,0.12)" }}>
+      <span className="text-xs font-semibold" style={{ color: "rgba(0,0,0,0.55)" }}>
         Mật khẩu vừa tạo
       </span>
       <code className="text-sm font-bold tracking-wide px-2.5 py-1 rounded-lg select-all"
-        style={{ background: "#FDE2DC", border: "1px solid rgba(20,17,14,0.1)", color: "#14110E" }}>
+        style={{ background: "#FFFFFF", border: "1px solid rgba(0,0,0,0.1)", color: "#000000" }}>
         {password}
       </code>
       <button
         type="button"
         onClick={handleCopy}
         className="text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors"
-        style={{ color: "#5C6E48", border: "1px solid rgba(92,110,72,0.3)", background: "rgba(92,110,72,0.06)" }}
+        style={{ color: "#000000", border: "1px solid rgba(0,0,0,0.3)", background: "rgba(0,0,0,0.06)" }}
       >
         {copied ? "Đã chép!" : "Sao chép"}
       </button>
@@ -157,22 +157,22 @@ function EditModal({ user, onClose, onSaved }: EditModalProps) {
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center px-4"
-      style={{ background: "rgba(20,17,14,0.5)" }}
+      style={{ background: "rgba(0,0,0,0.5)" }}
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
     >
       <div
         className="w-full max-w-md rounded-2xl p-6 shadow-2xl"
-        style={{ background: "#FDE2DC", border: "1px solid rgba(20,17,14,0.08)" }}
+        style={{ background: "#FFFFFF", border: "1px solid rgba(0,0,0,0.08)" }}
       >
         {/* Modal header */}
         <div className="flex items-center justify-between mb-5">
-          <h3 className="text-base font-bold" style={{ color: "#14110E" }}>
+          <h3 className="text-base font-bold" style={{ color: "#000000" }}>
             Sửa tài khoản
           </h3>
           <button
             onClick={onClose}
             className="w-7 h-7 flex items-center justify-center rounded-lg transition-colors"
-            style={{ color: "rgba(20,17,14,0.4)", background: "rgba(20,17,14,0.05)" }}
+            style={{ color: "rgba(0,0,0,0.4)", background: "rgba(0,0,0,0.05)" }}
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
@@ -204,7 +204,7 @@ function EditModal({ user, onClose, onSaved }: EditModalProps) {
           <div>
             <label className="dp-label">
               Mật khẩu mới
-              <span className="ml-1.5 text-xs font-normal" style={{ color: "rgba(20,17,14,0.4)" }}>
+              <span className="ml-1.5 text-xs font-normal" style={{ color: "rgba(0,0,0,0.4)" }}>
                 (bỏ trống để giữ nguyên)
               </span>
             </label>
@@ -221,7 +221,7 @@ function EditModal({ user, onClose, onSaved }: EditModalProps) {
 
           <div
             className="rounded-xl px-4 py-2.5 text-xs flex items-start gap-2"
-            style={{ background: "rgba(241,91,92,0.04)", border: "1px solid rgba(241,91,92,0.12)", color: "rgba(20,17,14,0.55)" }}
+            style={{ background: "rgba(241,91,92,0.04)", border: "1px solid rgba(241,91,92,0.12)", color: "rgba(0,0,0,0.55)" }}
           >
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F15B5C" strokeWidth="2" className="shrink-0 mt-0.5">
               <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
@@ -234,7 +234,7 @@ function EditModal({ user, onClose, onSaved }: EditModalProps) {
               type="button"
               onClick={onClose}
               className="flex-1 py-2.5 rounded-xl text-sm font-semibold transition-all"
-              style={{ border: "1px solid rgba(20,17,14,0.12)", color: "rgba(20,17,14,0.6)", background: "transparent" }}
+              style={{ border: "1px solid rgba(0,0,0,0.12)", color: "rgba(0,0,0,0.6)", background: "transparent" }}
             >
               Hủy
             </button>
@@ -243,8 +243,8 @@ function EditModal({ user, onClose, onSaved }: EditModalProps) {
               disabled={saving}
               className="flex-1 py-2.5 rounded-xl text-sm font-bold transition-all active:scale-[0.98]"
               style={{
-                background: saving ? "rgba(20,17,14,0.55)" : "#14110E",
-                color: "#FDE2DC",
+                background: saving ? "rgba(241,91,92,0.45)" : "#F15B5C",
+                color: "#FFFFFF",
                 cursor: saving ? "not-allowed" : "pointer",
               }}
             >
@@ -277,12 +277,12 @@ function DeleteModal({ user, deleting, onCancel, onConfirm }: DeleteModalProps) 
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center px-4"
-      style={{ background: "rgba(20,17,14,0.5)", backdropFilter: "blur(2px)" }}
+      style={{ background: "rgba(0,0,0,0.5)", backdropFilter: "blur(2px)" }}
       onClick={(e) => { if (e.target === e.currentTarget && !deleting) onCancel(); }}
     >
       <div
         className="w-full max-w-sm rounded-2xl p-6 shadow-2xl"
-        style={{ background: "#FDE2DC", border: "1px solid rgba(20,17,14,0.08)" }}
+        style={{ background: "#FFFFFF", border: "1px solid rgba(0,0,0,0.08)" }}
       >
         <div
           className="mx-auto mb-4 w-12 h-12 rounded-full flex items-center justify-center"
@@ -294,13 +294,13 @@ function DeleteModal({ user, deleting, onCancel, onConfirm }: DeleteModalProps) 
             <line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/>
           </svg>
         </div>
-        <h3 className="text-base font-bold text-center mb-1.5" style={{ color: "#14110E" }}>
+        <h3 className="text-base font-bold text-center mb-1.5" style={{ color: "#000000" }}>
           Xóa tài khoản?
         </h3>
-        <p className="text-sm text-center leading-relaxed mb-5" style={{ color: "rgba(20,17,14,0.55)" }}>
+        <p className="text-sm text-center leading-relaxed mb-5" style={{ color: "rgba(0,0,0,0.55)" }}>
           Bạn sắp xóa vĩnh viễn tài khoản{" "}
-          <span className="font-semibold" style={{ color: "#14110E" }}>{user.name}</span>{" "}
-          (<span style={{ color: "rgba(20,17,14,0.65)" }}>{user.email}</span>).
+          <span className="font-semibold" style={{ color: "#000000" }}>{user.name}</span>{" "}
+          (<span style={{ color: "rgba(0,0,0,0.65)" }}>{user.email}</span>).
           <br />Hành động này <span className="font-semibold" style={{ color: "#B02F30" }}>không thể hoàn tác</span>.
         </p>
 
@@ -310,7 +310,7 @@ function DeleteModal({ user, deleting, onCancel, onConfirm }: DeleteModalProps) 
             onClick={onCancel}
             disabled={deleting}
             className="flex-1 py-2.5 rounded-xl text-sm font-semibold transition-all"
-            style={{ border: "1px solid rgba(20,17,14,0.12)", color: "rgba(20,17,14,0.6)", background: "transparent" }}
+            style={{ border: "1px solid rgba(0,0,0,0.12)", color: "rgba(0,0,0,0.6)", background: "transparent" }}
           >
             Hủy
           </button>
@@ -320,8 +320,8 @@ function DeleteModal({ user, deleting, onCancel, onConfirm }: DeleteModalProps) 
             disabled={deleting}
             className="flex-1 py-2.5 rounded-xl text-sm font-bold transition-all active:scale-[0.98]"
             style={{
-              background: deleting ? "rgba(20,17,14,0.55)" : "#14110E",
-              color: "#FDE2DC",
+              background: deleting ? "rgba(176,47,48,0.45)" : "#B02F30",
+              color: "#FFFFFF",
               cursor: deleting ? "not-allowed" : "pointer",
             }}
           >
@@ -510,16 +510,16 @@ export default function AdminUsersClient({ initialUsers }: Props) {
         />
       )}
 
-      <div className="min-h-screen px-4 py-10" style={{ background: "#FBD5CC" }}>
+      <div className="min-h-screen px-4 py-10" style={{ background: "#FFFFFF" }}>
         <div className="max-w-3xl mx-auto space-y-8">
 
           {/* Header */}
           <div className="flex items-center gap-3">
             <div
               className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
-              style={{ background: "#14110E" }}
+              style={{ background: "#F15B5C" }}
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FDE2DC" strokeWidth="2">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
                 <circle cx="9" cy="7" r="4"/>
                 <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
@@ -527,10 +527,10 @@ export default function AdminUsersClient({ initialUsers }: Props) {
               </svg>
             </div>
             <div>
-              <h1 className="text-xl font-bold leading-tight" style={{ color: "#14110E" }}>
+              <h1 className="text-xl font-bold leading-tight" style={{ color: "#000000" }}>
                 Quản lý tài khoản
               </h1>
-              <p className="text-sm" style={{ color: "rgba(20,17,14,0.45)" }}>
+              <p className="text-sm" style={{ color: "rgba(0,0,0,0.45)" }}>
                 Cấp và thu hồi quyền truy cập hệ thống
               </p>
             </div>
@@ -538,7 +538,7 @@ export default function AdminUsersClient({ initialUsers }: Props) {
               <a
                 href="/"
                 className="text-sm font-medium px-4 py-2 rounded-xl transition-colors"
-                style={{ color: "rgba(20,17,14,0.55)", border: "1px solid rgba(20,17,14,0.12)", background: "#FDE2DC" }}
+                style={{ color: "rgba(0,0,0,0.55)", border: "1px solid rgba(0,0,0,0.12)", background: "#FFFFFF" }}
               >
                 ← Xem giao diện thực đơn
               </a>
@@ -571,9 +571,9 @@ export default function AdminUsersClient({ initialUsers }: Props) {
           {/* Create User Form */}
           <div
             className="rounded-2xl p-6 shadow-sm"
-            style={{ background: "#FDE2DC", border: "1px solid rgba(20,17,14,0.08)" }}
+            style={{ background: "#FFFFFF", border: "1px solid rgba(0,0,0,0.08)" }}
           >
-            <h2 className="text-base font-bold mb-5" style={{ color: "#14110E" }}>
+            <h2 className="text-base font-bold mb-5" style={{ color: "#000000" }}>
               Cấp tài khoản mới
             </h2>
             <form onSubmit={handleCreate} className="space-y-4">
@@ -595,7 +595,7 @@ export default function AdminUsersClient({ initialUsers }: Props) {
                     type="email"
                     value={email}
                     onChange={(e) => { setEmail(e.target.value); setFormError(""); setFormSuccess(""); setCreatedPassword(""); }}
-                    placeholder="user@dietplan.com"
+                    placeholder="user@ladysfit.com"
                     required
                     className="dp-input"
                   />
@@ -603,13 +603,13 @@ export default function AdminUsersClient({ initialUsers }: Props) {
               </div>
               <div
                 className="rounded-xl px-4 py-3 text-xs leading-relaxed flex items-start gap-2"
-                style={{ background: "rgba(20,17,14,0.03)", border: "1px solid rgba(20,17,14,0.1)", color: "rgba(20,17,14,0.55)" }}
+                style={{ background: "rgba(0,0,0,0.03)", border: "1px solid rgba(0,0,0,0.1)", color: "rgba(0,0,0,0.55)" }}
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0 mt-0.5">
                   <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
                 </svg>
                 <span>
-                  Mật khẩu được <span className="font-semibold" style={{ color: "#14110E" }}>tạo ngẫu nhiên</span> và gửi thẳng
+                  Mật khẩu được <span className="font-semibold" style={{ color: "#000000" }}>tạo ngẫu nhiên</span> và gửi thẳng
                   vào email của khách — bạn không cần đặt.
                 </span>
               </div>
@@ -633,22 +633,22 @@ export default function AdminUsersClient({ initialUsers }: Props) {
                         onClick={() => { setRole(opt.value); setFormError(""); setFormSuccess(""); setCreatedPassword(""); }}
                         className="text-left rounded-xl px-4 py-3 transition-all"
                         style={{
-                          border: `1.5px solid ${active ? `rgba(${accent},0.6)` : "rgba(20,17,14,0.12)"}`,
-                          background: active ? `rgba(${accent},0.05)` : "#FDE2DC",
+                          border: `1.5px solid ${active ? `rgba(${accent},0.6)` : "rgba(0,0,0,0.12)"}`,
+                          background: active ? `rgba(${accent},0.05)` : "#FFFFFF",
                         }}
                       >
                         <div className="flex items-center gap-2">
                           <span
                             className="w-4 h-4 rounded-full flex items-center justify-center shrink-0"
-                            style={{ border: `1.5px solid ${active ? `rgb(${accent})` : "rgba(20,17,14,0.25)"}` }}
+                            style={{ border: `1.5px solid ${active ? `rgb(${accent})` : "rgba(0,0,0,0.25)"}` }}
                           >
                             {active && <span className="w-2 h-2 rounded-full" style={{ background: `rgb(${accent})` }} />}
                           </span>
-                          <span className="text-sm font-bold" style={{ color: active ? `rgb(${accentInk})` : "#14110E" }}>
+                          <span className="text-sm font-bold" style={{ color: active ? `rgb(${accentInk})` : "#000000" }}>
                             {opt.title}
                           </span>
                         </div>
-                        <p className="mt-1 text-xs leading-snug" style={{ color: "rgba(20,17,14,0.5)" }}>
+                        <p className="mt-1 text-xs leading-snug" style={{ color: "rgba(0,0,0,0.5)" }}>
                           {opt.desc}
                         </p>
                       </button>
@@ -667,8 +667,8 @@ export default function AdminUsersClient({ initialUsers }: Props) {
                   disabled={creating}
                   className="px-6 py-2.5 rounded-xl font-bold text-sm tracking-wide transition-all active:scale-[0.98]"
                   style={{
-                    background: creating ? "rgba(20,17,14,0.55)" : "#14110E",
-                    color: "#FDE2DC",
+                    background: creating ? "rgba(241,91,92,0.45)" : "#F15B5C",
+                    color: "#FFFFFF",
                     cursor: creating ? "not-allowed" : "pointer",
                   }}
                 >
@@ -688,14 +688,14 @@ export default function AdminUsersClient({ initialUsers }: Props) {
           {/* Users Table */}
           <div
             className="rounded-2xl shadow-sm overflow-hidden"
-            style={{ background: "#FDE2DC", border: "1px solid rgba(20,17,14,0.08)" }}
+            style={{ background: "#FFFFFF", border: "1px solid rgba(0,0,0,0.08)" }}
           >
-            <div className="px-6 py-4 border-b" style={{ borderColor: "rgba(20,17,14,0.08)" }}>
-              <h2 className="text-base font-bold" style={{ color: "#14110E" }}>
+            <div className="px-6 py-4 border-b" style={{ borderColor: "rgba(0,0,0,0.08)" }}>
+              <h2 className="text-base font-bold" style={{ color: "#000000" }}>
                 Danh sách tài khoản
                 <span
                   className="ml-2 text-xs font-semibold px-2 py-0.5 rounded-full"
-                  style={{ background: "rgba(20,17,14,0.06)", color: "rgba(20,17,14,0.5)" }}
+                  style={{ background: "rgba(0,0,0,0.06)", color: "rgba(0,0,0,0.5)" }}
                 >
                   {users.length}
                 </span>
@@ -703,7 +703,7 @@ export default function AdminUsersClient({ initialUsers }: Props) {
             </div>
 
             {users.length === 0 ? (
-              <div className="px-6 py-10 text-center text-sm" style={{ color: "rgba(20,17,14,0.35)" }}>
+              <div className="px-6 py-10 text-center text-sm" style={{ color: "rgba(0,0,0,0.35)" }}>
                 Chưa có tài khoản nào
               </div>
             ) : (
@@ -712,16 +712,16 @@ export default function AdminUsersClient({ initialUsers }: Props) {
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead>
-                      <tr style={{ background: "rgba(20,17,14,0.03)", borderBottom: "1px solid rgba(20,17,14,0.06)" }}>
+                      <tr style={{ background: "rgba(253,226,220,0.5)", borderBottom: "1px solid rgba(0,0,0,0.06)" }}>
                         <th
                           className="text-center px-4 py-3 font-semibold w-12"
-                          style={{ color: "rgba(20,17,14,0.5)" }}
+                          style={{ color: "rgba(0,0,0,0.5)" }}
                         >
                           STT
                         </th>
-                        <th className="text-left px-6 py-3 font-semibold" style={{ color: "rgba(20,17,14,0.5)" }}>Họ tên</th>
-                        <th className="text-left px-6 py-3 font-semibold" style={{ color: "rgba(20,17,14,0.5)" }}>Email</th>
-                        <th className="text-left px-6 py-3 font-semibold" style={{ color: "rgba(20,17,14,0.5)" }}>Vai trò</th>
+                        <th className="text-left px-6 py-3 font-semibold" style={{ color: "rgba(0,0,0,0.5)" }}>Họ tên</th>
+                        <th className="text-left px-6 py-3 font-semibold" style={{ color: "rgba(0,0,0,0.5)" }}>Email</th>
+                        <th className="text-left px-6 py-3 font-semibold" style={{ color: "rgba(0,0,0,0.5)" }}>Vai trò</th>
                         <th className="px-6 py-3" />
                       </tr>
                     </thead>
@@ -731,16 +731,16 @@ export default function AdminUsersClient({ initialUsers }: Props) {
                         return (
                           <tr
                             key={user.id}
-                            style={{ borderBottom: idx < paginatedUsers.length - 1 ? "1px solid rgba(20,17,14,0.05)" : "none" }}
+                            style={{ borderBottom: idx < paginatedUsers.length - 1 ? "1px solid rgba(0,0,0,0.05)" : "none" }}
                           >
                             {/* STT */}
-                            <td className="px-4 py-3.5 text-center font-semibold tabular-nums" style={{ color: "rgba(20,17,14,0.35)" }}>
+                            <td className="px-4 py-3.5 text-center font-semibold tabular-nums" style={{ color: "rgba(0,0,0,0.35)" }}>
                               {stt}
                             </td>
-                            <td className="px-6 py-3.5 font-medium" style={{ color: "#14110E" }}>
+                            <td className="px-6 py-3.5 font-medium" style={{ color: "#000000" }}>
                               {user.name}
                             </td>
-                            <td className="px-6 py-3.5" style={{ color: "rgba(20,17,14,0.65)" }}>
+                            <td className="px-6 py-3.5" style={{ color: "rgba(0,0,0,0.65)" }}>
                               {user.email}
                             </td>
                             <td className="px-6 py-3.5">
@@ -774,9 +774,9 @@ export default function AdminUsersClient({ initialUsers }: Props) {
                                       disabled={trialActionId === user.id}
                                       className="text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors"
                                       style={{
-                                        color: "#A33A2A",
-                                        border: "1px solid rgba(163,58,42,0.3)",
-                                        background: "rgba(163,58,42,0.06)",
+                                        color: "#B02F30",
+                                        border: "1px solid rgba(176,47,48,0.3)",
+                                        background: "rgba(176,47,48,0.06)",
                                         cursor: trialActionId === user.id ? "wait" : "pointer",
                                         opacity: trialActionId === user.id ? 0.6 : 1,
                                       }}
@@ -788,9 +788,9 @@ export default function AdminUsersClient({ initialUsers }: Props) {
                                       disabled={trialActionId === user.id}
                                       className="text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors"
                                       style={{
-                                        color: "#5C6E48",
-                                        border: "1px solid rgba(92,110,72,0.3)",
-                                        background: "rgba(92,110,72,0.06)",
+                                        color: "#000000",
+                                        border: "1px solid rgba(0,0,0,0.3)",
+                                        background: "rgba(0,0,0,0.06)",
                                         cursor: trialActionId === user.id ? "wait" : "pointer",
                                         opacity: trialActionId === user.id ? 0.6 : 1,
                                       }}
@@ -803,9 +803,9 @@ export default function AdminUsersClient({ initialUsers }: Props) {
                                   onClick={() => { setEditingUser(user); setEditSuccess(""); }}
                                   className="text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors"
                                   style={{
-                                    color: "rgba(20,17,14,0.6)",
-                                    border: "1px solid rgba(20,17,14,0.15)",
-                                    background: "rgba(20,17,14,0.03)",
+                                    color: "rgba(0,0,0,0.6)",
+                                    border: "1px solid rgba(0,0,0,0.15)",
+                                    background: "rgba(0,0,0,0.03)",
                                   }}
                                 >
                                   Sửa
@@ -835,7 +835,7 @@ export default function AdminUsersClient({ initialUsers }: Props) {
                 {totalPages > 1 && (
                   <div
                     className="flex items-center justify-end gap-1.5 px-6 py-3"
-                    style={{ borderTop: "1px solid rgba(20,17,14,0.06)" }}
+                    style={{ borderTop: "1px solid rgba(0,0,0,0.06)" }}
                   >
                     {/* Prev */}
                     <button
@@ -843,9 +843,9 @@ export default function AdminUsersClient({ initialUsers }: Props) {
                       disabled={currentPage === 1}
                       className="flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-lg transition-all"
                       style={{
-                        border: "1px solid rgba(20,17,14,0.12)",
-                        background: currentPage === 1 ? "rgba(20,17,14,0.02)" : "#FDE2DC",
-                        color: currentPage === 1 ? "rgba(20,17,14,0.25)" : "rgba(20,17,14,0.6)",
+                        border: "1px solid rgba(0,0,0,0.12)",
+                        background: currentPage === 1 ? "rgba(0,0,0,0.02)" : "#FFFFFF",
+                        color: currentPage === 1 ? "rgba(0,0,0,0.25)" : "rgba(0,0,0,0.6)",
                         cursor: currentPage === 1 ? "not-allowed" : "pointer",
                       }}
                     >
@@ -863,11 +863,11 @@ export default function AdminUsersClient({ initialUsers }: Props) {
                         className="w-8 h-8 flex items-center justify-center text-xs font-bold rounded-lg transition-all"
                         style={
                           page === currentPage
-                            ? { background: "#14110E", color: "#FDE2DC", border: "1px solid #F15B5C" }
+                            ? { background: "#F15B5C", color: "#FFFFFF", border: "1px solid #F15B5C" }
                             : {
-                                background: "#FDE2DC",
-                                color: "rgba(20,17,14,0.55)",
-                                border: "1px solid rgba(20,17,14,0.12)",
+                                background: "#FFFFFF",
+                                color: "rgba(0,0,0,0.55)",
+                                border: "1px solid rgba(0,0,0,0.12)",
                                 cursor: "pointer",
                               }
                         }
@@ -882,9 +882,9 @@ export default function AdminUsersClient({ initialUsers }: Props) {
                       disabled={currentPage === totalPages}
                       className="flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-lg transition-all"
                       style={{
-                        border: "1px solid rgba(20,17,14,0.12)",
-                        background: currentPage === totalPages ? "rgba(20,17,14,0.02)" : "#FDE2DC",
-                        color: currentPage === totalPages ? "rgba(20,17,14,0.25)" : "rgba(20,17,14,0.6)",
+                        border: "1px solid rgba(0,0,0,0.12)",
+                        background: currentPage === totalPages ? "rgba(0,0,0,0.02)" : "#FFFFFF",
+                        color: currentPage === totalPages ? "rgba(0,0,0,0.25)" : "rgba(0,0,0,0.6)",
                         cursor: currentPage === totalPages ? "not-allowed" : "pointer",
                       }}
                     >

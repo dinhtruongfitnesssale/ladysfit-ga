@@ -12,11 +12,11 @@
 import nodemailer from "nodemailer";
 
 /** App / brand name used in subject lines and email chrome. */
-const BRAND = "Diet Plan";
+const BRAND = "Ladysfit Plan";
 
 // Brand palette (nền hồng / ink / coral) — mirrors the app UI.
 const PAPER = "#FDE2DC";
-const INK = "#14110E";
+const INK = "#000000";
 const BRAND_INK = "#B02F30"; // coral đậm — dùng cho chữ nhấn, đọc rõ trên nền sáng
 
 /**
@@ -94,7 +94,7 @@ export function buildWelcomeEmail(opts: {
 
   const html = `
   <div style="margin:0;padding:24px;background:${PAPER};font-family:'Nunito','Segoe UI',Helvetica,Arial,sans-serif;color:${INK};">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;margin:0 auto;background:#ffffff;border-radius:14px;overflow:hidden;border:1px solid #f6c5ba;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;margin:0 auto;background:#ffffff;border-radius:14px;overflow:hidden;border:1px solid #fde2dc;">
       <tr>
         <td style="padding:28px 32px 8px;">
           <p style="margin:0;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:${BRAND_INK};font-weight:700;">${BRAND}</p>
@@ -104,12 +104,12 @@ export function buildWelcomeEmail(opts: {
       <tr>
         <td style="padding:12px 32px 0;font-size:15px;line-height:1.65;color:#4a3331;">
           <p style="margin:0 0 16px;">Một tài khoản <strong>${escapeHtml(roleLabel)}</strong> trên hệ thống <strong>${BRAND}</strong> vừa được tạo cho bạn. Đăng nhập bằng thông tin bên dưới để bắt đầu sử dụng máy tính dinh dưỡng.</p>
-          ${opts.isTrial ? `<p style="margin:0 0 16px;padding:12px 14px;background:#fff3f0;border:1px solid #fad2c9;border-radius:10px;font-size:14px;">⏳ Phiên trải nghiệm kéo dài <strong>5 tiếng</strong>, chỉ bắt đầu tính <strong>từ lúc bạn đăng nhập lần đầu</strong> — nên bạn có thể yên tâm đăng nhập khi đã sẵn sàng.</p>` : ""}
+          ${opts.isTrial ? `<p style="margin:0 0 16px;padding:12px 14px;background:#fde2dc;border:1px solid #f15b5c33;border-radius:10px;font-size:14px;">⏳ Phiên trải nghiệm kéo dài <strong>5 tiếng</strong>, chỉ bắt đầu tính <strong>từ lúc bạn đăng nhập lần đầu</strong> — nên bạn có thể yên tâm đăng nhập khi đã sẵn sàng.</p>` : ""}
         </td>
       </tr>
       <tr>
         <td style="padding:0 32px;">
-          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${PAPER};border:1px solid #f6c5ba;border-radius:10px;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${PAPER};border:1px solid #fde2dc;border-radius:10px;">
             <tr><td style="padding:14px 18px;font-size:14px;color:#4a3331;">
               <p style="margin:0 0 6px;"><span style="color:#9c7c77;">Email đăng nhập:</span> <strong>${escapeHtml(opts.email)}</strong></p>
               <p style="margin:0;"><span style="color:#9c7c77;">Mật khẩu:</span> <strong style="font-family:'Courier New',monospace;">${escapeHtml(opts.password)}</strong></p>
@@ -119,7 +119,7 @@ export function buildWelcomeEmail(opts: {
       </tr>
       <tr>
         <td style="padding:18px 32px 8px;">
-          <a href="${opts.loginUrl}" style="display:inline-block;background:${INK};color:${PAPER};text-decoration:none;font-weight:700;font-size:15px;padding:13px 26px;border-radius:10px;">Đăng nhập ngay →</a>
+          <a href="${opts.loginUrl}" style="display:inline-block;background:#F15B5C;color:#ffffff;text-decoration:none;font-weight:700;font-size:15px;padding:13px 26px;border-radius:10px;">Đăng nhập ngay →</a>
         </td>
       </tr>
       <tr>
@@ -153,7 +153,7 @@ export function buildPasswordResetEmail(opts: {
 
   const html = `
   <div style="margin:0;padding:24px;background:${PAPER};font-family:'Nunito','Segoe UI',Helvetica,Arial,sans-serif;color:${INK};">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;margin:0 auto;background:#ffffff;border-radius:14px;overflow:hidden;border:1px solid #f6c5ba;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;margin:0 auto;background:#ffffff;border-radius:14px;overflow:hidden;border:1px solid #fde2dc;">
       <tr>
         <td style="padding:28px 32px 8px;">
           <p style="margin:0;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:${BRAND_INK};font-weight:700;">${BRAND}</p>
@@ -167,7 +167,7 @@ export function buildPasswordResetEmail(opts: {
       </tr>
       <tr>
         <td style="padding:8px 32px 8px;">
-          <a href="${opts.resetUrl}" style="display:inline-block;background:${INK};color:${PAPER};text-decoration:none;font-weight:700;font-size:15px;padding:13px 26px;border-radius:10px;">Đặt lại mật khẩu →</a>
+          <a href="${opts.resetUrl}" style="display:inline-block;background:#F15B5C;color:#ffffff;text-decoration:none;font-weight:700;font-size:15px;padding:13px 26px;border-radius:10px;">Đặt lại mật khẩu →</a>
         </td>
       </tr>
       <tr>

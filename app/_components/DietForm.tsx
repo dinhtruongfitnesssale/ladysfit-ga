@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import MealPlanSection from "./MealPlanSection";
@@ -525,19 +526,19 @@ export default function DietForm({
       {showChangePwd && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center px-4"
-          style={{ background: "rgba(20,17,14,0.5)" }}
+          style={{ background: "rgba(0,0,0,0.5)" }}
           onClick={(e) => { if (e.target === e.currentTarget) setShowChangePwd(false); }}
         >
           <div
             className="w-full max-w-sm rounded-2xl p-6 shadow-2xl"
-            style={{ background: "#FDE2DC", border: "1px solid rgba(20,17,14,0.08)" }}
+            style={{ background: "#FFFFFF", border: "1px solid rgba(0,0,0,0.08)" }}
           >
             <div className="flex items-center justify-between mb-5">
-              <h3 className="text-base font-bold" style={{ color: "#14110E" }}>Đổi mật khẩu</h3>
+              <h3 className="text-base font-bold" style={{ color: "#000000" }}>Đổi mật khẩu</h3>
               <button
                 onClick={() => setShowChangePwd(false)}
                 className="w-7 h-7 flex items-center justify-center rounded-lg"
-                style={{ color: "rgba(20,17,14,0.4)", background: "rgba(20,17,14,0.05)" }}
+                style={{ color: "rgba(0,0,0,0.4)", background: "rgba(0,0,0,0.05)" }}
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
@@ -595,7 +596,7 @@ export default function DietForm({
 
               <div
                 className="rounded-xl px-4 py-2.5 text-xs flex items-start gap-2"
-                style={{ background: "rgba(241,91,92,0.04)", border: "1px solid rgba(241,91,92,0.12)", color: "rgba(20,17,14,0.55)" }}
+                style={{ background: "rgba(241,91,92,0.04)", border: "1px solid rgba(241,91,92,0.12)", color: "rgba(0,0,0,0.55)" }}
               >
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F15B5C" strokeWidth="2" className="shrink-0 mt-0.5">
                   <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
@@ -608,7 +609,7 @@ export default function DietForm({
                   type="button"
                   onClick={() => setShowChangePwd(false)}
                   className="flex-1 py-2.5 rounded-xl text-sm font-semibold"
-                  style={{ border: "1px solid rgba(20,17,14,0.12)", color: "rgba(20,17,14,0.6)", background: "transparent" }}
+                  style={{ border: "1px solid rgba(0,0,0,0.12)", color: "rgba(0,0,0,0.6)", background: "transparent" }}
                 >
                   Hủy
                 </button>
@@ -617,8 +618,8 @@ export default function DietForm({
                   disabled={cpSaving}
                   className="flex-1 py-2.5 rounded-xl text-sm font-bold transition-all active:scale-[0.98]"
                   style={{
-                    background: cpSaving ? "rgba(20,17,14,0.55)" : "#14110E",
-                    color: "#FDE2DC",
+                    background: cpSaving ? "rgba(241,91,92,0.45)" : "#F15B5C",
+                    color: "#FFFFFF",
                     cursor: cpSaving ? "not-allowed" : "pointer",
                   }}
                 >
@@ -641,11 +642,11 @@ export default function DietForm({
     {trialOver && (
       <div
         className="fixed inset-0 z-[60] flex items-center justify-center px-4"
-        style={{ background: "rgba(20,17,14,0.6)", backdropFilter: "blur(3px)" }}
+        style={{ background: "rgba(0,0,0,0.6)", backdropFilter: "blur(3px)" }}
       >
         <div
           className="w-full max-w-sm rounded-2xl p-7 text-center shadow-2xl"
-          style={{ background: "#FDE2DC", border: "1px solid rgba(20,17,14,0.08)" }}
+          style={{ background: "#FFFFFF", border: "1px solid rgba(0,0,0,0.08)" }}
         >
           <div
             className="mx-auto mb-4 w-14 h-14 rounded-full flex items-center justify-center"
@@ -655,17 +656,17 @@ export default function DietForm({
               <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
             </svg>
           </div>
-          <h3 className="text-lg font-bold mb-1.5" style={{ color: "#14110E" }}>
+          <h3 className="text-lg font-bold mb-1.5" style={{ color: "#000000" }}>
             Phiên trải nghiệm đã kết thúc
           </h3>
-          <p className="text-sm leading-relaxed" style={{ color: "rgba(20,17,14,0.55)" }}>
+          <p className="text-sm leading-relaxed" style={{ color: "rgba(0,0,0,0.55)" }}>
             Thời gian dùng thử 5 tiếng của bạn đã hết. Vui lòng liên hệ Admin để
             kích hoạt lại tài khoản. Bạn sẽ được chuyển về trang đăng nhập…
           </p>
           <a
             href="/login?expired=1"
             className="inline-flex items-center justify-center w-full mt-5 py-2.5 rounded-xl text-sm font-bold transition-all active:scale-[0.98]"
-            style={{ background: "#14110E", color: "#FDE2DC" }}
+            style={{ background: "#F15B5C", color: "#FFFFFF" }}
           >
             Về trang đăng nhập
           </a>
@@ -679,14 +680,23 @@ export default function DietForm({
         {/* ── Header ── */}
         <header
           className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6"
-          style={{ borderBottom: "1px solid rgba(20,17,14,0.08)" }}
+          style={{ borderBottom: "1px solid rgba(0,0,0,0.08)" }}
         >
-          <div>
-            <h1 className="text-2xl md:text-3xl font-bold tracking-tight leading-tight" style={{ color: "#14110E" }}>
-              Diet Plan{" "}
+          <div className="flex items-center gap-3">
+            <Image
+              src="/logo.png"
+              alt="Ladysfit"
+              width={150}
+              height={150}
+              priority
+              className="h-11 w-11 shrink-0 object-contain mt-0.5"
+            />
+            <div>
+            <h1 className="text-2xl md:text-3xl font-bold tracking-tight leading-tight" style={{ color: "#000000" }}>
+              Ladysfit Plan{" "}
               <span style={{ color: "#B02F30" }}>của {userName}</span>
             </h1>
-            <p className="mt-1 text-sm" style={{ color: "rgba(20,17,14,0.5)" }}>
+            <p className="mt-1 text-sm" style={{ color: "rgba(0,0,0,0.5)" }}>
               Máy tính dinh dưỡng chuyên sâu
             </p>
             {/* Đồng hồ đếm ngược phiên Trải nghiệm */}
@@ -706,6 +716,7 @@ export default function DietForm({
                 <span className="font-bold">{formatCountdown(remainingMs)}</span>
               </div>
             )}
+            </div>
           </div>
           {/* self-start: giữ nhóm nút co theo nội dung (= chiều dài 2 nút trên cùng)
               để nút w-full bên dưới khớp đúng chiều dài đó, kể cả trên mobile */}
@@ -716,12 +727,12 @@ export default function DietForm({
               onClick={openChangePwd}
               className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg transition-colors"
               style={{
-                background: "rgba(20,17,14,0.05)",
-                color: "rgba(20,17,14,0.7)",
-                border: "1px solid rgba(20,17,14,0.1)",
+                background: "rgba(0,0,0,0.05)",
+                color: "rgba(0,0,0,0.7)",
+                border: "1px solid rgba(0,0,0,0.1)",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(20,17,14,0.1)")}
-              onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(20,17,14,0.05)")}
+              onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(0,0,0,0.1)")}
+              onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(0,0,0,0.05)")}
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
@@ -758,12 +769,12 @@ export default function DietForm({
               onClick={() => setShowAddFood(true)}
               className="w-full flex items-center justify-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg transition-colors"
               style={{
-                background: "rgba(58,85,103,0.06)",
-                color: "#3A5567",
-                border: "1px solid rgba(58,85,103,0.2)",
+                background: "rgba(0,0,0,0.06)",
+                color: "#000000",
+                border: "1px solid rgba(0,0,0,0.2)",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(58,85,103,0.12)")}
-              onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(58,85,103,0.06)")}
+              onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(0,0,0,0.12)")}
+              onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(0,0,0,0.06)")}
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
@@ -779,7 +790,7 @@ export default function DietForm({
         {/* ── Form Card ── */}
         <div
           className="bg-white rounded-2xl shadow-sm p-6 space-y-6"
-          style={{ border: "1px solid rgba(20,17,14,0.1)" }}
+          style={{ border: "1px solid rgba(0,0,0,0.1)" }}
         >
           <section>
             <SectionTitle>Thông tin khách hàng</SectionTitle>
@@ -829,7 +840,7 @@ export default function DietForm({
               <div>
                 <label htmlFor="likes" className="dp-label">
                   Thích ăn{" "}
-                  <span style={{ color: "rgba(20,17,14,0.35)", fontWeight: 400 }}>(tuỳ chọn)</span>
+                  <span style={{ color: "rgba(0,0,0,0.35)", fontWeight: 400 }}>(tuỳ chọn)</span>
                 </label>
                 <input id="likes" type="text" name="likes" value={form.likes}
                   onChange={handleChange} placeholder="Cơm, thịt gà, rau xanh..."
@@ -839,7 +850,7 @@ export default function DietForm({
               <div>
                 <label htmlFor="dislikes" className="dp-label">
                   Ghét ăn{" "}
-                  <span style={{ color: "rgba(20,17,14,0.35)", fontWeight: 400 }}>(tuỳ chọn)</span>
+                  <span style={{ color: "rgba(0,0,0,0.35)", fontWeight: 400 }}>(tuỳ chọn)</span>
                 </label>
                 <input id="dislikes" type="text" name="dislikes" value={form.dislikes}
                   onChange={handleChange} placeholder="Hải sản, cà tím..."
@@ -849,7 +860,7 @@ export default function DietForm({
             </div>
           </section>
 
-          <hr style={{ borderColor: "rgba(20,17,14,0.08)" }} />
+          <hr style={{ borderColor: "rgba(0,0,0,0.08)" }} />
 
           <section>
             <SectionTitle>Công thức & mục tiêu</SectionTitle>
@@ -887,9 +898,9 @@ export default function DietForm({
                         onClick={() => setGoal(g)}
                         className="py-2.5 rounded-xl text-sm font-semibold transition-all"
                         style={{
-                          border: active ? "1px solid #F15B5C" : "1px solid rgba(20,17,14,0.15)",
-                          background: active ? "#F15B5C" : "#FDE2DC",
-                          color: active ? "#FFFFFF" : "#14110E",
+                          border: active ? "1px solid #F15B5C" : "1px solid rgba(0,0,0,0.15)",
+                          background: active ? "#F15B5C" : "#FFFFFF",
+                          color: active ? "#FFFFFF" : "#000000",
                         }}
                       >
                         {GOAL_LABEL[g]}
@@ -915,9 +926,9 @@ export default function DietForm({
                             onClick={() => setForm((prev) => ({ ...prev, lossSpeed: speed }))}
                             className="py-2.5 rounded-xl text-sm font-semibold transition-all flex flex-col items-center leading-tight"
                             style={{
-                              border: active ? "1px solid #F15B5C" : "1px solid rgba(20,17,14,0.15)",
-                              background: active ? "rgba(241,91,92,0.08)" : "#FDE2DC",
-                              color: active ? "#B02F30" : "rgba(20,17,14,0.65)",
+                              border: active ? "1px solid #F15B5C" : "1px solid rgba(0,0,0,0.15)",
+                              background: active ? "rgba(241,91,92,0.08)" : "#FFFFFF",
+                              color: active ? "#B02F30" : "rgba(0,0,0,0.65)",
                             }}
                           >
                             {LOSS_SPEED[speed].label}
@@ -944,9 +955,9 @@ export default function DietForm({
                             onClick={() => setGoalMode(mode)}
                             className="py-2.5 rounded-xl text-sm font-semibold transition-all"
                             style={{
-                              border: active ? "1px solid #F15B5C" : "1px solid rgba(20,17,14,0.15)",
-                              background: active ? "rgba(241,91,92,0.08)" : "#FDE2DC",
-                              color: active ? "#B02F30" : "rgba(20,17,14,0.65)",
+                              border: active ? "1px solid #F15B5C" : "1px solid rgba(0,0,0,0.15)",
+                              background: active ? "rgba(241,91,92,0.08)" : "#FFFFFF",
+                              color: active ? "#B02F30" : "rgba(0,0,0,0.65)",
                             }}
                           >
                             {label}
@@ -978,7 +989,7 @@ export default function DietForm({
                       />
                       <span
                         className="absolute right-3 top-1/2 -translate-y-1/2 text-sm font-semibold pointer-events-none"
-                        style={{ color: "rgba(20,17,14,0.4)" }}
+                        style={{ color: "rgba(0,0,0,0.4)" }}
                       >
                         kg
                       </span>
@@ -1005,9 +1016,9 @@ export default function DietForm({
                             onClick={() => setGoalMode(mode)}
                             className="py-2.5 rounded-xl text-sm font-semibold transition-all"
                             style={{
-                              border: active ? "1px solid #F15B5C" : "1px solid rgba(20,17,14,0.15)",
-                              background: active ? "rgba(241,91,92,0.08)" : "#FDE2DC",
-                              color: active ? "#B02F30" : "rgba(20,17,14,0.65)",
+                              border: active ? "1px solid #F15B5C" : "1px solid rgba(0,0,0,0.15)",
+                              background: active ? "rgba(241,91,92,0.08)" : "#FFFFFF",
+                              color: active ? "#B02F30" : "rgba(0,0,0,0.65)",
                             }}
                           >
                             {label}
@@ -1039,7 +1050,7 @@ export default function DietForm({
                       />
                       <span
                         className="absolute right-3 top-1/2 -translate-y-1/2 text-sm font-semibold pointer-events-none"
-                        style={{ color: "rgba(20,17,14,0.4)" }}
+                        style={{ color: "rgba(0,0,0,0.4)" }}
                       >
                         kg
                       </span>
@@ -1055,9 +1066,9 @@ export default function DietForm({
             type="button"
             onClick={handleCalculate}
             className="w-full py-3.5 rounded-xl font-bold text-base tracking-wide transition-all active:scale-[0.98]"
-            style={{ background: "#14110E", color: "#FDE2DC" }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = "#0B0908")}
-            onMouseLeave={(e) => (e.currentTarget.style.background = "#14110E")}
+            style={{ background: "#F15B5C", color: "#FFFFFF" }}
+            onMouseEnter={(e) => (e.currentTarget.style.background = "#D94447")}
+            onMouseLeave={(e) => (e.currentTarget.style.background = "#F15B5C")}
           >
             Tính toán ngay
           </button>
@@ -1068,14 +1079,14 @@ export default function DietForm({
           <div
             id="result-card"
             className="mt-6 bg-white rounded-2xl shadow-sm p-6"
-            style={{ border: "1px solid rgba(20,17,14,0.1)" }}
+            style={{ border: "1px solid rgba(0,0,0,0.1)" }}
           >
             <div className="flex items-center justify-between mb-5">
               <div>
-                <h2 className="text-lg font-bold" style={{ color: "#14110E" }}>
+                <h2 className="text-lg font-bold" style={{ color: "#000000" }}>
                   {result.name}
                 </h2>
-                <p className="text-xs mt-0.5" style={{ color: "rgba(20,17,14,0.45)" }}>
+                <p className="text-xs mt-0.5" style={{ color: "rgba(0,0,0,0.45)" }}>
                   {result.gender === "male" ? "Nam" : "Nữ"} · {result.age} tuổi · {result.height} cm · {result.weight} kg
                 </p>
               </div>
@@ -1089,13 +1100,13 @@ export default function DietForm({
 
             <div
               className="rounded-xl px-4 py-2.5 mb-3 flex items-center justify-between"
-              style={{ background: "rgba(20,17,14,0.03)" }}
+              style={{ background: "rgba(253,226,220,0.45)" }}
             >
               <span className="text-xs font-semibold uppercase tracking-wider"
-                style={{ color: "rgba(20,17,14,0.4)" }}>
+                style={{ color: "rgba(0,0,0,0.4)" }}>
                 BMR ({FORMULA_LABEL[result.bmrFormula]})
               </span>
-              <span className="text-sm font-bold" style={{ color: "#14110E" }}>
+              <span className="text-sm font-bold" style={{ color: "#000000" }}>
                 {result.bmr.toLocaleString("vi-VN")} kcal
               </span>
             </div>
@@ -1112,7 +1123,7 @@ export default function DietForm({
               {/* Header row: label + toggle */}
               <div className="flex items-center justify-between mb-2">
                 <p className="text-xs font-semibold uppercase tracking-widest"
-                  style={{ color: "rgba(20,17,14,0.35)" }}>
+                  style={{ color: "rgba(0,0,0,0.35)" }}>
                   Macro (g)
                 </p>
                 <button
@@ -1121,12 +1132,12 @@ export default function DietForm({
                   className="flex items-center gap-2 focus:outline-none"
                   aria-label="Tự động chỉnh macro"
                 >
-                  <span className="text-xs font-medium" style={{ color: "rgba(20,17,14,0.5)" }}>
+                  <span className="text-xs font-medium" style={{ color: "rgba(0,0,0,0.5)" }}>
                     Tự động chỉnh
                   </span>
                   <span
                     className="relative inline-flex items-center w-9 h-5 rounded-full transition-colors duration-200"
-                    style={{ background: autoBalance ? "#F15B5C" : "rgba(20,17,14,0.2)" }}
+                    style={{ background: autoBalance ? "#F15B5C" : "rgba(0,0,0,0.2)" }}
                   >
                     <span
                       className="absolute w-4 h-4 bg-white rounded-full shadow transition-all duration-200"
@@ -1151,11 +1162,11 @@ export default function DietForm({
 
               {/* Three macro input boxes */}
               <div className="grid grid-cols-3 gap-2 sm:gap-3">
-                <MacroInput label="Protein" value={macroP} color="#3A5567" bg="rgba(58,85,103,0.07)"
+                <MacroInput label="Protein" value={macroP} color="#000000" bg="rgba(253,226,220,0.55)"
                   onChange={(v) => handleMacroChange("p", v)} />
-                <MacroInput label="Fat" value={macroF} color="#A33A2A" bg="rgba(163,58,42,0.07)"
+                <MacroInput label="Fat" value={macroF} color="#000000" bg="rgba(253,226,220,0.55)"
                   onChange={(v) => handleMacroChange("f", v)} />
-                <MacroInput label="Carbs" value={macroC} color="#5C6E48" bg="rgba(92,110,72,0.07)"
+                <MacroInput label="Carbs" value={macroC} color="#000000" bg="rgba(253,226,220,0.55)"
                   onChange={(v) => handleMacroChange("c", v)} />
               </div>
 
@@ -1163,12 +1174,12 @@ export default function DietForm({
               {!autoBalance && (
                 <div
                   className="mt-2 flex items-center justify-between px-3 py-2 rounded-xl"
-                  style={{ background: "rgba(20,17,14,0.03)" }}
+                  style={{ background: "rgba(0,0,0,0.03)" }}
                 >
-                  <span className="text-xs font-semibold" style={{ color: "rgba(20,17,14,0.45)" }}>
+                  <span className="text-xs font-semibold" style={{ color: "rgba(0,0,0,0.45)" }}>
                     Tổng Calo thực nhập
                   </span>
-                  <span className="text-sm font-bold" style={{ color: "#14110E" }}>
+                  <span className="text-sm font-bold" style={{ color: "#000000" }}>
                     {(macroP * 4 + macroF * 9 + macroC * 4).toLocaleString("vi-VN")} kcal
                   </span>
                 </div>
@@ -1178,7 +1189,7 @@ export default function DietForm({
             {liveRoadmap ? (
               <div
                 className="rounded-xl p-4 shadow-sm"
-                style={{ background: "#FDE2DC", border: "1px solid rgba(20,17,14,0.1)" }}
+                style={{ background: "#FFFFFF", border: "1px solid rgba(0,0,0,0.1)" }}
               >
                 <p
                   className="text-xs font-bold uppercase tracking-widest mb-2"
@@ -1186,7 +1197,7 @@ export default function DietForm({
                 >
                   Lộ trình giảm cân
                 </p>
-                <p className="text-sm leading-relaxed" style={{ color: "rgba(20,17,14,0.7)" }}>
+                <p className="text-sm leading-relaxed" style={{ color: "rgba(0,0,0,0.7)" }}>
                   Dự kiến cần khoảng{" "}
                   <span className="font-bold" style={{ color: "#B02F30" }}>
                     {liveRoadmap.daysToGoal} ngày
@@ -1205,7 +1216,7 @@ export default function DietForm({
             ) : liveGainRoadmap ? (
               <div
                 className="rounded-xl p-4 shadow-sm"
-                style={{ background: "#FDE2DC", border: "1px solid rgba(20,17,14,0.1)" }}
+                style={{ background: "#FFFFFF", border: "1px solid rgba(0,0,0,0.1)" }}
               >
                 <p
                   className="text-xs font-bold uppercase tracking-widest mb-2"
@@ -1213,7 +1224,7 @@ export default function DietForm({
                 >
                   Lộ trình tăng cân
                 </p>
-                <p className="text-sm leading-relaxed" style={{ color: "rgba(20,17,14,0.7)" }}>
+                <p className="text-sm leading-relaxed" style={{ color: "rgba(0,0,0,0.7)" }}>
                   Dự kiến cần khoảng{" "}
                   <span className="font-bold" style={{ color: "#B02F30" }}>
                     {liveGainRoadmap.daysToGoal} ngày
@@ -1235,7 +1246,7 @@ export default function DietForm({
                 style={{
                   background: "rgba(241,91,92,0.04)",
                   border: "1px solid rgba(241,91,92,0.15)",
-                  color: "#14110E",
+                  color: "#000000",
                 }}
               >
                 <span className="font-semibold" style={{ color: "#B02F30" }}>Dự kiến:</span>{" "}
@@ -1251,7 +1262,7 @@ export default function DietForm({
                 style={{
                   background: "rgba(241,91,92,0.04)",
                   border: "1px solid rgba(241,91,92,0.15)",
-                  color: "#14110E",
+                  color: "#000000",
                 }}
               >
                 <span className="font-semibold" style={{ color: "#B02F30" }}>Dự kiến:</span>{" "}
@@ -1288,7 +1299,7 @@ export default function DietForm({
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
     <h2 className="text-xs font-semibold uppercase tracking-widest mb-4"
-      style={{ color: "rgba(20,17,14,0.35)" }}>
+      style={{ color: "rgba(0,0,0,0.35)" }}>
       {children}
     </h2>
   );
@@ -1299,14 +1310,14 @@ function StatBox({ label, value, sub, highlight = false }: {
 }) {
   return (
     <div className="rounded-xl p-4"
-      style={{ background: highlight ? "#F15B5C" : "rgba(20,17,14,0.04)", color: highlight ? "#FFFFFF" : "#14110E" }}>
+      style={{ background: highlight ? "#F15B5C" : "rgba(253,226,220,0.55)", color: highlight ? "#FFFFFF" : "#000000" }}>
       <p className="text-xs font-semibold uppercase tracking-wider"
-        style={{ color: highlight ? "rgba(255,255,255,0.65)" : "rgba(20,17,14,0.45)" }}>
+        style={{ color: highlight ? "rgba(255,255,255,0.65)" : "rgba(0,0,0,0.45)" }}>
         {label}
       </p>
       <p className="text-2xl font-bold mt-1 leading-none">{value}</p>
       <p className="text-xs mt-1"
-        style={{ color: highlight ? "rgba(255,255,255,0.55)" : "rgba(20,17,14,0.4)" }}>
+        style={{ color: highlight ? "rgba(255,255,255,0.55)" : "rgba(0,0,0,0.4)" }}>
         {sub}
       </p>
     </div>

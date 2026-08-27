@@ -1,24 +1,33 @@
 @import "tailwindcss";
 
-:root {
-  /* Nền + chữ — 90% của mọi thiết kế. Không bao giờ #fff / #000 */
-  --background: #fde2dc; /* nền hồng phấn — màu nền chủ đạo của app */
-  --foreground: #14110e; /* ink — đen ấm cho mọi chữ chính + đường kẻ */
+/* ─────────────────────────────────────────────────────────────────────────────
+   Bảng màu Ladysfit — đúng 4 màu:
+     trắng #FFFFFF · hồng phấn #FDE2DC · coral #F15B5C · đen #000000
 
-  /* Màu thương hiệu — nút, viền, icon, mảng đặc, nền nhấn */
+   Nguyên tắc bố cục màu:
+     • TRẮNG là nền của mọi thứ đọc-nhiều: nền trang app, thẻ, ô nhập, bảng.
+     • HỒNG PHẤN là màu nhấn mảng: nền trang đăng nhập, dải header, chip, sọc
+       bảng, trạng thái hover. Không bao giờ đặt hồng chồng lên hồng.
+     • CORAL là màu hành động: nút chính, tab đang chọn, số liệu nổi bật.
+     • ĐEN là chữ và đường kẻ (dùng qua alpha để ra các sắc xám).
+   ───────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+
   --brand: #f15b5c;
   --brand-hover: #d94447;
-  --brand-ink: #b02f30; /* coral đậm — dùng cho CHỮ nhấn trên nền sáng (đủ tương phản) */
+  /* Coral đậm — CHỈ dùng cho chữ nhỏ trên nền sáng. #f15b5c trên trắng chỉ đạt
+     ~3.2:1, không đủ đọc ở cỡ chữ thường; sắc này là cùng một màu thương hiệu
+     nhưng tối hơn để đạt ngưỡng tương phản. */
+  --brand-ink: #b02f30;
 
-  /* Sắc độ phụ của nền hồng — thẻ, viền, vùng nhấn nhẹ */
-  --surface: #fff3f0; /* sáng hơn nền — thẻ nổi, ô nhập */
-  --surface-sunken: #fbd5cc; /* tối hơn nền — vùng chìm, header bảng */
-  --line: #f6c5ba; /* viền mềm trên nền hồng */
-
-  /* Còn lại — chỉ khi có vai trò rõ ràng */
-  --herb: #5c6e48;  /* success / đạt / tươi */
-  --slate: #3a5567; /* note coach / thông tin trung tính */
-  --clay: #a33a2a;  /* danger — chỉ khi thật sự sai */
+  --tint: #fde2dc;               /* hồng phấn — mảng nhấn, nền trang đăng nhập */
+  --tint-soft: rgba(253, 226, 220, 0.5); /* hồng rất nhạt — sọc bảng, hover */
+  --surface: #ffffff;            /* thẻ, ô nhập, modal */
+  --surface-sunken: #fde2dc;     /* dải chìm trong thẻ trắng: header bảng, chip */
+  --line: rgba(0, 0, 0, 0.1);    /* đường kẻ mảnh trên nền trắng */
 }
 
 @theme inline {
@@ -30,14 +39,13 @@
   --color-brand: var(--brand);
   --color-brand-hover: var(--brand-hover);
   --color-brand-ink: var(--brand-ink);
+  --color-tint: var(--tint);
+  --color-tint-soft: var(--tint-soft);
   --color-surface: var(--surface);
   --color-surface-sunken: var(--surface-sunken);
   --color-line: var(--line);
-  --color-herb: var(--herb);
-  --color-slate: var(--slate);
-  --color-clay: var(--clay);
 
-  /* primary = ink (fill); brand dùng cho accent */
+  /* primary = đen (mảng đặc); brand dùng cho accent */
   --color-primary: var(--foreground);
   --color-dark: var(--foreground);
 
@@ -58,7 +66,7 @@ body {
     display: block;
     font-size: 0.8125rem;
     font-weight: 600;
-    color: #14110e;
+    color: #000000;
     margin-bottom: 0.375rem;
   }
 
@@ -66,9 +74,9 @@ body {
     width: 100%;
     padding: 0.625rem 0.875rem;
     border-radius: 0.75rem;
-    border: 1px solid rgba(20, 17, 14, 0.15);
-    background: #fff3f0;
-    color: #14110e;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    background: #ffffff;
+    color: #000000;
     font-size: 0.875rem;
     font-family: inherit;
     outline: none;
@@ -83,17 +91,17 @@ body {
   }
 
   .dp-input-error {
-    border-color: rgba(163, 58, 42, 0.5);
+    border-color: rgba(176, 47, 48, 0.55);
   }
 
   .dp-input-error:focus {
-    border-color: #a33a2a;
-    box-shadow: 0 0 0 3px rgba(163, 58, 42, 0.15);
+    border-color: #b02f30;
+    box-shadow: 0 0 0 3px rgba(176, 47, 48, 0.15);
   }
 
   .dp-error-msg {
     margin-top: 0.25rem;
     font-size: 0.75rem;
-    color: #a33a2a;
+    color: #b02f30;
   }
 }

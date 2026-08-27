@@ -1,4 +1,4 @@
-# Diet Plan
+# Ladysfit Plan
 
 App Next.js (App Router) tính toán dinh dưỡng và lên thực đơn cho khách hàng.
 

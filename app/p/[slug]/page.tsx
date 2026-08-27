@@ -42,10 +42,10 @@ export default async function SharedPlanPage({
               <circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" />
             </svg>
           </div>
-          <h1 className="text-lg font-bold mb-1.5" style={{ color: "#14110E" }}>
+          <h1 className="text-lg font-bold mb-1.5" style={{ color: "#000000" }}>
             Không tìm thấy thực đơn
           </h1>
-          <p className="text-sm" style={{ color: "rgba(20,17,14,0.55)" }}>
+          <p className="text-sm" style={{ color: "rgba(0,0,0,0.55)" }}>
             Link có thể đã hết hạn hoặc sai. Vui lòng nhờ huấn luyện viên gửi lại đường link mới.
           </p>
         </div>

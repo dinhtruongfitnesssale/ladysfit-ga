@@ -13,28 +13,28 @@ function Shell({ children }: { children: React.ReactNode }) {
         <div className="text-center mb-8">
           <div
             className="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-4"
-            style={{ background: "#14110E" }}
+            style={{ background: "#F15B5C" }}
           >
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FDE2DC" strokeWidth="2">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2">
               <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
               <path d="M7 11V7a5 5 0 0 1 10 0v4" />
             </svg>
           </div>
-          <h1 className="text-2xl font-bold tracking-tight" style={{ color: "#14110E" }}>
+          <h1 className="text-2xl font-bold tracking-tight" style={{ color: "#000000" }}>
             Đặt lại mật khẩu
           </h1>
-          <p className="text-sm mt-1" style={{ color: "rgba(20,17,14,0.45)" }}>
+          <p className="text-sm mt-1" style={{ color: "rgba(0,0,0,0.45)" }}>
             Chọn mật khẩu mới cho tài khoản của bạn
           </p>
         </div>
         <div
           className="rounded-2xl p-6 shadow-sm"
-          style={{ border: "1px solid rgba(20,17,14,0.1)", background: "#FDE2DC" }}
+          style={{ border: "1px solid rgba(0,0,0,0.1)", background: "#FFFFFF" }}
         >
           {children}
         </div>
-        <p className="text-center text-xs mt-5" style={{ color: "rgba(20,17,14,0.3)" }}>
-          Diet Plan © {new Date().getFullYear()} · Phần mềm quản lý dinh dưỡng
+        <p className="text-center text-xs mt-5" style={{ color: "rgba(0,0,0,0.3)" }}>
+          Ladysfit Plan © {new Date().getFullYear()} · Phần mềm quản lý dinh dưỡng
         </p>
       </div>
     </div>
@@ -58,7 +58,7 @@ export default function ResetPasswordForm() {
         <div className="space-y-5">
           <div
             className="rounded-xl px-4 py-3 text-sm font-medium"
-            style={{ background: "rgba(163,58,42,0.06)", border: "1px solid rgba(163,58,42,0.25)", color: "#A33A2A" }}
+            style={{ background: "rgba(176,47,48,0.06)", border: "1px solid rgba(176,47,48,0.25)", color: "#B02F30" }}
           >
             Liên kết không hợp lệ hoặc đã hết hạn. Vui lòng yêu cầu đặt lại mật khẩu một lần nữa.
           </div>
@@ -109,14 +109,14 @@ export default function ResetPasswordForm() {
         <div className="space-y-5">
           <div
             className="rounded-xl px-4 py-3 text-sm font-medium"
-            style={{ background: "rgba(92,110,72,0.08)", border: "1px solid rgba(92,110,72,0.3)", color: "#5C6E48" }}
+            style={{ background: "rgba(0,0,0,0.08)", border: "1px solid rgba(0,0,0,0.3)", color: "#000000" }}
           >
             Đã đặt lại mật khẩu thành công. Bây giờ bạn có thể đăng nhập bằng mật khẩu mới.
           </div>
           <a href="/login" className="block">
             <button
               className="w-full py-3 rounded-xl font-bold text-base tracking-wide transition-all active:scale-[0.98]"
-              style={{ background: "#14110E", color: "#FDE2DC" }}
+              style={{ background: "#F15B5C", color: "#FFFFFF" }}
             >
               Đến trang đăng nhập
             </button>
@@ -147,7 +147,7 @@ export default function ResetPasswordForm() {
               type="button"
               onClick={() => setShowPassword((v) => !v)}
               className="absolute right-3 top-1/2 -translate-y-1/2"
-              style={{ color: "rgba(20,17,14,0.35)" }}
+              style={{ color: "rgba(0,0,0,0.35)" }}
               tabIndex={-1}
               aria-label={showPassword ? "Ẩn mật khẩu" : "Hiện mật khẩu"}
             >
@@ -198,8 +198,8 @@ export default function ResetPasswordForm() {
           disabled={loading || !pw || !pw2}
           className="w-full py-3 rounded-xl font-bold text-base tracking-wide transition-all active:scale-[0.98] mt-2"
           style={{
-            background: loading || !pw || !pw2 ? "rgba(20,17,14,0.55)" : "#14110E",
-            color: "#FDE2DC",
+            background: loading || !pw || !pw2 ? "rgba(241,91,92,0.45)" : "#F15B5C",
+            color: "#FFFFFF",
             cursor: loading ? "not-allowed" : "pointer",
             touchAction: "manipulation",
           }}
@@ -214,7 +214,7 @@ export default function ResetPasswordForm() {
           ) : "Đặt lại mật khẩu"}
         </button>
 
-        <a href="/login" className="block text-center text-sm font-medium pt-1" style={{ color: "rgba(20,17,14,0.5)" }}>
+        <a href="/login" className="block text-center text-sm font-medium pt-1" style={{ color: "rgba(0,0,0,0.5)" }}>
           ← Quay lại đăng nhập
         </a>
       </form>
