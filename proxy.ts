@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { verifySession, COOKIE_NAME } from "@/lib/jwt";
 
 // Edge-compatible guard: JWT verification only (no DB — Prisma/pg doesn't run on edge).
-// The DB session-match check (kicked detection) is enforced inside each API route and
-// server component via lib/auth.ts.
+// Kiểm tra tài khoản còn tồn tại + hạn phiên trải nghiệm nằm trong lib/auth.ts,
+// chạy ở từng API route và server component.
 
 const API_PREFIXES = ["/api/gemini", "/api/admin"];
 

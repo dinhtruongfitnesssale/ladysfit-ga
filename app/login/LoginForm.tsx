@@ -9,15 +9,13 @@ interface LoginResponse {
   error?: string;
 }
 
-export default function LoginForm({ kicked, expired = false }: { kicked: boolean; expired?: boolean }) {
+export default function LoginForm({ expired = false }: { expired?: boolean }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(
-    kicked
-      ? "Tài khoản của bạn đang được đăng nhập ở một thiết bị khác!"
-      : expired
-        ? "Phiên trải nghiệm đã kết thúc. Vui lòng liên hệ Admin để kích hoạt lại tài khoản."
-        : ""
+    expired
+      ? "Phiên trải nghiệm đã kết thúc. Vui lòng liên hệ Admin để kích hoạt lại tài khoản."
+      : ""
   );
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -140,7 +138,7 @@ export default function LoginForm({ kicked, expired = false }: { kicked: boolean
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
-                  if (error && !kicked) setError("");
+                  if (error) setError("");
                 }}
                 placeholder="email@example.com"
                 required
@@ -161,7 +159,7 @@ export default function LoginForm({ kicked, expired = false }: { kicked: boolean
                   value={password}
                   onChange={(e) => {
                     setPassword(e.target.value);
-                    if (error && !kicked) setError("");
+                    if (error) setError("");
                   }}
                   placeholder="••••••••"
                   required
@@ -221,13 +219,13 @@ export default function LoginForm({ kicked, expired = false }: { kicked: boolean
               </div>
             )}
 
-            {/* Error / Kicked Message */}
+            {/* Thông báo lỗi */}
             {error && (
               <div
                 className="rounded-xl px-4 py-3 text-sm font-medium flex items-start gap-2"
                 style={{
-                  background: kicked || expired ? "rgba(241,91,92,0.08)" : "rgba(241,91,92,0.05)",
-                  border: `1px solid rgba(241,91,92,${kicked || expired ? "0.35" : "0.2"})`,
+                  background: expired ? "rgba(241,91,92,0.08)" : "rgba(241,91,92,0.05)",
+                  border: `1px solid rgba(241,91,92,${expired ? "0.35" : "0.2"})`,
                   color: "#B02F30",
                 }}
               >

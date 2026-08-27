@@ -4,18 +4,6 @@ import prisma from "@/lib/prisma";
 import { signSession, COOKIE_NAME } from "@/lib/jwt";
 import { isTrialExpired, isTrialPending, trialDeadlineFromNow } from "@/lib/trial";
 
-function generateUUID(): string {
-  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
-    return crypto.randomUUID();
-  }
-  // Fallback for older Safari / WebKit
-  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
-    const r = (Math.random() * 16) | 0;
-    const v = c === "x" ? r : (r & 0x3) | 0x8;
-    return v.toString(16);
-  });
-}
-
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json() as { email?: string; password?: string };
@@ -55,25 +43,22 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const sessionId = generateUUID();
-
     // Tài khoản Trải nghiệm chỉ bắt đầu đếm 5 tiếng từ lần đăng nhập ĐẦU TIÊN —
     // trước đó tài khoản nằm chờ, không bị trừ thời gian.
     const startsTrialNow = isTrialPending(user.role, user.trialExpiresAt);
 
-    await prisma.user.update({
-      where: { id: user.id },
-      data: {
-        currentSessionToken: sessionId,
-        ...(startsTrialNow ? { trialExpiresAt: trialDeadlineFromNow() } : {}),
-      },
-    });
+    // Chỉ ghi DB khi thực sự cần: đặt mốc hết hạn cho phiên trải nghiệm.
+    if (startsTrialNow) {
+      await prisma.user.update({
+        where: { id: user.id },
+        data: { trialExpiresAt: trialDeadlineFromNow() },
+      });
+    }
 
     const token = await signSession({
       sub: user.id,
       email: user.email,
       role: user.role,
-      sid: sessionId,
     });
 
     const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);

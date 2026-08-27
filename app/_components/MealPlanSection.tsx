@@ -748,8 +748,7 @@ export default function MealPlanSection({
       });
 
       if (res.status === 401) {
-        const errData = await res.json() as { kicked?: boolean };
-        window.location.replace(errData.kicked ? "/login?kicked=1" : "/login");
+        window.location.replace("/login");
         return;
       }
 
@@ -964,8 +963,7 @@ export default function MealPlanSection({
         body: JSON.stringify({ plan: buildSharePlan() }),
       });
       if (res.status === 401) {
-        const e = (await res.json()) as { kicked?: boolean };
-        window.location.replace(e.kicked ? "/login?kicked=1" : "/login");
+        window.location.replace("/login");
         return;
       }
       const data = (await res.json()) as { slug?: string; error?: string };

@@ -9,7 +9,7 @@ export async function PUT(
 ) {
   const auth = await getAdminAuth();
   if (!auth.ok) {
-    return NextResponse.json({ error: "Không có quyền truy cập" }, { status: auth.kicked ? 401 : 403 });
+    return NextResponse.json({ error: "Không có quyền truy cập" }, { status: 403 });
   }
 
   const { id } = await params;
@@ -32,12 +32,10 @@ export async function PUT(
     const updateData: {
       name: string;
       email: string;
-      currentSessionToken: null;
       password?: string;
     } = {
       name: name.trim(),
       email: email.toLowerCase().trim(),
-      currentSessionToken: null,
     };
 
     if (password && password.trim().length > 0) {

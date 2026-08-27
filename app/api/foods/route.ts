@@ -6,9 +6,9 @@ import { getCustomFoods, validateFoodInput, type FoodInput } from "@/lib/foods-d
 
 export const dynamic = "force-dynamic";
 
-function unauthorized(kicked: boolean) {
+function unauthorized() {
   return NextResponse.json(
-    { error: kicked ? "Tài khoản của bạn đang được đăng nhập ở một thiết bị khác!" : "Chưa đăng nhập", kicked },
+    { error: "Chưa đăng nhập" },
     { status: 401 }
   );
 }
@@ -16,7 +16,7 @@ function unauthorized(kicked: boolean) {
 // Danh sách món custom (dùng chung cho cả app) để client gộp vào ô tìm kiếm.
 export async function GET() {
   const auth = await getAuth();
-  if (!auth.ok) return unauthorized(auth.kicked);
+  if (!auth.ok) return unauthorized();
   const foods = await getCustomFoods();
   return NextResponse.json({ foods });
 }
@@ -24,7 +24,7 @@ export async function GET() {
 // Thêm một món mới vào thư viện chung (từ kết quả Gemini hoặc nhập tay).
 export async function POST(req: NextRequest) {
   const auth = await getAuth();
-  if (!auth.ok) return unauthorized(auth.kicked);
+  if (!auth.ok) return unauthorized();
 
   let body: FoodInput;
   try {

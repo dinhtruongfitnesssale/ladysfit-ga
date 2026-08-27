@@ -13,7 +13,7 @@ export async function PATCH(
 ) {
   const auth = await getAdminAuth();
   if (!auth.ok) {
-    return NextResponse.json({ error: "Không có quyền truy cập" }, { status: auth.kicked ? 401 : 403 });
+    return NextResponse.json({ error: "Không có quyền truy cập" }, { status: 403 });
   }
 
   const { id } = await params;
@@ -55,7 +55,7 @@ export async function DELETE(
 ) {
   const auth = await getAdminAuth();
   if (!auth.ok) {
-    return NextResponse.json({ error: "Không có quyền truy cập" }, { status: auth.kicked ? 401 : 403 });
+    return NextResponse.json({ error: "Không có quyền truy cập" }, { status: 403 });
   }
 
   const { id } = await params;

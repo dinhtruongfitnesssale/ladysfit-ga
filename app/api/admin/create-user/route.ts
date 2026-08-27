@@ -9,7 +9,7 @@ import { sendEmail, buildWelcomeEmail } from "@/lib/email";
 export async function POST(req: NextRequest) {
   const auth = await getAdminAuth();
   if (!auth.ok) {
-    return NextResponse.json({ error: "Không có quyền truy cập" }, { status: auth.kicked ? 401 : 403 });
+    return NextResponse.json({ error: "Không có quyền truy cập" }, { status: 403 });
   }
 
   try {

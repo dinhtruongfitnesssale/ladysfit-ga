@@ -1,23 +1,9 @@
-import { NextRequest, NextResponse } from "next/server";
-import { COOKIE_NAME, verifySession } from "@/lib/jwt";
-import prisma from "@/lib/prisma";
-import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
+import { COOKIE_NAME } from "@/lib/jwt";
 
-export async function POST(req: NextRequest) {
-  try {
-    const cookieStore = await cookies();
-    const token = cookieStore.get(COOKIE_NAME)?.value;
-    if (token) {
-      const session = await verifySession(token).catch(() => null);
-      if (session) {
-        await prisma.user.update({
-          where: { id: session.sub },
-          data: { currentSessionToken: null },
-        }).catch(() => {});
-      }
-    }
-  } catch {}
-
+// Đăng xuất = xoá cookie phiên của chính trình duyệt này. Tài khoản dùng chung
+// nên không đụng gì tới DB: người khác đang đăng nhập vẫn giữ nguyên phiên.
+export async function POST() {
   const response = NextResponse.json({ ok: true });
   response.cookies.set(COOKIE_NAME, "", {
     httpOnly: true,

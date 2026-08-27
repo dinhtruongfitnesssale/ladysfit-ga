@@ -18,11 +18,6 @@ export default async function AdminUsersPage() {
 
   if (session.role !== "ADMIN") redirect("/");
 
-  const currentUser = await prisma.user.findUnique({ where: { id: session.sub } });
-  if (!currentUser || currentUser.currentSessionToken !== session.sid) {
-    redirect("/login?kicked=1");
-  }
-
   const users = await prisma.user.findMany({
     select: { id: true, name: true, email: true, role: true, trialExpiresAt: true, createdAt: true },
     orderBy: { createdAt: "asc" },

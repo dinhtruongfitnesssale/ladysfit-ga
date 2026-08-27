@@ -19,9 +19,7 @@ export default async function Home() {
   }
 
   const user = await prisma.user.findUnique({ where: { id: session.sub } });
-  if (!user || user.currentSessionToken !== session.sid) {
-    redirect("/login?kicked=1");
-  }
+  if (!user) redirect("/login");
 
   // Phiên trải nghiệm đã hết hạn → đẩy về trang đăng nhập kèm thông báo
   if (isTrialExpired(user.role, user.trialExpiresAt)) {

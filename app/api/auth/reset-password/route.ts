@@ -8,9 +8,8 @@ import { verifyResetToken } from "@/lib/reset-token";
  * Body: { token: string, password: string }
  *
  * Completes a password reset: validates the signed token from the emailed link,
- * then sets the account's new password. Clearing currentSessionToken forces any
- * existing session to log out. Public (no session) — the token is the proof of
- * identity.
+ * then sets the account's new password. Public (no session) — the token is the
+ * proof of identity.
  */
 export async function POST(req: NextRequest) {
   let token: string, password: string;
@@ -50,7 +49,7 @@ export async function POST(req: NextRequest) {
     const hashed = await bcrypt.hash(password, 12);
     await prisma.user.update({
       where: { id: user.id },
-      data: { password: hashed, currentSessionToken: null },
+      data: { password: hashed },
     });
   } catch (err) {
     console.error("[reset-password] Update failed:", err);
