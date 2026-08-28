@@ -133,7 +133,7 @@ function computeRoadmap(
 
 const GOAL_LABEL: Record<WeightGoal, string> = {
   lose: "Giảm cân",
-  maintain: "Duy trì",
+  maintain: "Tăng cơ, giảm mỡ",
 };
 
 const FORMULA_LABEL: Record<BmrFormula, string> = {
@@ -445,6 +445,17 @@ export default function DietForm({
       setCpSaving(false);
     }
   }
+
+  // Khoảng cân nặng tiêu chuẩn: 0.9 × (chiều cao − 100) đến (chiều cao − 100)
+  const idealWeight = (() => {
+    const h = parseFloat(form.height);
+    const w = parseFloat(form.weight);
+    if (isNaN(h) || h < 100 || h > 250) return null;
+    if (isNaN(w) || w < 30 || w > 300) return null;
+    const round1 = (n: number) => Math.round(n * 10) / 10;
+    const max = h - 100;
+    return { min: round1(max * 0.9), max: round1(max) };
+  })();
 
   const liveRoadmap = (() => {
     if (form.weightGoal !== "lose") return null;
@@ -777,6 +788,13 @@ export default function DietForm({
                 {errors.weight && <p className="dp-error-msg">{errors.weight}</p>}
               </div>
               </div>
+
+              {idealWeight && (
+                <p className="sm:col-span-2 dp-ideal-msg">
+                  Cân nặng tiêu chuẩn sẽ dao động từ <strong>{idealWeight.min}</strong> đến{" "}
+                  <strong>{idealWeight.max}</strong> kg
+                </p>
+              )}
 
               <div>
                 <label htmlFor="likes" className="dp-label">

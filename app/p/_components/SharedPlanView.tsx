@@ -5,7 +5,7 @@ import type { SharePlan, SlimMeal } from "@/lib/share";
 import { getCookingTip } from "@/lib/cooking-tips";
 
 const GOAL_LABEL: Record<string, string> = {
-  lose: "Giảm cân", maintain: "Duy trì",
+  lose: "Giảm cân", maintain: "Tăng cơ, giảm mỡ",
 };
 
 function sumMeals(meals: SlimMeal[]) {

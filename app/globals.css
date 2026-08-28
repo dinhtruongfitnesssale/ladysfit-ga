@@ -104,4 +104,19 @@ body {
     font-size: 0.75rem;
     color: #b02f30;
   }
+
+  .dp-ideal-msg {
+    margin-top: -0.25rem;
+    padding: 0.625rem 0.875rem;
+    border-radius: 0.75rem;
+    background: rgba(241, 91, 92, 0.08);
+    border: 1px solid rgba(241, 91, 92, 0.2);
+    font-size: 0.8125rem;
+    color: #000000;
+  }
+
+  .dp-ideal-msg strong {
+    font-weight: 700;
+    color: #f15b5c;
+  }
 }

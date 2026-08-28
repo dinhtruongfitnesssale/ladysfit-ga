@@ -220,7 +220,7 @@ function PdfTemplate({
   date: string;
 }) {
   const GOAL_LABEL: Record<string, string> = {
-    lose: "Giảm cân", maintain: "Duy trì",
+    lose: "Giảm cân", maintain: "Tăng cơ, giảm mỡ",
   };
 
   const th: React.CSSProperties = {
