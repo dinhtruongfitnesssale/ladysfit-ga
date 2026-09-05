@@ -18,8 +18,18 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const plan = await getPlan(slug);
-  const title = plan ? `Thực đơn của ${plan.client.name}` : "Thực đơn không tồn tại";
-  return { title, description: "Thực đơn dinh dưỡng cá nhân hoá" };
+  if (!plan) {
+    return { title: "Thực đơn không tồn tại", description: "Thực đơn dinh dưỡng cá nhân hoá" };
+  }
+  const withWorkout = !!plan.workout;
+  return {
+    title: withWorkout
+      ? `Thực đơn & lịch tập của ${plan.client.name}`
+      : `Thực đơn của ${plan.client.name}`,
+    description: withWorkout
+      ? "Thực đơn dinh dưỡng cá nhân hoá kèm chương trình tập tại nhà 1 tuần"
+      : "Thực đơn dinh dưỡng cá nhân hoá",
+  };
 }
 
 export default async function SharedPlanPage({

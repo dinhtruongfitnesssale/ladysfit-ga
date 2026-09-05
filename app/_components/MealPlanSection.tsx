@@ -5,6 +5,7 @@ import type { NutritionResult } from "./DietForm";
 import { FOODS, type FoodItem } from "@/lib/foods-data";
 import { getCookingTip } from "@/lib/cooking-tips";
 import type { SharePlan, SlimMeal } from "@/lib/share";
+import { HOME_WORKOUT_7D, type WorkoutPlan } from "@/lib/workout-plan";
 import type { SavedFood } from "./AddFoodModal";
 
 // ─── 7 ngày trong tuần ─────────────────────────────────────────────────────────
@@ -213,11 +214,13 @@ function AiMealCard({ meal }: { meal: AiMeal }) {
 // ─── PdfTemplate (rendered off-screen for html2canvas) ────────────────────────
 
 function PdfTemplate({
-  result, days, date,
+  result, days, date, workout,
 }: {
   result: NutritionResult;
   days: PdfDay[];
   date: string;
+  /** Lịch tập gửi kèm — null khi PT bỏ chọn "kèm chương trình tập" */
+  workout: WorkoutPlan | null;
 }) {
   const GOAL_LABEL: Record<string, string> = {
     lose: "Giảm cân", maintain: "Tăng cơ, giảm mỡ",
@@ -444,6 +447,119 @@ function PdfTemplate({
           </div>
         );
       })}
+
+      {/* ── Chương trình tập tại nhà (gửi kèm thực đơn) ── */}
+      {workout && (
+        <div style={{ borderTop: "3px solid #000000" }}>
+          <div style={{ background: "#000000", padding: "20px 40px 18px" }}>
+            <div style={{ fontSize: "10px", color: "rgba(255,255,255,0.5)", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: "7px" }}>
+              {workout.brandLine}
+            </div>
+            <div style={{ fontSize: "19px", fontWeight: 900, color: "#FDE2DC", letterSpacing: "-0.01em", lineHeight: 1.2 }}>
+              {workout.title.toUpperCase()}
+            </div>
+            <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.65)", marginTop: "6px" }}>
+              {workout.subtitle}
+            </div>
+          </div>
+
+          {/* Thuật ngữ cần nắm */}
+          <div style={{ padding: "20px 40px 4px" }}>
+            <div style={{ fontSize: "10px", fontWeight: 700, color: "rgba(0,0,0,0.38)", textTransform: "uppercase", letterSpacing: "0.09em", marginBottom: "9px" }}>
+              Thuật ngữ cần nắm
+            </div>
+            {workout.glossary.map((g, i) => (
+              <div key={i} style={{ fontSize: "11px", color: "rgba(0,0,0,0.72)", lineHeight: 1.6, marginBottom: "3px" }}>
+                <span style={{ fontWeight: 800, color: "#B02F30" }}>{g.term}: </span>
+                {g.meaning}
+              </div>
+            ))}
+          </div>
+
+          {/* Hướng dẫn khởi động */}
+          <div style={{ padding: "16px 40px 4px" }}>
+            <div style={{ fontSize: "10px", fontWeight: 700, color: "rgba(0,0,0,0.38)", textTransform: "uppercase", letterSpacing: "0.09em", marginBottom: "9px" }}>
+              {workout.warmupGuide.title}
+            </div>
+            {workout.warmupGuide.paragraphs.map((p, i) => (
+              <div key={i} style={{ fontSize: "11px", color: "rgba(0,0,0,0.72)", lineHeight: 1.65, marginBottom: "6px" }}>
+                {p}
+              </div>
+            ))}
+          </div>
+
+          {/* Lưu ý chung khi tập */}
+          <div style={{ padding: "6px 40px 4px" }}>
+            <div style={{
+              background: "rgba(241,91,92,0.06)",
+              border: "1px solid rgba(241,91,92,0.22)",
+              borderRadius: "10px",
+              padding: "11px 14px",
+              fontSize: "11px",
+              color: "rgba(0,0,0,0.72)",
+              lineHeight: 1.6,
+            }}>
+              <span style={{ fontWeight: 800, color: "#B02F30" }}>Lưu ý: </span>
+              {workout.note}
+            </div>
+          </div>
+
+          {/* Bảng bài tập từng buổi */}
+          {workout.sessions.map((s, i) => (
+            <div key={i} style={{ pageBreakInside: "avoid", padding: "16px 40px 4px" }}>
+              <div style={{ marginBottom: "9px" }}>
+                <span style={{
+                  display: "inline-block",
+                  background: "#B02F30",
+                  color: "#FFFFFF",
+                  fontSize: "13px",
+                  fontWeight: 800,
+                  padding: "5px 16px",
+                  borderRadius: "999px",
+                }}>
+                  💪 {s.label}
+                </span>
+              </div>
+
+              <div className="w-full overflow-x-auto">
+              <table style={{ width: "100%", borderCollapse: "collapse" }}>
+                <thead>
+                  <tr>
+                    <th style={th}>Tên bài tập</th>
+                    <th style={{ ...thDark, textAlign: "center" }}>Set khởi động</th>
+                    <th style={{ ...thDark, textAlign: "center" }}>Set chính</th>
+                    <th style={{ ...thDark, textAlign: "center" }}>Reps</th>
+                    <th style={{ ...thDark, textAlign: "center" }}>Nghỉ</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {s.exercises.map((ex, j) => (
+                    <tr key={j} style={{ background: j % 2 === 0 ? "#FFFFFF" : "rgba(253,226,220,0.45)" }}>
+                      <td style={tdBold}>
+                        <span style={{ color: "#B02F30" }}>{ex.code}. </span>{ex.name}
+                      </td>
+                      <td style={tdCenter}>{ex.warmupSets}</td>
+                      <td style={{ ...tdCenter, fontWeight: 700 }}>{ex.mainSets}</td>
+                      <td style={{ ...tdCenter, fontWeight: 600, color: "#B02F30", whiteSpace: "nowrap" }}>{ex.reps}</td>
+                      <td style={{ ...tdCenter, whiteSpace: "nowrap" }}>{ex.rest}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              </div>
+            </div>
+          ))}
+
+          {workout.contact && (
+            <div style={{ padding: "16px 40px 0", fontSize: "11px", color: "rgba(0,0,0,0.5)" }}>
+              Cần hỗ trợ trong quá trình tập? Liên hệ huấn luyện viên:{" "}
+              <span style={{ fontWeight: 800, color: "#B02F30" }}>{workout.contact}</span>
+            </div>
+          )}
+
+          <div style={{ height: "18px" }} />
+        </div>
+      )}
 
       {/* ── Footer ── */}
       <div style={{
@@ -702,6 +818,11 @@ export default function MealPlanSection({
   const [qrDataUrl, setQrDataUrl] = useState<string | null>(null);
   const [qrLoading, setQrLoading] = useState(false);
 
+  // Kèm chương trình tập tại nhà 1 tuần vào PDF và link gửi khách (mặc định bật)
+  const [includeWorkout, setIncludeWorkout] = useState(true);
+  const [workoutPreview, setWorkoutPreview] = useState(false);
+  const workout = includeWorkout ? HOME_WORKOUT_7D : null;
+
   // Đổi ngày → reset trình soạn thảo (rows/đang sửa) để không lẫn dữ liệu giữa các ngày
   function switchDay(idx: number) {
     if (idx === activeDay) return;
@@ -938,6 +1059,7 @@ export default function MealPlanSection({
     });
     return {
       v: 1,
+      ...(workout ? { workout } : {}),
       client: {
         name: result.name, age: result.age,
         height: result.height, weight: result.weight, weightGoal: result.weightGoal,
@@ -1489,6 +1611,110 @@ export default function MealPlanSection({
             })}
           </div>
 
+          {/* ── Kèm chương trình tập tại nhà 1 tuần ── */}
+          <div
+            className="rounded-2xl overflow-hidden"
+            style={{
+              border: includeWorkout ? "1px solid rgba(241,91,92,0.35)" : "1px solid rgba(0,0,0,0.12)",
+              background: includeWorkout ? "rgba(241,91,92,0.04)" : "#FFFFFF",
+            }}
+          >
+            <button
+              type="button"
+              onClick={() => setIncludeWorkout((v) => !v)}
+              className="w-full px-4 py-3.5 flex items-center gap-3 text-left transition-all active:scale-[0.995]"
+            >
+              {/* Ô tick */}
+              <span
+                className="flex-shrink-0 w-5 h-5 rounded-md flex items-center justify-center"
+                style={{
+                  background: includeWorkout ? "#F15B5C" : "#FFFFFF",
+                  border: includeWorkout ? "1px solid #F15B5C" : "1px solid rgba(0,0,0,0.25)",
+                }}
+                aria-hidden="true"
+              >
+                {includeWorkout && (
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="3.5">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                )}
+              </span>
+              <span className="flex-1 min-w-0">
+                <span className="block text-sm font-bold" style={{ color: "#000000" }}>
+                  🏋️ Kèm chương trình tập giảm béo tại nhà
+                </span>
+                <span className="block text-xs mt-0.5" style={{ color: "rgba(0,0,0,0.5)" }}>
+                  {includeWorkout
+                    ? "Giáo án 4 buổi (7 ngày) nằm trong PDF và trong link gửi khách."
+                    : "Đang tắt — khách chỉ nhận thực đơn."}
+                </span>
+              </span>
+            </button>
+
+            {includeWorkout && (
+              <div style={{ borderTop: "1px dashed rgba(241,91,92,0.3)" }}>
+                <button
+                  type="button"
+                  onClick={() => setWorkoutPreview((v) => !v)}
+                  className="w-full px-4 py-2.5 text-xs font-bold flex items-center justify-center gap-1.5"
+                  style={{ color: "#B02F30" }}
+                >
+                  {workoutPreview ? "Ẩn lịch tập" : "Xem trước lịch tập"}
+                  <svg
+                    width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"
+                    style={{ transform: workoutPreview ? "rotate(180deg)" : "none", transition: "transform 0.2s" }}
+                  >
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </button>
+
+                {workoutPreview && (
+                  <div className="px-4 pb-4 space-y-2.5">
+                    {HOME_WORKOUT_7D.sessions.map((s) => (
+                      <div
+                        key={s.label}
+                        className="rounded-xl px-3.5 py-3"
+                        style={{ background: "#FFFFFF", border: "1px solid rgba(0,0,0,0.08)" }}
+                      >
+                        <div className="flex items-center flex-wrap gap-x-2 gap-y-1">
+                          <span
+                            style={{
+                              display: "inline-block",
+                              background: "#B02F30",
+                              color: "#FFFFFF",
+                              fontSize: "11px",
+                              fontWeight: 800,
+                              padding: "3px 10px",
+                              borderRadius: "999px",
+                            }}
+                          >
+                            {s.label}
+                          </span>
+                          <span className="text-xs" style={{ color: "rgba(0,0,0,0.45)" }}>
+                            {s.exercises.length} bài · {s.exercises[0]?.mainSets} set chính
+                          </span>
+                        </div>
+                        <ul className="mt-2 space-y-1">
+                          {s.exercises.map((ex) => (
+                            <li key={ex.code} className="flex items-start justify-between gap-3 text-xs">
+                              <span style={{ color: "rgba(0,0,0,0.75)", flex: 1 }}>
+                                <span style={{ color: "#B02F30", fontWeight: 700 }}>{ex.code}. </span>
+                                {ex.name}
+                              </span>
+                              <span className="flex-shrink-0 font-semibold whitespace-nowrap" style={{ color: "#B02F30" }}>
+                                {ex.mainSets} × {ex.reps}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+
           <div className="flex flex-col sm:flex-row gap-2.5">
             <button
               type="button"
@@ -1510,7 +1736,7 @@ export default function MealPlanSection({
                     <polyline points="7 10 12 15 17 10" />
                     <line x1="12" y1="15" x2="12" y2="3" />
                   </svg>
-                  Tải PDF ({includedDays.length} ngày)
+                  Tải PDF ({includedDays.length} ngày{workout ? " + lịch tập" : ""})
                 </>
               )}
             </button>
@@ -1582,8 +1808,8 @@ export default function MealPlanSection({
             </div>
 
             <p className="text-sm mb-3" style={{ color: "rgba(0,0,0,0.55)" }}>
-              Gửi link này cho khách — họ mở ra là xem được thực đơn {includedDays.length} ngày,
-              không cần đăng nhập.
+              Gửi link này cho khách — họ mở ra là xem được thực đơn {includedDays.length} ngày
+              {workout ? " kèm chương trình tập tại nhà 1 tuần" : ""}, không cần đăng nhập.
             </p>
 
             <div
@@ -1686,6 +1912,7 @@ export default function MealPlanSection({
           result={result}
           days={includedDays}
           date={today}
+          workout={workout}
         />
       </div>
     </div>

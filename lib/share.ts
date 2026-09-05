@@ -3,6 +3,11 @@
 // Thực đơn (tối đa 7 ngày) được lưu vào bảng SharedPlan rồi chia sẻ qua link ngắn
 // dạng /p/<ten-khach>-<mã>. Trang công khai /p/[slug] đọc bản ghi để khách xem.
 // Chỉ lưu dữ liệu hiển thị (slim) cho gọn.
+//
+// Từ 09/2026, payload có thể kèm chương trình tập tại nhà 1 tuần (field `workout`,
+// tuỳ chọn) — link cũ không có field này vẫn đọc bình thường.
+
+import type { WorkoutPlan } from "./workout-plan";
 
 export interface SlimMeal {
   mealName?: string; // chỉ AI mới có (vd "Bữa 1 - Sáng (7:00)")
@@ -21,6 +26,8 @@ export interface ShareDay {
 
 export interface SharePlan {
   v: 1;
+  /** Lịch tập tại nhà gửi kèm — không có nghĩa là PT bỏ chọn "kèm lịch tập" */
+  workout?: WorkoutPlan;
   client: {
     name: string;
     age: number;
