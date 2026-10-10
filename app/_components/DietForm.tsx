@@ -9,7 +9,8 @@ import AddFoodModal, { type SavedFood } from "./AddFoodModal";
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 type BmrFormula = "mifflin" | "harris" | "pyramid";
-type ActivityLevel = "level1" | "level2" | "level3" | "level4";
+type StepLevel = "step1" | "step2" | "step3" | "step4" | "step5";
+type GymLevel = "gym1" | "gym2" | "gym3" | "gym4" | "gym5";
 type WeightGoal = "lose" | "maintain";
 type GoalInputMode = "target_weight" | "kg_to_lose";
 type LossSpeed = "slow" | "medium" | "fast";
@@ -22,7 +23,8 @@ interface FormState {
   likes: string;
   dislikes: string;
   bmrFormula: BmrFormula;
-  activityLevel: ActivityLevel;
+  stepLevel: StepLevel;
+  gymLevel: GymLevel;
   weightGoal: WeightGoal;
   lossSpeed: LossSpeed;
   goalInputMode: GoalInputMode;
@@ -38,7 +40,8 @@ export interface NutritionResult {
   likes: string;
   dislikes: string;
   bmrFormula: BmrFormula;
-  activityLevel: ActivityLevel;
+  stepLevel: StepLevel;
+  gymLevel: GymLevel;
   weightGoal: WeightGoal;
   bmr: number;
   tdee: number;
@@ -74,15 +77,29 @@ function calcBMR(
   }
 }
 
-const ACTIVITY_MULTIPLIERS: Record<ActivityLevel, number> = {
-  level1: 1.2,
-  level2: 1.4,
-  level3: 1.6,
-  level4: 1.9,
+// PAL = chỉ số mức độ vận động (bước chân) + chỉ số mức độ tập luyện (gym)
+const STEP_PAL: Record<StepLevel, number> = {
+  step1: 0.6,
+  step2: 0.7,
+  step3: 0.8,
+  step4: 0.9,
+  step5: 1.0,
 };
 
-function calcTDEE(bmr: number, level: ActivityLevel): number {
-  return bmr * ACTIVITY_MULTIPLIERS[level];
+const GYM_PAL: Record<GymLevel, number> = {
+  gym1: 0.55,
+  gym2: 0.65,
+  gym3: 0.75,
+  gym4: 0.85,
+  gym5: 0.95,
+};
+
+function calcPAL(step: StepLevel, gym: GymLevel): number {
+  return STEP_PAL[step] + GYM_PAL[gym];
+}
+
+function calcTDEE(bmr: number, pal: number): number {
+  return bmr * pal;
 }
 
 function calcDER(
@@ -148,11 +165,20 @@ const LOSS_SPEED: Record<LossSpeed, { rate: number; label: string; percent: stri
   fast: { rate: 0.015, label: "Giảm nhanh", percent: "1.5%" },
 };
 
-const ACTIVITY_LABEL: Record<ActivityLevel, string> = {
-  level1: "Tập tạ ≥3 buổi + <5.000 bước/ngày (×1.2)",
-  level2: "Tập tạ ≥3 buổi + 5.000–6.999 bước/ngày (×1.4)",
-  level3: "Tập tạ ≥3 buổi + 7.000–9.999 bước/ngày (×1.6)",
-  level4: "Tập tạ ≥3 buổi + ≥10.000 bước/ngày (×1.9)",
+const STEP_LABEL: Record<StepLevel, string> = {
+  step1: "Đi bộ dưới 1999 bước/ngày",
+  step2: "Đi bộ từ 2000 - 4999 bước/ngày",
+  step3: "Đi bộ từ 5000 - 6999 bước/ngày",
+  step4: "Đi bộ từ 7000 - 9999 bước/ngày",
+  step5: "Đi bộ trên 10000 bước/ngày",
+};
+
+const GYM_LABEL: Record<GymLevel, string> = {
+  gym1: "Không tập Gym",
+  gym2: "Tập Gym từ 1-3 buổi/tuần",
+  gym3: "Tập Gym từ 3-4 buổi/tuần",
+  gym4: "Tập Gym nhiều hơn 5 buổi/tuần",
+  gym5: "Tập Gym 7 buổi/tuần, mỗi buổi 2 tiếng",
 };
 
 const INITIAL_FORM: FormState = {
@@ -163,7 +189,8 @@ const INITIAL_FORM: FormState = {
   likes: "",
   dislikes: "",
   bmrFormula: "mifflin",
-  activityLevel: "level1",
+  stepLevel: "step1",
+  gymLevel: "gym1",
   weightGoal: "lose",
   lossSpeed: "medium",
   goalInputMode: "kg_to_lose",
@@ -371,7 +398,7 @@ export default function DietForm({
     const w = parseFloat(form.weight);
     const a = parseInt(form.age, 10);
     const bmr = calcBMR(form.bmrFormula, w, h, a);
-    const tdee = calcTDEE(bmr, form.activityLevel);
+    const tdee = calcTDEE(bmr, calcPAL(form.stepLevel, form.gymLevel));
     const lossRate = LOSS_SPEED[form.lossSpeed].rate;
     const { der, weeklyLoss } = calcDER(tdee, form.weightGoal, w, lossRate);
     const { protein, fat, carbs } = calcMacros(h, der);
@@ -387,7 +414,8 @@ export default function DietForm({
       likes: form.likes.trim(),
       dislikes: form.dislikes.trim(),
       bmrFormula: form.bmrFormula,
-      activityLevel: form.activityLevel,
+      stepLevel: form.stepLevel,
+      gymLevel: form.gymLevel,
       weightGoal: form.weightGoal,
       bmr: Math.round(bmr),
       tdee: Math.round(tdee),
@@ -835,12 +863,23 @@ export default function DietForm({
                 </select>
               </div>
 
-              <div>
-                <label htmlFor="activityLevel" className="dp-label">Mức độ vận động / Bước chân</label>
-                <select id="activityLevel" name="activityLevel" value={form.activityLevel}
+              {/* Mỗi ô 1 dòng để nhãn dài không bị cắt cụt trong select */}
+              <div className="sm:col-span-2">
+                <label htmlFor="stepLevel" className="dp-label">Mức độ vận động</label>
+                <select id="stepLevel" name="stepLevel" value={form.stepLevel}
                   onChange={handleChange} className="dp-input">
-                  {(Object.keys(ACTIVITY_LABEL) as ActivityLevel[]).map((l) => (
-                    <option key={l} value={l}>{ACTIVITY_LABEL[l]}</option>
+                  {(Object.keys(STEP_LABEL) as StepLevel[]).map((l) => (
+                    <option key={l} value={l}>{STEP_LABEL[l]}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="sm:col-span-2">
+                <label htmlFor="gymLevel" className="dp-label">Mức độ tập luyện</label>
+                <select id="gymLevel" name="gymLevel" value={form.gymLevel}
+                  onChange={handleChange} className="dp-input">
+                  {(Object.keys(GYM_LABEL) as GymLevel[]).map((l) => (
+                    <option key={l} value={l}>{GYM_LABEL[l]}</option>
                   ))}
                 </select>
               </div>
