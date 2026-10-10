@@ -223,9 +223,8 @@ export default function DietForm({
 
   // ── Đồng hồ đếm ngược cho phiên Trải nghiệm ──
   const trialDeadline = trialExpiresAt ? new Date(trialExpiresAt).getTime() : null;
-  const [remainingMs, setRemainingMs] = useState<number | null>(
-    trialDeadline !== null ? Math.max(0, trialDeadline - Date.now()) : null
-  );
+  // Bắt đầu null, effect bên dưới gọi tick() ngay khi mount để điền giá trị thật
+  const [remainingMs, setRemainingMs] = useState<number | null>(null);
   const [trialOver, setTrialOver] = useState(false);
 
   useEffect(() => {
@@ -263,16 +262,6 @@ export default function DietForm({
   const [macroC, setMacroC] = useState(0);
   const [autoBalance, setAutoBalance] = useState(true);
   const [macroAlert, setMacroAlert] = useState("");
-
-  // Sync macro inputs whenever a new result is calculated
-  useEffect(() => {
-    if (result) {
-      setMacroP(result.protein);
-      setMacroF(result.fat);
-      setMacroC(result.carbs);
-      setMacroAlert("");
-    }
-  }, [result]);
 
   // Change-password modal state
   const [showChangePwd, setShowChangePwd] = useState(false);
@@ -429,6 +418,11 @@ export default function DietForm({
       daysToGoal: roadmap?.daysToGoal ?? null,
       monthsToGoal: roadmap?.monthsToGoal ?? null,
     });
+    // Đồng bộ ô chỉnh macro với kết quả vừa tính
+    setMacroP(Math.round(protein));
+    setMacroF(fat);
+    setMacroC(Math.round(carbs));
+    setMacroAlert("");
     setTimeout(() => {
       document.getElementById("result-card")?.scrollIntoView({ behavior: "smooth" });
     }, 50);
