@@ -126,15 +126,231 @@ export const HOME_WORKOUT_7D: WorkoutPlan = {
   contact: "0973653861",
 };
 
-// ─── Giáo án theo tần suất tập ─────────────────────────────────────────────────
+// ─── Giáo án tập Gym theo tần suất tập ─────────────────────────────────────────
 //
+// Số hoá từ các file giáo án Ladysfit trong thư mục giao-an/ (1-2buoi, 3-4buoi,
+// 5-6buoi, 7buoi .xlsx). Mỗi mức tập là một tuần mẫu, khách lặp lại hằng tuần.
+// Mã cùng chữ cái (A1, A2…) là một superset: tập hết chuỗi rồi mới nghỉ.
+
+type ExerciseRow = [
+  code: string, name: string, warmupSets: string, mainSets: string, reps: string, rest: string,
+];
+
+function gymSession(label: string, rows: ExerciseRow[]): WorkoutSession {
+  return {
+    label,
+    exercises: rows.map(([code, name, warmupSets, mainSets, reps, rest]) => ({
+      code, name, warmupSets, mainSets, reps, rest,
+    })),
+  };
+}
+
+const GYM_GLOSSARY: WorkoutTerm[] = [
+  { term: "Sets", meaning: "Số hiệp tập của một bài tập." },
+  { term: "Reps", meaning: "Số lần lặp lại của một động tác / bài tập." },
+  { term: "Rest", meaning: "Thời gian nghỉ sau khi thực hiện một bài tập bất kì." },
+  {
+    term: "Superset",
+    meaning:
+      "Sau khi tập xong 1 bài cùng chữ cái (A, B, C, D,…) nhưng khác số thứ tự (1, 2, 3, 4,…) thì tập nốt những bài còn lại trong chuỗi đó. Khi nào xong rồi mới nghỉ.",
+  },
+  {
+    term: "Sets chính",
+    meaning:
+      "Hiệp tập chính thức của bài tập, được thực hiện sau khi khởi động xong, làm đúng với mức Reps đã đề ra trong chương trình tập.",
+  },
+  {
+    term: "Sets khởi động",
+    meaning:
+      "Thực hiện bài tập với số Reps thấp hơn (ít hơn Sets chính từ 5 – 10 Reps) để cơ thể làm quen.",
+  },
+];
+
+/** Phần chữ dùng chung cho mọi giáo án Gym — chỉ khác tiêu đề và lịch tập. */
+function gymPlan(frequency: string, sessions: WorkoutSession[]): WorkoutPlan {
+  return {
+    title: `Chương trình tập giảm mỡ ${frequency}`,
+    subtitle: `${sessions.length} buổi tăng tiến — tập tại phòng Gym`,
+    brandLine: HOME_WORKOUT_7D.brandLine,
+    note:
+      "Các bài tập thực hiện với tốc độ vừa phải, có kiểm soát để tối ưu tiêu hao năng lượng và hạn chế chấn thương.",
+    glossary: GYM_GLOSSARY,
+    warmupGuide: HOME_WORKOUT_7D.warmupGuide,
+    sessions,
+    contact: HOME_WORKOUT_7D.contact,
+  };
+}
+
+const GYM_1_2_SESSIONS: WorkoutSession[] = [
+  gymSession("Buổi 1", [
+    ["A1", "Hip Thrust",            "1", "3", "10-12", "0s"],
+    ["A2", "Dumbbell Bench Press",  "1", "3", "12-15", "1-2p"],
+    ["B1", "Dumbbell Goblet Squat", "1", "3", "10-12", "90s"],
+    ["B2", "OVH Lat Pulldown",      "1", "3", "10-12", "90s"],
+    ["C1", "Lying Leg Curl",        "0", "3", "15-20", "60s"],
+    ["C2", "Plank",                 "0", "3", "30-60s", "60s"],
+  ]),
+  gymSession("Buổi 2", [
+    ["A1", "Dumbbell Split Squat",           "1", "3", "10-12", "0s"],
+    ["A2", "Dumbbell Prone Row",             "1", "3", "12-15", "1-2p"],
+    ["B1", "Dumbbell RDL",                   "1", "3", "10-12", "90s"],
+    ["B2", "Seated Dumbbell Shoulder Press", "1", "3", "10-12", "90s"],
+    ["C1", "Seated Leg Extension",           "0", "3", "15-20", "60s"],
+    ["C2", "Plank",                          "0", "3", "30-60s", "60s"],
+  ]),
+];
+
+const GYM_3_4_SESSIONS: WorkoutSession[] = [
+  gymSession("Buổi 1", [
+    ["A1", "Hip Thrust",            "1", "3", "10-12", "0s"],
+    ["A2", "Dumbbell Bench Press",  "1", "3", "12-15", "1-2p"],
+    ["B1", "Dumbbell Goblet Squat", "1", "3", "10-12", "90s"],
+    ["B2", "OVH Lat Pulldown",      "1", "3", "10-12", "90s"],
+    ["C1", "Lying Leg Curl",        "0", "3", "15-20", "60s"],
+    ["C2", "Bear Plank",            "0", "3", "30-60s", "60s"],
+  ]),
+  gymSession("Buổi 2", [
+    ["A1", "Dumbbell Split Squat",           "1", "3", "10-12", "0s"],
+    ["A2", "Dumbbell Prone Row",             "1", "3", "12-15", "1-2p"],
+    ["B1", "Dumbbell RDL",                   "1", "3", "10-12", "90s"],
+    ["B2", "Seated Dumbbell Shoulder Press", "1", "3", "10-12", "90s"],
+    ["C1", "Seated Leg Extension",           "0", "3", "15-20", "60s"],
+    ["C2", "Lying Leg Raise",                "0", "3", "12-15", "60s"],
+  ]),
+  gymSession("Buổi 3", [
+    ["A1", "Dumbbell Step Up",      "1", "3", "10-12", "0s"],
+    ["A2", "Seated Cable Row",      "1", "3", "12-15", "1-2p"],
+    ["B1", "Dumbbell B-Stance RDL", "1", "3", "10-12", "90s"],
+    ["B2", "Incline Push Up",       "1", "3", "10-12", "90s"],
+    ["C1", "Lying Leg Curl",        "0", "3", "15-20", "60s"],
+    ["C2", "Boat Hold",             "0", "3", "30-60s", "60s"],
+  ]),
+  gymSession("Buổi 4", [
+    ["A1", "American Hip Thrust",     "1", "3", "10-12", "0s"],
+    ["A2", "Incline Bench Press",     "1", "3", "12-15", "1-2p"],
+    ["B1", "Single Leg Glute Bridge", "1", "3", "10-12", "90s"],
+    ["B2", "UDH Lat Pulldown",        "1", "3", "10-12", "90s"],
+    ["C1", "Seated Leg Extension",    "0", "3", "15-20", "60s"],
+    ["C2", "Plank",                   "0", "3", "30-60s", "60s"],
+  ]),
+];
+
+const GYM_5_6_SESSIONS: WorkoutSession[] = [
+  gymSession("Buổi 1", [
+    ["A1", "Hip Thrust",            "1", "3", "10-12", "0s"],
+    ["A2", "Dumbbell Bench Press",  "1", "3", "12-15", "1-2p"],
+    ["B1", "Dumbbell Goblet Squat", "1", "3", "10-12", "90s"],
+    ["B2", "OVH Lat Pulldown",      "1", "3", "10-12", "90s"],
+    ["C1", "Lying Leg Curl",        "0", "3", "15-20", "60s"],
+    ["C2", "Bear Plank",            "0", "3", "30-60s", "60s"],
+  ]),
+  gymSession("Buổi 2", [
+    ["A1", "Jumping Jack",         "1", "6", "20-30s", "0s"],
+    ["A2", "Butt Touches Run",     "1", "6", "20-30s", "0-20s"],
+    ["A3", "Bicycle Crunch",       "1", "6", "10-12", "0-20s"],
+    ["A4", "High Knee Run",        "1", "6", "20-30s", "0-20s"],
+    ["A5", "Inch Worm In Place",   "0", "6", "10-12", "0-20s"],
+    ["A6", "Dumbbell Farmer Walk", "0", "6", "2-3 vòng", "30-60s"],
+  ]),
+  gymSession("Buổi 3", [
+    ["A1", "Dumbbell Split Squat",           "1", "3", "10-12", "0s"],
+    ["A2", "Dumbbell Prone Row",             "1", "3", "12-15", "1-2p"],
+    ["B1", "Dumbbell RDL",                   "1", "3", "10-12", "90s"],
+    ["B2", "Seated Dumbbell Shoulder Press", "1", "3", "10-12", "90s"],
+    ["C1", "Seated Leg Extension",           "0", "3", "15-20", "60s"],
+    ["C2", "Lying Leg Raise",                "0", "3", "12-15", "60s"],
+  ]),
+  gymSession("Buổi 4", [
+    ["A1", "Half Burpee",          "1", "6", "20-30s", "0s"],
+    ["A2", "Flutter Kick",         "1", "6", "20-30s", "0-20s"],
+    ["A3", "Mountain Climber",     "1", "6", "10-12", "0-20s"],
+    ["A4", "Lying Leg Raise",      "1", "6", "20-30s", "0-20s"],
+    ["A5", "Inch Worm In Place",   "0", "6", "10-12", "0-20s"],
+    ["A6", "Dumbbell Farmer Walk", "0", "6", "2-3 vòng", "30-60s"],
+  ]),
+  gymSession("Buổi 5", [
+    ["A1", "American Hip Thrust",     "1", "3", "10-12", "0s"],
+    ["A2", "Incline Bench Press",     "1", "3", "12-15", "1-2p"],
+    ["B1", "Single Leg Glute Bridge", "1", "3", "10-12", "90s"],
+    ["B2", "UDH Lat Pulldown",        "1", "3", "10-12", "90s"],
+    ["C1", "Seated Leg Extension",    "0", "3", "15-20", "60s"],
+    ["C2", "Plank",                   "0", "3", "30-60s", "60s"],
+  ]),
+  gymSession("Buổi 6", [
+    ["A1", "Dumbbell Squat & Press", "1", "6", "10-12", "0s"],
+    ["A2", "Plank Shoulder Touch",   "1", "6", "20-30s", "0-20s"],
+    ["A3", "Deadlift & Row",         "1", "6", "10-12", "0-20s"],
+    ["A4", "Plank Up & Down",        "1", "6", "20-30s", "0-20s"],
+    ["A5", "Bicycle Crunch",         "0", "6", "10-12", "0-20s"],
+    ["A6", "Plank In & Out",         "0", "6", "2-3 vòng", "30-60s"],
+  ]),
+];
+
+const GYM_7_SESSIONS: WorkoutSession[] = [
+  gymSession("Buổi 1", [
+    ["A1", "Hip Thrust",            "1", "3", "10-12", "0s"],
+    ["A2", "Dumbbell Bench Press",  "1", "3", "12-15", "30s"],
+    ["B1", "Dumbbell Goblet Squat", "1", "3", "10-12", "0s"],
+    ["B2", "OVH Lat Pulldown",      "1", "3", "10-12", "30s"],
+    ["C1", "Lying Leg Curl",        "0", "3", "15-20", "0s"],
+    ["C2", "Bear Plank",            "0", "3", "30-60s", "60s"],
+  ]),
+  gymSession("Buổi 2", [
+    ["A1", "Jumping Jack",         "1", "6", "20-30s", "0s"],
+    ["A2", "Butt Touches Run",     "1", "6", "20-30s", "0-20s"],
+    ["A3", "Bicycle Crunch",       "1", "6", "10-12", "0-20s"],
+    ["A4", "High Knee Run",        "1", "6", "20-30s", "0-20s"],
+    ["A5", "Inch Worm In Place",   "0", "6", "10-12", "0-20s"],
+    ["A6", "Dumbbell Farmer Walk", "0", "6", "2-3 vòng", "30-60s"],
+  ]),
+  gymSession("Buổi 3", [
+    ["A1", "Dumbbell Split Squat",           "1", "3", "10-12", "0s"],
+    ["A2", "Dumbbell Prone Row",             "1", "3", "12-15", "30s"],
+    ["B1", "Dumbbell RDL",                   "1", "3", "10-12", "0s"],
+    ["B2", "Seated Dumbbell Shoulder Press", "1", "3", "10-12", "30s"],
+    ["C1", "Seated Leg Extension",           "0", "3", "15-20", "0s"],
+    ["C2", "Lying Leg Raise",                "0", "3", "12-15", "60s"],
+  ]),
+  gymSession("Buổi 4", [
+    ["A1", "Half Burpee",          "1", "6", "20-30s", "0s"],
+    ["A2", "Flutter Kick",         "1", "6", "20-30s", "0-20s"],
+    ["A3", "Mountain Climber",     "1", "6", "10-12", "0-20s"],
+    ["A4", "Lying Leg Raise",      "1", "6", "20-30s", "0-20s"],
+    ["A5", "Inch Worm In Place",   "0", "6", "10-12", "0-20s"],
+    ["A6", "Dumbbell Farmer Walk", "0", "6", "2-3 vòng", "30-60s"],
+  ]),
+  gymSession("Buổi 5", [
+    ["A1", "American Hip Thrust",     "1", "3", "10-12", "0s"],
+    ["A2", "Incline Bench Press",     "1", "3", "12-15", "30s"],
+    ["B1", "Single Leg Glute Bridge", "1", "3", "10-12", "0s"],
+    ["B2", "UDH Lat Pulldown",        "1", "3", "10-12", "30s"],
+    ["C1", "Seated Leg Extension",    "0", "3", "15-20", "0s"],
+    ["C2", "Plank",                   "0", "3", "30-60s", "60s"],
+  ]),
+  gymSession("Buổi 6", [
+    ["A1", "Dumbbell Squat & Press", "1", "6", "10-12", "0s"],
+    ["A2", "Plank Shoulder Touch",   "1", "6", "20-30s", "0-20s"],
+    ["A3", "Deadlift & Row",         "1", "6", "10-12", "0-20s"],
+    ["A4", "Plank Up & Down",        "1", "6", "20-30s", "0-20s"],
+    ["A5", "Bicycle Crunch",         "0", "6", "10-12", "0-20s"],
+    ["A6", "Plank In & Out",         "0", "6", "2-3 vòng", "30-60s"],
+  ]),
+  gymSession("Buổi 7", [
+    ["A1", "Dumbbell Reverse Lunge", "1", "6", "10-12", "0s"],
+    ["A2", "Dumbbell Bent Row",      "1", "6", "12-15", "30s"],
+    ["B1", "Single Leg Hip Thrust",  "1", "6", "10-12", "0s"],
+    ["B2", "Incline Push Up",        "1", "6", "12-15", "30s"],
+    ["C1", "Hip Extension",          "0", "6", "10-12", "0s"],
+    ["C2", "Crunches",               "0", "6", "12-15", "60s"],
+  ]),
+];
+
 // Khách chọn "Mức độ tập luyện" nào thì nhận giáo án tương ứng; "Không tập Gym"
-// thì không gửi kèm giáo án. Các mức chưa có giáo án riêng tạm dùng
-// HOME_WORKOUT_7D cho tới khi số hoá xong giáo án Ladysfit cung cấp.
+// thì không gửi kèm giáo án.
 export const WORKOUT_BY_GYM_LEVEL: Record<GymLevel, WorkoutPlan | null> = {
   gym1: null,
-  gym2: HOME_WORKOUT_7D, // TODO: giáo án 1-2 buổi/tuần
-  gym3: HOME_WORKOUT_7D, // TODO: giáo án 3-4 buổi/tuần
-  gym4: HOME_WORKOUT_7D, // TODO: giáo án 5-6 buổi/tuần
-  gym5: HOME_WORKOUT_7D, // TODO: giáo án 7 buổi/tuần x 2 tiếng
+  gym2: gymPlan("1-2 buổi/tuần", GYM_1_2_SESSIONS),
+  gym3: gymPlan("3-4 buổi/tuần", GYM_3_4_SESSIONS),
+  gym4: gymPlan("5-6 buổi/tuần", GYM_5_6_SESSIONS),
+  gym5: gymPlan("7 buổi/tuần", GYM_7_SESSIONS),
 };
