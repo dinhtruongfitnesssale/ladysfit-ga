@@ -10,7 +10,7 @@ import AddFoodModal, { type SavedFood } from "./AddFoodModal";
 
 type BmrFormula = "mifflin" | "harris" | "pyramid";
 type StepLevel = "step1" | "step2" | "step3" | "step4" | "step5";
-type GymLevel = "gym1" | "gym2" | "gym3" | "gym4" | "gym5";
+export type GymLevel = "gym1" | "gym2" | "gym3" | "gym4" | "gym5";
 type WeightGoal = "lose" | "maintain";
 type GoalInputMode = "target_weight" | "kg_to_lose";
 type LossSpeed = "slow" | "medium" | "fast";
@@ -175,9 +175,9 @@ const STEP_LABEL: Record<StepLevel, string> = {
 
 const GYM_LABEL: Record<GymLevel, string> = {
   gym1: "Không tập Gym",
-  gym2: "Tập Gym từ 1-3 buổi/tuần",
-  gym3: "Tập Gym từ 3-4 buổi/tuần",
-  gym4: "Tập Gym nhiều hơn 5 buổi/tuần",
+  gym2: "Tập Gym 1-2 buổi/tuần",
+  gym3: "Tập Gym 3-4 buổi/tuần",
+  gym4: "Tập Gym 5-6 buổi/tuần",
   gym5: "Tập Gym 7 buổi/tuần, mỗi buổi 2 tiếng",
 };
 

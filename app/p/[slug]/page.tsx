@@ -27,7 +27,7 @@ export async function generateMetadata({
       ? `Thực đơn & lịch tập của ${plan.client.name}`
       : `Thực đơn của ${plan.client.name}`,
     description: withWorkout
-      ? "Thực đơn dinh dưỡng cá nhân hoá kèm chương trình tập tại nhà 1 tuần"
+      ? "Thực đơn dinh dưỡng cá nhân hoá kèm chương trình tập"
       : "Thực đơn dinh dưỡng cá nhân hoá",
   };
 }

@@ -2,8 +2,10 @@
 //
 // Nội dung số hoá nguyên văn từ tài liệu "Chương trình tập 1 tuần.pdf" của
 // Ladysfit. Gói kèm thực đơn: in chung vào PDF và nhúng vào link chia sẻ
-// /p/[slug]. Muốn đổi giáo án chỉ cần sửa dữ liệu HOME_WORKOUT_7D bên dưới,
-// không phải đụng tới UI / PDF / trang chia sẻ.
+// /p/[slug]. Muốn đổi giáo án chỉ cần sửa dữ liệu bên dưới, không phải đụng
+// tới UI / PDF / trang chia sẻ.
+
+import type { GymLevel } from "@/app/_components/DietForm";
 
 /** Một dòng trong bảng bài tập. Mã A1/A2… là nhóm siêu hiệp: tập hết nhóm rồi mới nghỉ. */
 export interface WorkoutExercise {
@@ -122,4 +124,17 @@ export const HOME_WORKOUT_7D: WorkoutPlan = {
     session("Buổi 4", "4", REPS_4),
   ],
   contact: "0973653861",
+};
+
+// ─── Giáo án theo tần suất tập ─────────────────────────────────────────────────
+//
+// Khách chọn "Mức độ tập luyện" nào thì nhận giáo án tương ứng; "Không tập Gym"
+// thì không gửi kèm giáo án. Các mức chưa có giáo án riêng tạm dùng
+// HOME_WORKOUT_7D cho tới khi số hoá xong giáo án Ladysfit cung cấp.
+export const WORKOUT_BY_GYM_LEVEL: Record<GymLevel, WorkoutPlan | null> = {
+  gym1: null,
+  gym2: HOME_WORKOUT_7D, // TODO: giáo án 1-2 buổi/tuần
+  gym3: HOME_WORKOUT_7D, // TODO: giáo án 3-4 buổi/tuần
+  gym4: HOME_WORKOUT_7D, // TODO: giáo án 5-6 buổi/tuần
+  gym5: HOME_WORKOUT_7D, // TODO: giáo án 7 buổi/tuần x 2 tiếng
 };

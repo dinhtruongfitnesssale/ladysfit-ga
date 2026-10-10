@@ -5,7 +5,7 @@ import type { NutritionResult } from "./DietForm";
 import { FOODS, type FoodItem } from "@/lib/foods-data";
 import { getCookingTip } from "@/lib/cooking-tips";
 import type { SharePlan, SlimMeal } from "@/lib/share";
-import { HOME_WORKOUT_7D, type WorkoutPlan } from "@/lib/workout-plan";
+import { WORKOUT_BY_GYM_LEVEL, type WorkoutPlan } from "@/lib/workout-plan";
 import type { SavedFood } from "./AddFoodModal";
 
 // ─── 7 ngày trong tuần ─────────────────────────────────────────────────────────
@@ -818,10 +818,12 @@ export default function MealPlanSection({
   const [qrDataUrl, setQrDataUrl] = useState<string | null>(null);
   const [qrLoading, setQrLoading] = useState(false);
 
-  // Kèm chương trình tập tại nhà 1 tuần vào PDF và link gửi khách (mặc định bật)
+  // Kèm giáo án theo mức độ tập luyện vào PDF và link gửi khách (mặc định bật).
+  // Khách "Không tập Gym" → không có giáo án, ẩn luôn khu chọn.
+  const workoutPlan = WORKOUT_BY_GYM_LEVEL[result.gymLevel];
   const [includeWorkout, setIncludeWorkout] = useState(true);
   const [workoutPreview, setWorkoutPreview] = useState(false);
-  const workout = includeWorkout ? HOME_WORKOUT_7D : null;
+  const workout = includeWorkout ? workoutPlan : null;
 
   // Đổi ngày → reset trình soạn thảo (rows/đang sửa) để không lẫn dữ liệu giữa các ngày
   function switchDay(idx: number) {
@@ -1611,7 +1613,8 @@ export default function MealPlanSection({
             })}
           </div>
 
-          {/* ── Kèm chương trình tập tại nhà 1 tuần ── */}
+          {/* ── Kèm giáo án theo mức độ tập luyện ── */}
+          {workoutPlan && (
           <div
             className="rounded-2xl overflow-hidden"
             style={{
@@ -1641,11 +1644,11 @@ export default function MealPlanSection({
               </span>
               <span className="flex-1 min-w-0">
                 <span className="block text-sm font-bold" style={{ color: "#000000" }}>
-                  🏋️ Kèm chương trình tập giảm béo tại nhà
+                  🏋️ Kèm {workoutPlan.title.toLowerCase()}
                 </span>
                 <span className="block text-xs mt-0.5" style={{ color: "rgba(0,0,0,0.5)" }}>
                   {includeWorkout
-                    ? "Giáo án 4 buổi (7 ngày) nằm trong PDF và trong link gửi khách."
+                    ? `${workoutPlan.subtitle}. Nằm trong PDF và trong link gửi khách.`
                     : "Đang tắt — khách chỉ nhận thực đơn."}
                 </span>
               </span>
@@ -1670,7 +1673,7 @@ export default function MealPlanSection({
 
                 {workoutPreview && (
                   <div className="px-4 pb-4 space-y-2.5">
-                    {HOME_WORKOUT_7D.sessions.map((s) => (
+                    {workoutPlan.sessions.map((s) => (
                       <div
                         key={s.label}
                         className="rounded-xl px-3.5 py-3"
@@ -1714,6 +1717,7 @@ export default function MealPlanSection({
               </div>
             )}
           </div>
+          )}
 
           <div className="flex flex-col sm:flex-row gap-2.5">
             <button
@@ -1809,7 +1813,7 @@ export default function MealPlanSection({
 
             <p className="text-sm mb-3" style={{ color: "rgba(0,0,0,0.55)" }}>
               Gửi link này cho khách — họ mở ra là xem được thực đơn {includedDays.length} ngày
-              {workout ? " kèm chương trình tập tại nhà 1 tuần" : ""}, không cần đăng nhập.
+              {workout ? " kèm chương trình tập" : ""}, không cần đăng nhập.
             </p>
 
             <div

@@ -222,7 +222,7 @@ export default function SharedPlanView({ plan }: { plan: SharePlan }) {
         </>
         )}
 
-        {/* ── Chương trình tập giảm béo tại nhà (7 ngày) ── */}
+        {/* ── Chương trình tập gửi kèm ── */}
         {tab === "workout" && workout && (
           <div className="space-y-4">
             <div className="rounded-2xl p-4" style={{ background: "#000000" }}>
